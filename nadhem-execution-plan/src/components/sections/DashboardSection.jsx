@@ -93,11 +93,11 @@ export default function DashboardSection() {
             <h3 style={{ color: '#fff', fontSize: '1rem', fontWeight: 600, marginBottom: 12 }}>
               <i className="fa-thin fa-people-group" style={{ marginLeft: 8 }} /> المهام حسب اللجنة
             </h3>
-            <ResponsiveContainer width="100%" height={240}>
+            <ResponsiveContainer width="100%" height={380}>
               <BarChart data={chartData.tasksByCommittee} layout="vertical" margin={{ top: 5, right: 30, left: 5, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal={false} />
                 <XAxis type="number" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 12 }} axisLine={false} tickLine={false} />
-                <YAxis type="category" dataKey="name" width={120} tick={{ fill: 'rgba(255,255,255,0.8)', fontSize: 13, fontFamily: 'Alexandria' }} axisLine={false} tickLine={false} />
+                <YAxis type="category" dataKey="name" width={140} tick={{ fill: 'rgba(255,255,255,0.8)', fontSize: 12, fontFamily: 'Alexandria' }} axisLine={false} tickLine={false} interval={0} />
                 <Tooltip contentStyle={{ background: 'rgba(15,7,32,0.95)', border: 'none', borderRadius: 8, color: '#fff', fontFamily: 'Alexandria', direction: 'rtl' }} formatter={(v) => [`${v} مهمة`]} />
                 <Bar dataKey="value" radius={[0, 6, 6, 0]} barSize={18}>
                   {chartData.tasksByCommittee.map((_, i) => <Cell key={i} fill={committeeColors[i % committeeColors.length]} />)}
