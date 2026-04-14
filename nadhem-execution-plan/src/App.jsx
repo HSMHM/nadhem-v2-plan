@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import WelcomePage from './components/WelcomePage';
 import Sidebar, { devNavItems, opsNavItems, marketingNavItems } from './components/Sidebar';
 import PlanTabs from './components/PlanTabs';
 
@@ -57,9 +58,14 @@ function ScrollToTop() {
 }
 
 function App() {
+  const [showWelcome, setShowWelcome] = useState(true);
   const [plan, setPlan] = useState('dev');
   const [active, setActive] = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  if (showWelcome) {
+    return <WelcomePage onEnter={() => { setShowWelcome(false); window.scrollTo({ top: 0 }); }} />;
+  }
 
   const currentNav = navMap[plan] || devNavItems;
 

@@ -1,7 +1,7 @@
 const plans = [
-  { id: 'dev', label: 'خطة التطوير', icon: 'code', color: '#2A848A' },
-  { id: 'ops', label: 'خطة التشغيل', icon: 'gears', color: '#BA5A31' },
-  { id: 'marketing', label: 'خطة التسويق', icon: 'bullhorn', color: '#A61C61' },
+  { id: 'dev', label: 'خطة التطوير', shortLabel: 'التطوير', icon: 'code', color: '#2A848A' },
+  { id: 'ops', label: 'خطة التشغيل', shortLabel: 'التشغيل', icon: 'gears', color: '#BA5A31' },
+  { id: 'marketing', label: 'خطة التسويق', shortLabel: 'التسويق', icon: 'bullhorn', color: '#A61C61' },
 ];
 
 export default function PlanTabs({ active, onChange }) {
@@ -15,7 +15,8 @@ export default function PlanTabs({ active, onChange }) {
           onClick={() => onChange(p.id)}
         >
           <i className={`fa-thin fa-${p.icon}`} aria-hidden="true" />
-          {p.label}
+          <span className="tab-label-full">{p.label}</span>
+          <span className="tab-label-short">{p.shortLabel}</span>
         </button>
       ))}
     </div>

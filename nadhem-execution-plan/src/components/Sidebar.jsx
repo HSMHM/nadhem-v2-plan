@@ -45,6 +45,9 @@ export default function Sidebar({ active, onNav, isOpen, onClose, plan = 'dev' }
     <>
       <div className={`sidebar-overlay ${isOpen ? 'open' : ''}`} onClick={onClose} />
       <nav className={`sidebar ${isOpen ? 'open' : ''}`}>
+        <button className="sidebar-close" onClick={onClose}>
+          <i className="fa-thin fa-xmark" aria-hidden="true" />
+        </button>
         <img src="/logos/white-logo.png" alt="نظم" className="sidebar-logo" />
         <div className="sidebar-title">خطة التنفيذ 2026</div>
 
