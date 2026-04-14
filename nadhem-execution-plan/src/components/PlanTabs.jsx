@@ -1,0 +1,23 @@
+const plans = [
+  { id: 'dev', label: 'خطة التطوير', icon: 'code', color: '#2A848A' },
+  { id: 'ops', label: 'خطة التشغيل', icon: 'gears', color: '#BA5A31' },
+  { id: 'marketing', label: 'خطة التسويق', icon: 'bullhorn', color: '#A61C61' },
+];
+
+export default function PlanTabs({ active, onChange }) {
+  return (
+    <div className="plan-tabs-bar">
+      {plans.map((p) => (
+        <button
+          key={p.id}
+          className={`plan-tab ${active === p.id ? 'active' : ''}`}
+          data-plan={p.id}
+          onClick={() => onChange(p.id)}
+        >
+          <i className={`fa-thin fa-${p.icon}`} aria-hidden="true" />
+          {p.label}
+        </button>
+      ))}
+    </div>
+  );
+}

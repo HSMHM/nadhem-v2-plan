@@ -160,6 +160,20 @@ body{font-family:var(--font);color:var(--text);background:var(--bg);line-height:
   .g2,.g3,.g4{grid-template-columns:1fr}
   .tbl{display:block;overflow-x:auto}
 }
+/* Plan Tabs */
+.plan-tabs-bar{position:sticky;top:0;z-index:90;background:var(--card);border-bottom:1px solid var(--border);display:flex;padding:0 32px}
+.plan-tab{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 16px;border:none;background:transparent;cursor:pointer;font-family:var(--font);font-size:0.88rem;font-weight:500;color:var(--text-muted);border-bottom:3px solid transparent;transition:all .2s}
+.plan-tab:hover{color:var(--text-dark);background:var(--card-hover)}
+.plan-tab.active{font-weight:600;border-bottom-color:var(--primary);color:var(--primary)}
+.plan-tab.active[data-plan="ops"]{border-bottom-color:var(--accent-orange);color:var(--accent-orange)}
+.plan-tab.active[data-plan="marketing"]{border-bottom-color:var(--accent-pink);color:var(--accent-pink)}
+.plan-tab i{font-size:16px}
+
+@media(max-width:767px){
+  .plan-tabs-bar{padding:0 8px}
+  .plan-tab{font-size:0.78rem;padding:12px 8px;gap:6px}
+}
+
 @media print{
   .sidebar,.scroll-top,.mobile-btn{display:none!important}
   .main{margin:0!important;padding:20px!important}

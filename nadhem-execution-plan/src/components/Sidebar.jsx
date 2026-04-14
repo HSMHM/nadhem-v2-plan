@@ -1,4 +1,4 @@
-const navItems = [
+export const devNavItems = [
   { id: 'dashboard', label: 'لوحة الإحصائيات', icon: 'chart-mixed' },
   { id: 'developments', label: 'التطويرات المطلوبة', icon: 'rocket-launch' },
   { id: 'modules', label: 'الوحدات (Modules)', icon: 'cubes' },
@@ -8,9 +8,30 @@ const navItems = [
   { id: 'timeline-detailed', label: 'الجدول الزمني المفصل', icon: 'list-timeline' },
   { id: 'design-system', label: 'التصميم الموحد', icon: 'palette' },
   { id: 'charts', label: 'الرسوم البيانية', icon: 'chart-pie' },
+  { id: 'roadmap', label: 'الاجتماع الأخير — خارطة الطريق', icon: 'map' },
 ];
 
-export default function Sidebar({ active, onNav, isOpen, onClose }) {
+export const opsNavItems = [
+  { id: 'ops-dashboard', label: 'لوحة المؤشرات التشغيلية', icon: 'gauge-high' },
+  { id: 'ops-subscriptions', label: 'متابعة الاشتراكات', icon: 'file-contract' },
+  { id: 'ops-feedback', label: 'تقييم العملاء والأثر', icon: 'star-half-stroke' },
+  { id: 'ops-competitors', label: 'دراسة المنافسين', icon: 'binoculars' },
+  { id: 'ops-practices', label: 'أفضل الممارسات', icon: 'lightbulb' },
+  { id: 'ops-field', label: 'الحضور الميداني', icon: 'person-walking' },
+  { id: 'ops-reports', label: 'التقارير الدورية', icon: 'file-chart-column' },
+  { id: 'ops-calendar', label: 'الجدول التشغيلي', icon: 'calendar-check' },
+  { id: 'ops-charts', label: 'الرسوم البيانية', icon: 'chart-pie' },
+];
+
+export const marketingNavItems = [
+  { id: 'marketing-placeholder', label: 'خطة التسويق (قريباً)', icon: 'bullhorn' },
+];
+
+const navMap = { dev: devNavItems, ops: opsNavItems, marketing: marketingNavItems };
+
+export default function Sidebar({ active, onNav, isOpen, onClose, plan = 'dev' }) {
+  const items = navMap[plan] || devNavItems;
+
   return (
     <>
       <div className={`sidebar-overlay ${isOpen ? 'open' : ''}`} onClick={onClose} />
@@ -18,7 +39,7 @@ export default function Sidebar({ active, onNav, isOpen, onClose }) {
         <img src="/logos/white-logo.png" alt="نظم" className="sidebar-logo" />
         <div className="sidebar-title">خطة التنفيذ 2026</div>
 
-        {navItems.map((item) => (
+        {items.map((item) => (
           <a
             key={item.id}
             href={`#${item.id}`}
@@ -35,5 +56,3 @@ export default function Sidebar({ active, onNav, isOpen, onClose }) {
     </>
   );
 }
-
-export { navItems };

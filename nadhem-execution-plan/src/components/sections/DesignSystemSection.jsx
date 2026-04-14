@@ -2,10 +2,10 @@ import { motion } from 'framer-motion';
 import SectionHeader from '../common/SectionHeader';
 
 const dsTimeline = [
-  { quarter: 'Q4 2026', label: 'بناء نظام التصميم الموحد (المكونات الأساسية + الدليل)', icon: 'hammer' },
-  { quarter: 'Q1 2027', label: 'تطبيقه على لوحة تحكم المنظم تدريجياً — لجنة بلجنة', icon: 'display' },
-  { quarter: 'Q2 2027', label: 'تطبيقه على الواجهة العامة للفعالية (ما يراه الزائر)', icon: 'browser' },
-  { quarter: 'Q3 2027', label: 'تطبيقه على لوحة مدير النظام + التطبيق', icon: 'mobile-screen' },
+  { quarter: 'نوفمبر – ديسمبر 2026', label: 'بناء نظام التصميم الموحد (المكونات الأساسية + الدليل)', icon: 'hammer' },
+  { quarter: 'يناير – مارس 2027', label: 'تطبيقه على لوحة تحكم المنظم تدريجياً — لجنة بلجنة', icon: 'display' },
+  { quarter: 'أبريل – يونيو 2027', label: 'تطبيقه على الواجهة العامة للفعالية (ما يراه الزائر)', icon: 'browser' },
+  { quarter: 'يوليو – سبتمبر 2027', label: 'تطبيقه على لوحة مدير النظام + التطبيق', icon: 'mobile-screen' },
 ];
 
 const dsContents = [
@@ -61,7 +61,7 @@ export default function DesignSystemSection() {
         <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
           <i className="fa-thin fa-triangle-exclamation fa-lg" style={{ color: 'var(--warning)', marginTop: 4 }} />
           <div style={{ fontSize: '0.82rem', lineHeight: 1.8 }}>
-            <p style={{ margin: '0 0 6px', fontWeight: 600, color: 'var(--text-dark)' }}>لماذا Q4 وليس قبل؟</p>
+            <p style={{ margin: '0 0 6px', fontWeight: 600, color: 'var(--text-dark)' }}>لماذا نوفمبر وليس قبل؟</p>
             <p style={{ margin: 0, color: 'var(--text)' }}>
               أولاً نحتاج ننتهي من التطويرات الوظيفية (الوحدات، الهيكلة، الخصائص الجديدة).
               تطبيق التصميم الموحد قبل استقرار الخصائص = إعادة عمل مزدوجة.

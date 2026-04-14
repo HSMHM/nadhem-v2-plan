@@ -6,14 +6,15 @@ import { chartData } from '../../data/timeline';
 
 const stats = [
   { icon: 'rocket-launch', value: 15, label: 'إجمالي التطويرات', color: '#2A848A' },
-  { icon: 'list-check', value: 247, label: 'إجمالي المهام التفصيلية', color: '#BA5A31' },
+  { icon: 'list-check', value: 292, label: 'إجمالي المهام التفصيلية', color: '#BA5A31' },
   { icon: 'cubes', value: 16, label: 'إجمالي الوحدات', color: '#A61C61' },
   { icon: 'box-taped', value: 4, label: 'الباقات المقترحة', color: '#452059' },
   { icon: 'plug', value: 8, label: 'التكاملات المخططة', color: '#2A848A' },
-  { icon: 'hourglass-half', value: '12', label: 'المدة التقديرية (شهر)', color: '#BA5A31', suffix: '' },
+  { icon: 'hourglass-half', value: '8', label: 'المدة التقديرية (شهر)', color: '#BA5A31', suffix: '' },
   { icon: 'magnifying-glass-chart', value: 68, label: 'مهام التحليل', color: '#2A848A' },
   { icon: 'pen-ruler', value: 72, label: 'مهام التصميم', color: '#A61C61' },
   { icon: 'code', value: 107, label: 'مهام التنفيذ', color: '#BA5A31' },
+  { icon: 'chalkboard-user', value: 45, label: 'مهام التدريب والتسليم', color: '#452059' },
 ];
 
 const committeeColors = ['#2A848A', '#BA5A31', '#452059', '#A61C61', '#10B981', '#F59E0B', '#EF4444', '#6366F1'];
@@ -33,7 +34,7 @@ export default function DashboardSection() {
           <h1 style={{ color: '#fff', fontSize: '1.7rem', fontWeight: 700, marginTop: 14, marginBottom: 6 }}>
             خطة تنفيذ تطوير منتج نظم — 2026
           </h1>
-          <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.95rem' }}>من الخارطة إلى التنفيذ — 247 مهمة تفصيلية</p>
+          <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.95rem' }}>من الخارطة إلى التنفيذ — 292 مهمة خلال 8 أشهر (مايو – ديسمبر)</p>
         </motion.div>
 
         <motion.div className="grid g3" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }} style={{ marginBottom: 32 }}>
@@ -98,8 +99,8 @@ export default function DashboardSection() {
             <ResponsiveContainer width="100%" height={240}>
               <BarChart data={chartData.tasksByCommittee} layout="vertical" margin={{ top: 5, right: 30, left: 5, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal={false} />
-                <XAxis type="number" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 11 }} axisLine={false} tickLine={false} />
-                <YAxis type="category" dataKey="name" width={110} tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 11 }} axisLine={false} tickLine={false} />
+                <XAxis type="number" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 12 }} axisLine={false} tickLine={false} />
+                <YAxis type="category" dataKey="name" width={120} tick={{ fill: 'rgba(255,255,255,0.8)', fontSize: 13, fontFamily: 'IBM Plex Sans Arabic' }} axisLine={false} tickLine={false} />
                 <Tooltip contentStyle={{ background: 'rgba(15,7,32,0.95)', border: 'none', borderRadius: 8, color: '#fff', fontFamily: 'IBM Plex Sans Arabic', direction: 'rtl' }} formatter={(v) => [`${v} مهمة`]} />
                 <Bar dataKey="value" radius={[0, 6, 6, 0]} barSize={18}>
                   {chartData.tasksByCommittee.map((_, i) => <Cell key={i} fill={committeeColors[i % committeeColors.length]} />)}

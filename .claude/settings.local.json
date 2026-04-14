@@ -5,7 +5,8 @@
       "Bash(mkdir -p public/logos)",
       "Bash(cp ../requirments/Logos/*.png public/logos/)",
       "Bash(npx vite:*)",
-      "Bash(mkdir -p public/logos src/data src/components/common src/components/sections src/components/charts src/styles)"
+      "Bash(mkdir -p public/logos src/data src/components/common src/components/sections src/components/charts src/styles)",
+      "Bash(grep -n \"reportsData\\\\|opsStats\\\\|opsTasksSummary\" src/components/sections/ops/*.jsx)"
     ]
   }
 }

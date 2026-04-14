@@ -1,5 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
-import Sidebar, { navItems } from './components/Sidebar';
+import Sidebar, { devNavItems, opsNavItems, marketingNavItems } from './components/Sidebar';
+import PlanTabs from './components/PlanTabs';
+import { motion, AnimatePresence } from 'framer-motion';
+
+// Dev sections
 import DashboardSection from './components/sections/DashboardSection';
 import DevelopmentsSection from './components/sections/DevelopmentsSection';
 import ModulesSection from './components/sections/ModulesSection';
@@ -9,7 +13,23 @@ import SimpleTimelineSection from './components/sections/SimpleTimelineSection';
 import DetailedTimelineSection from './components/sections/DetailedTimelineSection';
 import DesignSystemSection from './components/sections/DesignSystemSection';
 import ChartsSection from './components/sections/ChartsSection';
-import { motion, AnimatePresence } from 'framer-motion';
+import RoadmapSection from './components/sections/RoadmapSection';
+
+// Ops sections
+import OpsDashboardSection from './components/sections/ops/OpsDashboardSection';
+import SubscriptionsSection from './components/sections/ops/SubscriptionsSection';
+import CustomerFeedbackSection from './components/sections/ops/CustomerFeedbackSection';
+import CompetitorIntelSection from './components/sections/ops/CompetitorIntelSection';
+import BestPracticesSection from './components/sections/ops/BestPracticesSection';
+import FieldResearchSection from './components/sections/ops/FieldResearchSection';
+import OpsReportsSection from './components/sections/ops/OpsReportsSection';
+import OpsCalendarSection from './components/sections/ops/OpsCalendarSection';
+import OpsChartsSection from './components/sections/ops/OpsChartsSection';
+
+// Marketing
+import MarketingPlaceholder from './components/sections/marketing/MarketingPlaceholder';
+
+const navMap = { dev: devNavItems, ops: opsNavItems, marketing: marketingNavItems };
 
 function ScrollToTop() {
   const [visible, setVisible] = useState(false);
@@ -31,22 +51,31 @@ function ScrollToTop() {
 }
 
 function App() {
+  const [plan, setPlan] = useState('dev');
   const [active, setActive] = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
+  const currentNav = navMap[plan] || devNavItems;
+
   useEffect(() => {
-    const ids = navItems.map(n => n.id);
+    const ids = currentNav.map(n => n.id);
     const observer = new IntersectionObserver(
       (entries) => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); },
-      { rootMargin: '-80px 0px -60% 0px', threshold: 0.1 }
+      { rootMargin: '-120px 0px -60% 0px', threshold: 0.1 }
     );
     ids.forEach(id => { const el = document.getElementById(id); if (el) observer.observe(el); });
     return () => observer.disconnect();
-  }, []);
+  }, [plan]);
 
   const handleNav = useCallback((id) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }, []);
+
+  const handlePlanChange = useCallback((newPlan) => {
+    setPlan(newPlan);
+    setActive(navMap[newPlan]?.[0]?.id || '');
+    window.scrollTo({ top: 0 });
   }, []);
 
   return (
@@ -55,18 +84,43 @@ function App() {
         <i className="fa-thin fa-bars" aria-hidden="true" />
       </button>
 
-      <Sidebar active={active} onNav={handleNav} isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <Sidebar active={active} onNav={handleNav} isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} plan={plan} />
 
       <main className="main">
-        <DashboardSection />
-        <DevelopmentsSection />
-        <ModulesSection />
-        <PackagesSection />
-        <IntegrationsSection />
-        <SimpleTimelineSection />
-        <DetailedTimelineSection />
-        <DesignSystemSection />
-        <ChartsSection />
+        <PlanTabs active={plan} onChange={handlePlanChange} />
+
+        {plan === 'dev' && (
+          <>
+            <DashboardSection />
+            <DevelopmentsSection />
+            <ModulesSection />
+            <PackagesSection />
+            <IntegrationsSection />
+            <SimpleTimelineSection />
+            <DetailedTimelineSection />
+            <DesignSystemSection />
+            <ChartsSection />
+            <RoadmapSection />
+          </>
+        )}
+
+        {plan === 'ops' && (
+          <>
+            <OpsDashboardSection />
+            <SubscriptionsSection />
+            <CustomerFeedbackSection />
+            <CompetitorIntelSection />
+            <BestPracticesSection />
+            <FieldResearchSection />
+            <OpsReportsSection />
+            <OpsCalendarSection />
+            <OpsChartsSection />
+          </>
+        )}
+
+        {plan === 'marketing' && (
+          <MarketingPlaceholder />
+        )}
       </main>
 
       <ScrollToTop />

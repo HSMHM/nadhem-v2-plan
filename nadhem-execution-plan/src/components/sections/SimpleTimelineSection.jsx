@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import SectionHeader from '../common/SectionHeader';
 import { simpleTimeline } from '../../data/timeline';
 
-const qColors = { Q1: '#2A848A', Q2: '#BA5A31', Q3: '#A61C61', Q4: '#452059' };
+const qColors = { P1: '#2A848A', P2: '#BA5A31', P3: '#A61C61', P4: '#452059' };
 
 export default function SimpleTimelineSection() {
   return (

@@ -47,8 +47,8 @@ export default function ChartsSection() {
           <ResponsiveContainer width="100%" height={400}>
             <BarChart data={chartData.tasksByDev} layout="vertical" margin={{ top: 5, right: 30, left: 5, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="var(--border-light)" horizontal={false} />
-              <XAxis type="number" tick={{ fill: 'var(--text)', fontSize: 11 }} axisLine={false} tickLine={false} />
-              <YAxis type="category" dataKey="name" width={100} tick={{ fill: 'var(--text-dark)', fontSize: 11 }} axisLine={false} tickLine={false} />
+              <XAxis type="number" tick={{ fill: 'var(--text)', fontSize: 12 }} axisLine={false} tickLine={false} />
+              <YAxis type="category" dataKey="name" width={120} tick={{ fill: 'var(--text-dark)', fontSize: 13, fontFamily: 'IBM Plex Sans Arabic' }} axisLine={false} tickLine={false} />
               <Tooltip contentStyle={{ background: '#fff', border: 'none', borderRadius: 8, fontFamily: 'IBM Plex Sans Arabic', direction: 'rtl' }} formatter={(v) => [`${v} مهمة`]} />
               <Bar dataKey="value" radius={[0, 6, 6, 0]} barSize={16}>
                 {chartData.tasksByDev.map((_, i) => <Cell key={i} fill={devColors[i % devColors.length]} />)}
@@ -67,8 +67,8 @@ export default function ChartsSection() {
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={chartData.beforeAfter} layout="vertical" margin={{ top: 5, right: 30, left: 5, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="var(--border-light)" horizontal={false} />
-              <XAxis type="number" domain={[0, 100]} tickFormatter={(v) => `${v}%`} tick={{ fill: 'var(--text)', fontSize: 11 }} axisLine={false} tickLine={false} />
-              <YAxis type="category" dataKey="name" width={80} tick={{ fill: 'var(--text-dark)', fontSize: 11 }} axisLine={false} tickLine={false} />
+              <XAxis type="number" domain={[0, 100]} tickFormatter={(v) => `${v}%`} tick={{ fill: 'var(--text)', fontSize: 12 }} axisLine={false} tickLine={false} />
+              <YAxis type="category" dataKey="name" width={120} tick={{ fill: 'var(--text-dark)', fontSize: 13, fontFamily: 'IBM Plex Sans Arabic' }} axisLine={false} tickLine={false} />
               <Tooltip contentStyle={{ background: '#fff', border: 'none', borderRadius: 8, fontFamily: 'IBM Plex Sans Arabic', direction: 'rtl' }} formatter={(v) => [`${v}%`]} />
               <Bar dataKey="before" fill="#EF4444" radius={[0, 4, 4, 0]} barSize={10} name="قبل" />
               <Bar dataKey="after" fill="#10B981" radius={[0, 4, 4, 0]} barSize={10} name="بعد (متوقع)" />
