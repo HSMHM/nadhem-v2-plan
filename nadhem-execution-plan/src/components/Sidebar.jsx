@@ -5,7 +5,6 @@ export const devNavItems = [
   { id: 'packages', label: 'هيكلة الباقات', icon: 'box-taped' },
   { id: 'integrations', label: 'التكاملات', icon: 'plug' },
   { id: 'timeline-simple', label: 'الجدول الزمني المبسط', icon: 'calendar-lines' },
-  { id: 'timeline-detailed', label: 'الجدول الزمني المفصل', icon: 'list-timeline' },
   { id: 'design-system', label: 'التصميم الموحد', icon: 'palette' },
   { id: 'charts', label: 'الرسوم البيانية', icon: 'chart-pie' },
   { id: 'roadmap', label: 'الاجتماع الأخير — خارطة الطريق', icon: 'map' },
