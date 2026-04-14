@@ -10,7 +10,6 @@ import ModulesSection from './components/sections/ModulesSection';
 import PackagesSection from './components/sections/PackagesSection';
 import IntegrationsSection from './components/sections/IntegrationsSection';
 import SimpleTimelineSection from './components/sections/SimpleTimelineSection';
-import DetailedTimelineSection from './components/sections/DetailedTimelineSection';
 import DesignSystemSection from './components/sections/DesignSystemSection';
 import ChartsSection from './components/sections/ChartsSection';
 import RoadmapSection from './components/sections/RoadmapSection';
@@ -110,7 +109,6 @@ function App() {
             <PackagesSection />
             <IntegrationsSection />
             <SimpleTimelineSection />
-            <DetailedTimelineSection />
             <DesignSystemSection />
             <ChartsSection />
             <RoadmapSection />
