@@ -24,7 +24,16 @@ export const opsNavItems = [
 ];
 
 export const marketingNavItems = [
-  { id: 'marketing-placeholder', label: 'خطة التسويق (قريباً)', icon: 'bullhorn' },
+  { id: 'mkt-dashboard', label: 'لوحة مؤشرات التسويق', icon: 'gauge-high' },
+  { id: 'mkt-challenge', label: 'التحدي وحجم السوق', icon: 'triangle-exclamation' },
+  { id: 'mkt-personas', label: 'شرائح العملاء المستهدفة', icon: 'users-viewfinder' },
+  { id: 'mkt-channels', label: 'قنوات الوصول للمنظمين', icon: 'diagram-project' },
+  { id: 'mkt-winback', label: 'استعادة العملاء السابقين', icon: 'user-plus' },
+  { id: 'mkt-digital', label: 'التسويق الرقمي', icon: 'globe' },
+  { id: 'mkt-partnerships', label: 'الشراكات والقنوات', icon: 'handshake' },
+  { id: 'mkt-gaps', label: 'النواقص والتوصيات', icon: 'clipboard-list-check' },
+  { id: 'mkt-tasks', label: 'المهام التفصيلية', icon: 'list-check' },
+  { id: 'mkt-calendar', label: 'الجدول الزمني', icon: 'calendar-check' },
 ];
 
 const navMap = { dev: devNavItems, ops: opsNavItems, marketing: marketingNavItems };

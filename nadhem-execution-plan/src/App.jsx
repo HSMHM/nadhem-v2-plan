@@ -27,7 +27,16 @@ import OpsCalendarSection from './components/sections/ops/OpsCalendarSection';
 import OpsChartsSection from './components/sections/ops/OpsChartsSection';
 
 // Marketing
-import MarketingPlaceholder from './components/sections/marketing/MarketingPlaceholder';
+import MktDashboardSection from './components/sections/marketing/MktDashboardSection';
+import ChallengeSection from './components/sections/marketing/ChallengeSection';
+import PersonasSection from './components/sections/marketing/PersonasSection';
+import ChannelsSection from './components/sections/marketing/ChannelsSection';
+import WinbackSection from './components/sections/marketing/WinbackSection';
+import DigitalSection from './components/sections/marketing/DigitalSection';
+import PartnershipsSection from './components/sections/marketing/PartnershipsSection';
+import GapsSection from './components/sections/marketing/GapsSection';
+import MktTasksSection from './components/sections/marketing/MktTasksSection';
+import MktCalendarSection from './components/sections/marketing/MktCalendarSection';
 
 const navMap = { dev: devNavItems, ops: opsNavItems, marketing: marketingNavItems };
 
@@ -119,7 +128,18 @@ function App() {
         )}
 
         {plan === 'marketing' && (
-          <MarketingPlaceholder />
+          <>
+            <MktDashboardSection />
+            <ChallengeSection />
+            <PersonasSection />
+            <ChannelsSection />
+            <WinbackSection />
+            <DigitalSection />
+            <PartnershipsSection />
+            <GapsSection />
+            <MktTasksSection />
+            <MktCalendarSection />
+          </>
         )}
       </main>
 
