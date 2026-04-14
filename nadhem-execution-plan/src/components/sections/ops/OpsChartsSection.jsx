@@ -6,7 +6,7 @@ import { opsTasksSummary } from '../../../data/operations';
 const categoryColors = ['#2A848A', '#BA5A31', '#452059', '#A61C61', '#10B981', '#F59E0B', '#6366F1'];
 
 const tooltipStyle = {
-  fontFamily: 'IBM Plex Sans Arabic',
+  fontFamily: 'Alexandria',
   direction: 'rtl',
   borderRadius: 8,
   border: 'none',
@@ -110,7 +110,7 @@ export default function OpsChartsSection() {
             <BarChart data={categoryData} layout="vertical" margin={{ top: 5, right: 30, left: 5, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="var(--border-light)" horizontal={false} />
               <XAxis type="number" tick={{ fill: 'var(--text)', fontSize: 12 }} axisLine={false} tickLine={false} />
-              <YAxis type="category" dataKey="name" width={120} tick={{ fill: 'var(--text-dark)', fontSize: 13, fontFamily: 'IBM Plex Sans Arabic' }} axisLine={false} tickLine={false} />
+              <YAxis type="category" dataKey="name" width={120} tick={{ fill: 'var(--text-dark)', fontSize: 13, fontFamily: 'Alexandria' }} axisLine={false} tickLine={false} />
               <Tooltip
                 contentStyle={tooltipStyle}
                 formatter={(v) => [`${v} مهمة`, 'العدد']}

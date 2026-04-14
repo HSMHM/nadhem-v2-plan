@@ -62,7 +62,7 @@ export default function DashboardSection() {
                 arcLabelsTextColor="#fff"
                 arcLabel={d => `${d.value}`}
                 tooltip={({ datum }) => (
-                  <div style={{ background: 'rgba(15,7,32,0.95)', padding: '6px 12px', borderRadius: 8, color: '#fff', fontFamily: 'IBM Plex Sans Arabic', direction: 'rtl', fontSize: '0.8rem' }}>
+                  <div style={{ background: 'rgba(15,7,32,0.95)', padding: '6px 12px', borderRadius: 8, color: '#fff', fontFamily: 'Alexandria', direction: 'rtl', fontSize: '0.8rem' }}>
                     {datum.label}: {datum.value} مهمة
                   </div>
                 )}
@@ -80,7 +80,7 @@ export default function DashboardSection() {
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
                 <XAxis dataKey="name" tick={{ fill: 'rgba(255,255,255,0.5)', fontSize: 12 }} axisLine={false} tickLine={false} />
                 <YAxis tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 12 }} axisLine={false} tickLine={false} />
-                <Tooltip contentStyle={{ background: 'rgba(15,7,32,0.95)', border: 'none', borderRadius: 8, color: '#fff', fontFamily: 'IBM Plex Sans Arabic', direction: 'rtl' }} formatter={(v) => [`${v} تطويرات`]} />
+                <Tooltip contentStyle={{ background: 'rgba(15,7,32,0.95)', border: 'none', borderRadius: 8, color: '#fff', fontFamily: 'Alexandria', direction: 'rtl' }} formatter={(v) => [`${v} تطويرات`]} />
                 <Bar dataKey="value" radius={[6, 6, 0, 0]} barSize={36}>
                   {chartData.tasksByQuarter.map((_, i) => <Cell key={i} fill={['#2A848A', '#BA5A31', '#A61C61', '#452059'][i]} />)}
                 </Bar>
@@ -97,8 +97,8 @@ export default function DashboardSection() {
               <BarChart data={chartData.tasksByCommittee} layout="vertical" margin={{ top: 5, right: 30, left: 5, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal={false} />
                 <XAxis type="number" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 12 }} axisLine={false} tickLine={false} />
-                <YAxis type="category" dataKey="name" width={120} tick={{ fill: 'rgba(255,255,255,0.8)', fontSize: 13, fontFamily: 'IBM Plex Sans Arabic' }} axisLine={false} tickLine={false} />
-                <Tooltip contentStyle={{ background: 'rgba(15,7,32,0.95)', border: 'none', borderRadius: 8, color: '#fff', fontFamily: 'IBM Plex Sans Arabic', direction: 'rtl' }} formatter={(v) => [`${v} مهمة`]} />
+                <YAxis type="category" dataKey="name" width={120} tick={{ fill: 'rgba(255,255,255,0.8)', fontSize: 13, fontFamily: 'Alexandria' }} axisLine={false} tickLine={false} />
+                <Tooltip contentStyle={{ background: 'rgba(15,7,32,0.95)', border: 'none', borderRadius: 8, color: '#fff', fontFamily: 'Alexandria', direction: 'rtl' }} formatter={(v) => [`${v} مهمة`]} />
                 <Bar dataKey="value" radius={[0, 6, 6, 0]} barSize={18}>
                   {chartData.tasksByCommittee.map((_, i) => <Cell key={i} fill={committeeColors[i % committeeColors.length]} />)}
                 </Bar>

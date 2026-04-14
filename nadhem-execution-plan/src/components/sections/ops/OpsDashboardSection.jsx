@@ -10,7 +10,7 @@ const tooltipStyle = {
   border: 'none',
   borderRadius: 8,
   color: '#fff',
-  fontFamily: 'IBM Plex Sans Arabic',
+  fontFamily: 'Alexandria',
   direction: 'rtl',
 };
 
@@ -152,7 +152,7 @@ export default function OpsDashboardSection() {
               <BarChart data={categoryData} layout="vertical" margin={{ top: 5, right: 30, left: 5, bottom: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" horizontal={false} />
                 <XAxis type="number" tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 12 }} axisLine={false} tickLine={false} />
-                <YAxis type="category" dataKey="name" width={120} tick={{ fill: 'rgba(255,255,255,0.8)', fontSize: 13, fontFamily: 'IBM Plex Sans Arabic' }} axisLine={false} tickLine={false} />
+                <YAxis type="category" dataKey="name" width={120} tick={{ fill: 'rgba(255,255,255,0.8)', fontSize: 13, fontFamily: 'Alexandria' }} axisLine={false} tickLine={false} />
                 <Tooltip
                   contentStyle={tooltipStyle}
                   formatter={(v) => [`${v} مهمة`]}

@@ -12,7 +12,7 @@ const dsContents = [
   { label: 'مكتبة مكونات (أزرار، حقول، جداول، بطاقات، نوافذ، تنبيهات)', icon: 'puzzle-piece' },
   { label: 'نظام تباعد ومقاسات', icon: 'ruler-combined' },
   { label: 'أيقونات موحدة (Font Awesome Jelly)', icon: 'icons' },
-  { label: 'خط موحد (IBM Plex Sans Arabic)', icon: 'font' },
+  { label: 'خط موحد (Alexandria)', icon: 'font' },
   { label: 'دليل استخدام مكتوب ومصور', icon: 'book' },
 ];
 

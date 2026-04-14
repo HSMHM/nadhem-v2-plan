@@ -30,7 +30,7 @@ export default function ChartsSection() {
               arcLabelsTextColor="#fff"
               arcLabel={d => `${d.value}`}
               tooltip={({ datum }) => (
-                <div style={{ background: '#fff', padding: '6px 12px', borderRadius: 8, boxShadow: '0 2px 8px rgba(0,0,0,0.15)', fontFamily: 'IBM Plex Sans Arabic', direction: 'rtl', fontSize: '0.8rem' }}>
+                <div style={{ background: '#fff', padding: '6px 12px', borderRadius: 8, boxShadow: '0 2px 8px rgba(0,0,0,0.15)', fontFamily: 'Alexandria', direction: 'rtl', fontSize: '0.8rem' }}>
                   {datum.label}: {datum.value} مهمة ({Math.round((datum.value / 247) * 100)}%)
                 </div>
               )}
@@ -47,8 +47,8 @@ export default function ChartsSection() {
             <BarChart data={chartData.tasksByDev} layout="vertical" margin={{ top: 5, right: 30, left: 5, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="var(--border-light)" horizontal={false} />
               <XAxis type="number" tick={{ fill: 'var(--text)', fontSize: 12 }} axisLine={false} tickLine={false} />
-              <YAxis type="category" dataKey="name" width={120} tick={{ fill: 'var(--text-dark)', fontSize: 13, fontFamily: 'IBM Plex Sans Arabic' }} axisLine={false} tickLine={false} />
-              <Tooltip contentStyle={{ background: '#fff', border: 'none', borderRadius: 8, fontFamily: 'IBM Plex Sans Arabic', direction: 'rtl' }} formatter={(v) => [`${v} مهمة`]} />
+              <YAxis type="category" dataKey="name" width={120} tick={{ fill: 'var(--text-dark)', fontSize: 13, fontFamily: 'Alexandria' }} axisLine={false} tickLine={false} />
+              <Tooltip contentStyle={{ background: '#fff', border: 'none', borderRadius: 8, fontFamily: 'Alexandria', direction: 'rtl' }} formatter={(v) => [`${v} مهمة`]} />
               <Bar dataKey="value" radius={[0, 6, 6, 0]} barSize={16}>
                 {chartData.tasksByDev.map((_, i) => <Cell key={i} fill={devColors[i % devColors.length]} />)}
               </Bar>
@@ -67,8 +67,8 @@ export default function ChartsSection() {
             <BarChart data={chartData.beforeAfter} layout="vertical" margin={{ top: 5, right: 30, left: 5, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="var(--border-light)" horizontal={false} />
               <XAxis type="number" domain={[0, 100]} tickFormatter={(v) => `${v}%`} tick={{ fill: 'var(--text)', fontSize: 12 }} axisLine={false} tickLine={false} />
-              <YAxis type="category" dataKey="name" width={120} tick={{ fill: 'var(--text-dark)', fontSize: 13, fontFamily: 'IBM Plex Sans Arabic' }} axisLine={false} tickLine={false} />
-              <Tooltip contentStyle={{ background: '#fff', border: 'none', borderRadius: 8, fontFamily: 'IBM Plex Sans Arabic', direction: 'rtl' }} formatter={(v) => [`${v}%`]} />
+              <YAxis type="category" dataKey="name" width={120} tick={{ fill: 'var(--text-dark)', fontSize: 13, fontFamily: 'Alexandria' }} axisLine={false} tickLine={false} />
+              <Tooltip contentStyle={{ background: '#fff', border: 'none', borderRadius: 8, fontFamily: 'Alexandria', direction: 'rtl' }} formatter={(v) => [`${v}%`]} />
               <Bar dataKey="before" fill="#EF4444" radius={[0, 4, 4, 0]} barSize={10} name="قبل" />
               <Bar dataKey="after" fill="#10B981" radius={[0, 4, 4, 0]} barSize={10} name="بعد (متوقع)" />
             </BarChart>
@@ -99,7 +99,7 @@ export default function ChartsSection() {
               <CartesianGrid strokeDasharray="3 3" stroke="var(--border-light)" />
               <XAxis dataKey="name" tick={{ fill: 'var(--text)', fontSize: 11 }} axisLine={false} tickLine={false} />
               <YAxis domain={[0, 100]} tickFormatter={(v) => `${v}%`} tick={{ fill: 'var(--text)', fontSize: 11 }} axisLine={false} tickLine={false} />
-              <Tooltip contentStyle={{ background: '#fff', border: 'none', borderRadius: 8, fontFamily: 'IBM Plex Sans Arabic', direction: 'rtl' }} formatter={(v) => [`${v}%`, 'نسبة الإنجاز']} />
+              <Tooltip contentStyle={{ background: '#fff', border: 'none', borderRadius: 8, fontFamily: 'Alexandria', direction: 'rtl' }} formatter={(v) => [`${v}%`, 'نسبة الإنجاز']} />
               <Area type="monotone" dataKey="value" stroke="#2A848A" strokeWidth={3} fill="url(#colorProgress)" dot={{ fill: '#2A848A', r: 5 }} />
             </AreaChart>
           </ResponsiveContainer>
