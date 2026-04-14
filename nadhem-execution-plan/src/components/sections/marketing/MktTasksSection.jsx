@@ -40,7 +40,7 @@ export default function MktTasksSection() {
         {tasks.map((t, i) => {
           const p = priorityMap[t.priority] || priorityMap.medium;
           return (
-            <div key={t.id} className="task-item" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)}>
+            <div key={t.id} className="task-item" data-aos="fade-up">
               <span className="task-id">{t.id}</span>
               <span className="task-text">{t.task}</span>
               <span className={`badge ${p.cls}`} style={{ fontSize: '0.68rem', marginInlineStart: 'auto', flexShrink: 0 }}>

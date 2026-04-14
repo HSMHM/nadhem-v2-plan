@@ -14,7 +14,7 @@ export default function FieldResearchSection() {
         </h3>
         <div className="grid g2">
           {fieldResearchData.targetEvents.map((ev, i) => (
-            <div key={i} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)} style={{ background: 'var(--bg-light)' }}>
+            <div key={i} className="card" data-aos="fade-up" style={{ background: 'var(--bg-light)' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
                 <div className="ic" style={{ flexShrink: 0 }}>
                   <i className="fa-thin fa-calendar-star" style={{ color: 'var(--primary)' }} aria-hidden="true" />
@@ -43,7 +43,7 @@ export default function FieldResearchSection() {
         </h3>
         <div className="grid g2">
           {fieldResearchData.evaluationCriteria.map((criterion, i) => (
-            <div key={i} data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, padding: '10px 14px', background: 'var(--bg-light)', borderRadius: 10 }}>
+            <div key={i} data-aos="fade-up" style={{ display: 'flex', alignItems: 'flex-start', gap: 10, padding: '10px 14px', background: 'var(--bg-light)', borderRadius: 10 }}>
               <span style={{ minWidth: 28, height: 28, borderRadius: 8, background: 'rgba(42,132,138,0.1)', color: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: '0.85rem' }}>
                 {i + 1}
               </span>

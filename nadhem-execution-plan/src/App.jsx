@@ -63,13 +63,10 @@ function App() {
   const [active, setActive] = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  if (showWelcome) {
-    return <WelcomePage onEnter={() => { setShowWelcome(false); window.scrollTo({ top: 0 }); }} />;
-  }
-
   const currentNav = navMap[plan] || devNavItems;
 
   useEffect(() => {
+    if (showWelcome) return;
     const ids = currentNav.map(n => n.id);
     const observer = new IntersectionObserver(
       (entries) => { entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); },
@@ -77,7 +74,7 @@ function App() {
     );
     ids.forEach(id => { const el = document.getElementById(id); if (el) observer.observe(el); });
     return () => observer.disconnect();
-  }, [plan]);
+  }, [plan, showWelcome]);
 
   const handleNav = useCallback((id) => {
     const el = document.getElementById(id);
@@ -89,6 +86,10 @@ function App() {
     setActive(navMap[newPlan]?.[0]?.id || '');
     window.scrollTo({ top: 0 });
   }, []);
+
+  if (showWelcome) {
+    return <WelcomePage onEnter={() => { setShowWelcome(false); window.scrollTo({ top: 0 }); }} />;
+  }
 
   return (
     <div className="app">

@@ -73,7 +73,7 @@ function DevTabs() {
       </div>
       <div className="grid g2" key={tab}>
         {items.map((d, i) => (
-          <div key={i} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
+          <div key={i} className="card" data-aos="fade-up" style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
             <div className="ic" style={{ marginTop: 2 }}>
               <i className={`fa-thin fa-${d.icon}`} aria-hidden="true" />
             </div>
@@ -98,7 +98,7 @@ export default function RoadmapSection() {
       <SubHeader icon="chart-pie" title="التمركز القطاعي — 2025" />
       <div className="grid g3">
         {sectorData.sectors.map((s, i) => (
-          <div key={i} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)} style={{ textAlign: 'center' }}>
+          <div key={i} className="card" data-aos="fade-up" style={{ textAlign: 'center' }}>
             <div style={{ fontSize: '2.2rem', fontWeight: 700, color: s.color }}>{s.value}%</div>
             <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-dark)', marginTop: 4 }}>{s.label}</div>
           </div>
@@ -110,7 +110,7 @@ export default function RoadmapSection() {
       <SubHeader icon="people-group" title="اللجان ونسبة الاعتماد لكل لجنة" />
       <div className="grid g2">
         {committeesAdoption.map((c, i) => (
-          <div key={i} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)}>
+          <div key={i} className="card" data-aos="fade-up">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
               <h4 style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-dark)' }}>{c.name}</h4>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -131,11 +131,11 @@ export default function RoadmapSection() {
           <div style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--warning)' }}>{readinessData.avgAdoption}%</div>
           <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>متوسط الاعتماد العام</div>
         </div>
-        <div className="card" data-aos="fade-up" data-aos-delay={80} style={{ textAlign: 'center', borderTop: '3px solid var(--success)' }}>
+        <div className="card" data-aos="fade-up" style={{ textAlign: 'center', borderTop: '3px solid var(--success)' }}>
           <div style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--success)' }}>{readinessData.completedCommittees}</div>
           <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>لجان مكتملة (90%+)</div>
         </div>
-        <div className="card" data-aos="fade-up" data-aos-delay={160} style={{ textAlign: 'center', borderTop: '3px solid var(--danger)' }}>
+        <div className="card" data-aos="fade-up" style={{ textAlign: 'center', borderTop: '3px solid var(--danger)' }}>
           <div style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--danger)' }}>{readinessData.activationGap}%</div>
           <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>فجوة التفعيل</div>
         </div>
@@ -145,7 +145,7 @@ export default function RoadmapSection() {
       <SubHeader icon="users" title="المستخدمون وأنواعهم" />
       <div className="grid g4">
         {userTypes.map((u, i) => (
-          <div key={i} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)} style={{ textAlign: 'center', padding: '18px 14px', position: 'relative' }}>
+          <div key={i} className="card" data-aos="fade-up" style={{ textAlign: 'center', padding: '18px 14px', position: 'relative' }}>
             {u.isNew && <span className="badge badge-d" style={{ position: 'absolute', top: 8, left: 8, fontSize: '0.6rem' }}>جديد</span>}
             <div className="ic" style={{ margin: '0 auto 10px' }}>
               <i className={`fa-thin fa-${u.icon}`} aria-hidden="true" />
@@ -159,7 +159,7 @@ export default function RoadmapSection() {
       <SubHeader icon="star" title="الخصائص الأكثر استخداماً" />
       <div className="grid g2">
         {topFeatures.map((f, i) => (
-          <div key={i} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 18px' }}>
+          <div key={i} className="card" data-aos="fade-up" style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 18px' }}>
             <span style={{ color: 'var(--primary)', fontWeight: 700, fontSize: '0.85rem', minWidth: 26 }}>{i + 1}.</span>
             <span style={{ fontSize: '0.88rem', color: 'var(--text-dark)' }}>{f}</span>
           </div>
@@ -217,7 +217,7 @@ export default function RoadmapSection() {
       <SubHeader icon="shield-halved" title="أبرز المنافسين" />
       <div className="grid g3" style={{ marginBottom: 24 }}>
         {competitorCategories.map((c, i) => (
-          <div key={i} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)} style={{ textAlign: 'center' }}>
+          <div key={i} className="card" data-aos="fade-up" style={{ textAlign: 'center' }}>
             <h4 style={{ fontSize: '0.88rem', fontWeight: 600, color: 'var(--text-dark)', marginBottom: 10 }}>{c.category}</h4>
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'center' }}>
               {c.competitors.map((name, j) => (
@@ -261,7 +261,7 @@ export default function RoadmapSection() {
       <SubHeader icon="triangle-exclamation" title="التحديات الحالية" color="var(--danger)" />
       <div className="grid g3">
         {challengesData.map((c, i) => (
-          <div key={i} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '16px 18px' }}>
+          <div key={i} className="card" data-aos="fade-up" style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '16px 18px' }}>
             <div className="ic" style={{ background: 'rgba(239,68,68,0.08)' }}>
               <i className={`fa-thin fa-${c.icon}`} style={{ color: 'var(--danger)' }} aria-hidden="true" />
             </div>
@@ -278,7 +278,7 @@ export default function RoadmapSection() {
       <SubHeader icon="puzzle-piece" title="الوحدات (16 Module)" />
       <div className="grid g4">
         {roadmapModules.map((m, i) => (
-          <div key={i} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)} style={{ textAlign: 'center', padding: '16px 12px' }}>
+          <div key={i} className="card" data-aos="fade-up" style={{ textAlign: 'center', padding: '16px 12px' }}>
             <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 28, height: 28, borderRadius: 8, background: 'var(--primary-light)', color: 'var(--primary)', fontWeight: 700, fontSize: '0.78rem', marginBottom: 8 }}>{i + 1}</span>
             <div style={{ fontSize: '0.82rem', fontWeight: 500, color: 'var(--text-dark)', lineHeight: 1.6 }}>{m}</div>
           </div>

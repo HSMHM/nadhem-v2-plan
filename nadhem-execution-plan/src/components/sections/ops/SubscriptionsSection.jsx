@@ -20,7 +20,7 @@ export default function SubscriptionsSection() {
         style={{ marginBottom: 24 }}
       >
         {summaryCards.map((c, i) => (
-          <div key={c.key} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)} style={{ textAlign: 'center' }}>
+          <div key={c.key} className="card" data-aos="fade-up" style={{ textAlign: 'center' }}>
             <div className="ic" style={{ margin: '0 auto 10px' }}>
               <i className={`fa-thin fa-${c.icon}`} style={{ color: c.color }} aria-hidden="true" />
             </div>
@@ -34,7 +34,7 @@ export default function SubscriptionsSection() {
         ))}
 
         {/* Renewal rate card with warning */}
-        <div className="card" data-aos="fade-up" data-aos-delay={Math.min(3 * 80, 600)} style={{ textAlign: 'center' }}>
+        <div className="card" data-aos="fade-up" style={{ textAlign: 'center' }}>
           <div className="ic" style={{ margin: '0 auto 10px' }}>
             <i className="fa-thin fa-arrow-rotate-right" style={{ color: '#EF4444' }} aria-hidden="true" />
           </div>

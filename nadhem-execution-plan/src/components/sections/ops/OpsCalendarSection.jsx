@@ -21,7 +21,7 @@ export default function OpsCalendarSection() {
           <SubHeader icon="sun" title="يومي" color="var(--danger)" />
           <div style={{ display: 'grid', gap: 8 }}>
             {opsCalendar.daily.map((item, i) => (
-              <div key={i} data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 14px', background: 'var(--bg-light)', borderRadius: 10, fontSize: '0.88rem' }}>
+              <div key={i} data-aos="fade-up" style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 14px', background: 'var(--bg-light)', borderRadius: 10, fontSize: '0.88rem' }}>
                 <span className="badge badge-d" style={{ fontSize: '0.75rem', minWidth: 'fit-content' }}>{item.time}</span>
                 <span style={{ flex: 1, color: 'var(--text-dark)' }}>{item.task}</span>
                 <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>{item.duration}</span>
@@ -35,7 +35,7 @@ export default function OpsCalendarSection() {
           <SubHeader icon="calendar-week" title="أسبوعي" color="var(--accent-orange)" />
           <div style={{ display: 'grid', gap: 8 }}>
             {opsCalendar.weekly.map((item, i) => (
-              <div key={i} data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 14px', background: 'var(--bg-light)', borderRadius: 10, fontSize: '0.88rem' }}>
+              <div key={i} data-aos="fade-up" style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 14px', background: 'var(--bg-light)', borderRadius: 10, fontSize: '0.88rem' }}>
                 <span className="badge badge-w" style={{ fontSize: '0.75rem', minWidth: 'fit-content' }}>{item.day}</span>
                 <span style={{ flex: 1, color: 'var(--text-dark)' }}>{item.task}</span>
                 <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>{item.duration}</span>
@@ -51,7 +51,7 @@ export default function OpsCalendarSection() {
           <SubHeader icon="calendar-days" title="شهري" color="var(--primary)" />
           <div style={{ display: 'grid', gap: 8 }}>
             {opsCalendar.monthly.map((item, i) => (
-              <div key={i} data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 14px', background: 'var(--bg-light)', borderRadius: 10, fontSize: '0.88rem' }}>
+              <div key={i} data-aos="fade-up" style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 14px', background: 'var(--bg-light)', borderRadius: 10, fontSize: '0.88rem' }}>
                 <span className="badge badge-s" style={{ fontSize: '0.75rem', minWidth: 'fit-content' }}>{item.week}</span>
                 <span style={{ flex: 1, color: 'var(--text-dark)' }}>{item.task}</span>
               </div>
@@ -64,7 +64,7 @@ export default function OpsCalendarSection() {
           <SubHeader icon="calendar-lines" title="ربع سنوي" color="var(--secondary)" />
           <div style={{ display: 'grid', gap: 8 }}>
             {opsCalendar.quarterly.map((item, i) => (
-              <div key={i} data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 14px', background: 'var(--bg-light)', borderRadius: 10, fontSize: '0.88rem' }}>
+              <div key={i} data-aos="fade-up" style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 14px', background: 'var(--bg-light)', borderRadius: 10, fontSize: '0.88rem' }}>
                 <span className="badge badge-q" style={{ fontSize: '0.75rem' }}>{i + 1}</span>
                 <span style={{ flex: 1, color: 'var(--text-dark)' }}>{item}</span>
               </div>

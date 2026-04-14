@@ -8,7 +8,7 @@ export default function MktCalendarSection() {
 
       <div className="tl">
         {mktTimeline.map((q, qi) => (
-          <div key={qi} className="tl-q" data-aos="fade-up" data-aos-delay={Math.min(qi * 80, 600)}>
+          <div key={qi} className="tl-q" data-aos="fade-up">
             <div className="tl-q-label">{q.period}</div>
             {q.tasks.map((item, ii) => (
               <div key={ii} className="tl-item">

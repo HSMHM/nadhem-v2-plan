@@ -77,7 +77,7 @@ export default function OpsDashboardSection() {
           style={{ marginBottom: 32 }}
         >
           {opsStats.map((s, i) => (
-            <div key={i} data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)}>
+            <div key={i} data-aos="fade-up">
               <StatCard {...s} glass />
             </div>
           ))}

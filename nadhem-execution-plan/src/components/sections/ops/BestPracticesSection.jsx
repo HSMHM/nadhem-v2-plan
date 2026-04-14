@@ -16,7 +16,7 @@ export default function BestPracticesSection() {
         style={{ marginBottom: 24 }}
       >
         {categories.map((cat, i) => (
-          <div key={i} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)} style={{ padding: 20 }}>
+          <div key={i} className="card" data-aos="fade-up" style={{ padding: 20 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
               <div className="ic" style={{ flexShrink: 0 }}>
                 <i className={`fa-thin fa-${cat.icon}`} style={{ color: cardColors[i] }} aria-hidden="true" />

@@ -11,7 +11,7 @@ export default function IntegrationsSection() {
       </h3>
       <div className="grid g4" style={{ marginBottom: 32 }}>
         {currentIntegrations.map((item, i) => (
-          <div key={i} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)} style={{ textAlign: 'center' }}>
+          <div key={i} className="card" data-aos="fade-up" style={{ textAlign: 'center' }}>
             <div className="ic" style={{ margin: '0 auto 12px' }}>
               <i className={`fa-thin fa-${item.icon}`} aria-hidden="true" />
             </div>
@@ -27,7 +27,7 @@ export default function IntegrationsSection() {
       </h3>
       <div className="grid g4">
         {futureIntegrations.map((item, i) => (
-          <div key={i} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)} style={{ textAlign: 'center' }}>
+          <div key={i} className="card" data-aos="fade-up" style={{ textAlign: 'center' }}>
             <div className="ic" style={{ margin: '0 auto 12px', background: 'rgba(245,158,11,0.1)' }}>
               <i className={`fa-thin fa-${item.icon}`} style={{ color: 'var(--warning)' }} aria-hidden="true" />
             </div>

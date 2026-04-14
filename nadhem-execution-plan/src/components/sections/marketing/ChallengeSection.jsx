@@ -12,7 +12,7 @@ export default function ChallengeSection() {
         style={{ marginBottom: 32 }}
       >
         {challengePoints.map((c, i) => (
-          <div key={i} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)}>
+          <div key={i} className="card" data-aos="fade-up">
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10 }}>
               <div className="ic">
                 <i className={`fa-thin fa-${c.icon}`} style={{ color: '#A61C61' }} aria-hidden="true" />

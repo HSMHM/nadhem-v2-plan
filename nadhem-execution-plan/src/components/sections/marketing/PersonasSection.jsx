@@ -16,7 +16,7 @@ export default function PersonasSection() {
         {personas.map((p, i) => {
           const pri = priorityMap[p.priority] || priorityMap.medium;
           return (
-            <div key={i} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)}>
+            <div key={i} className="card" data-aos="fade-up">
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
                 <div className="ic">
                   <i className={`fa-thin fa-${p.icon}`} style={{ color: '#452059' }} aria-hidden="true" />

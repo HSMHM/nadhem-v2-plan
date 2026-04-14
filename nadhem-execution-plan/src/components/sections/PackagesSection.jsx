@@ -8,7 +8,7 @@ export default function PackagesSection() {
 
       <div className="grid g4" style={{ marginBottom: 28 }}>
         {packages.map((pkg, i) => (
-          <div key={pkg.id} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)} style={{
+          <div key={pkg.id} className="card" data-aos="fade-up" style={{
             textAlign: 'center', position: 'relative',
             ...(pkg.isCustom ? { border: '2px solid var(--secondary)', background: 'linear-gradient(135deg, rgba(69,32,89,0.03), rgba(42,132,138,0.03))' } : {}),
           }}>

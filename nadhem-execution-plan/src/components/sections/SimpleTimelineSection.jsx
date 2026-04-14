@@ -14,7 +14,7 @@ export default function SimpleTimelineSection() {
             <div
               key={qi} className="tl-q"
               data-aos="fade-up"
-              data-aos-delay={Math.min(qi * 80, 600)}
+             
             >
               <div className="tl-q-label" style={{ color: qColors[q.quarter] }}>
                 <span style={{ marginLeft: 8 }}>{q.quarter}</span> — {q.period}

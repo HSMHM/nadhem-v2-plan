@@ -12,7 +12,7 @@ export default function WinbackSection() {
       <div className="tl" style={{ marginBottom: 28 }}>
         <div>
           {winbackPlan.phases.map((phase, i) => (
-            <div key={i} className="tl-item" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)}>
+            <div key={i} className="tl-item" data-aos="fade-up">
               <div className="card" style={{ borderRight: `3px solid ${phaseColors[i]}` }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
                   <div className="ic" style={{ background: `${phaseColors[i]}15` }}>
@@ -49,7 +49,7 @@ export default function WinbackSection() {
           <p style={{ color: 'var(--text-muted)', fontSize: '0.82rem', margin: 0 }}>من جميع القطاعات (غير ربحي + حكومي + خاص)</p>
         </div>
 
-        <div className="card" data-aos="fade-up" data-aos-delay={80} style={{ textAlign: 'center', background: 'linear-gradient(135deg, rgba(186,90,49,0.06), rgba(186,90,49,0.02))', borderColor: 'rgba(186,90,49,0.15)' }}>
+        <div className="card" data-aos="fade-up" style={{ textAlign: 'center', background: 'linear-gradient(135deg, rgba(186,90,49,0.06), rgba(186,90,49,0.02))', borderColor: 'rgba(186,90,49,0.15)' }}>
           <div className="ic" style={{ width: 56, height: 56, borderRadius: 14, margin: '0 auto 12px', background: 'rgba(186,90,49,0.1)' }}>
             <i className="fa-thin fa-user-clock" style={{ fontSize: 24, color: 'var(--accent-orange)' }} aria-hidden="true" />
           </div>

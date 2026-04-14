@@ -36,7 +36,7 @@ export default function DashboardSection() {
 
         <div className="grid g3" style={{ marginBottom: 32 }}>
           {stats.map((s, i) => (
-            <div key={i} data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)}>
+            <div key={i} data-aos="fade-up">
               <StatCard {...s} glass />
             </div>
           ))}
@@ -71,7 +71,7 @@ export default function DashboardSection() {
           </div>
 
           {/* Bar: developments by quarter */}
-          <div className="glass" data-aos="fade-up" data-aos-delay={80}>
+          <div className="glass" data-aos="fade-up">
             <h3 style={{ color: '#fff', fontSize: '1rem', fontWeight: 600, marginBottom: 12 }}>
               <i className="fa-thin fa-calendar-days" style={{ marginLeft: 8 }} /> التطويرات حسب الربع
             </h3>
@@ -89,7 +89,7 @@ export default function DashboardSection() {
           </div>
 
           {/* Horizontal bar: tasks by committee */}
-          <div className="glass" data-aos="fade-up" data-aos-delay={160}>
+          <div className="glass" data-aos="fade-up">
             <h3 style={{ color: '#fff', fontSize: '1rem', fontWeight: 600, marginBottom: 12 }}>
               <i className="fa-thin fa-people-group" style={{ marginLeft: 8 }} /> المهام حسب اللجنة
             </h3>

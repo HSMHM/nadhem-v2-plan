@@ -41,7 +41,7 @@ body{font-family:var(--font);color:var(--text);background:var(--bg);line-height:
 
 /* Layout */
 .app{display:flex;min-height:100vh;overflow-x:hidden;max-width:100vw}
-.main{flex:1;margin-right:var(--sidebar-w);min-height:100vh}
+.main{flex:1;margin-right:var(--sidebar-w);min-height:100vh;overflow-x:hidden}
 
 /* Sidebar */
 .sidebar{position:fixed;top:0;right:0;width:var(--sidebar-w);height:100vh;background:var(--sidebar-bg);overflow-y:auto;z-index:100;display:flex;flex-direction:column;padding:24px 0}
@@ -61,7 +61,7 @@ body{font-family:var(--font);color:var(--text);background:var(--bg);line-height:
 .mobile-btn{display:none;position:fixed;top:60px;right:12px;z-index:95;width:40px;height:40px;border-radius:10px;background:var(--sidebar-bg);color:#fff;border:none;cursor:pointer;font-size:16px;align-items:center;justify-content:center;box-shadow:var(--shadow-md)}
 
 /* Section */
-.section{padding:48px 32px}
+.section{padding:48px 32px;overflow-x:hidden}
 .section-hdr{margin-bottom:28px}
 .section-hdr h2{font-size:1.4rem;font-weight:700;color:var(--text-dark);display:flex;align-items:center;gap:12px;margin:0}
 .section-hdr h2 i{color:var(--primary)}
@@ -96,7 +96,7 @@ body{font-family:var(--font);color:var(--text);background:var(--bg);line-height:
 .tbl tr:hover td{background:var(--card-hover)}
 
 /* Hero / Dark Dashboard */
-.hero{position:relative;overflow:hidden;padding:48px 32px;background:#0F0720}
+.hero{position:relative;overflow:hidden;padding:48px 32px;background:#0F0720;overflow-x:hidden}
 .hero::before{content:'';position:absolute;inset:0;background:url('/nadhem-background.png') left bottom/200% no-repeat;opacity:0.6;z-index:0}
 .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,7,32,0.45) 0%,rgba(8,3,18,0.55) 100%);z-index:1}
 .hero-inner{position:relative;z-index:2}

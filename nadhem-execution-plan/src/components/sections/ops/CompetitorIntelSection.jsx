@@ -14,7 +14,7 @@ export default function CompetitorIntelSection() {
         style={{ marginBottom: 24 }}
       >
         {competitors.map((c, i) => (
-          <div key={i} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)} style={{ padding: 20 }}>
+          <div key={i} className="card" data-aos="fade-up" style={{ padding: 20 }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
               <h4 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-dark)', margin: 0 }}>
                 {c.name}

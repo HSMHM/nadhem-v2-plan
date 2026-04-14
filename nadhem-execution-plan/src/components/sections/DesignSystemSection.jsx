@@ -39,7 +39,7 @@ export default function DesignSystemSection() {
           </div>
         </div>
 
-        <div className="card" data-aos="fade-up" data-aos-delay={80}>
+        <div className="card" data-aos="fade-up">
           <h3 style={{ fontSize: '1.05rem', fontWeight: 600, color: 'var(--text-dark)', marginBottom: 16 }}>
             <i className="fa-thin fa-list-check" style={{ marginLeft: 8, color: 'var(--primary)' }} /> ماذا يتضمن؟
           </h3>

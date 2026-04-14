@@ -39,7 +39,7 @@ export default function ChartsSection() {
         </div>
 
         {/* Chart 2: Tasks per development (Horizontal Bar) */}
-        <div className="card" data-aos="fade-up" data-aos-delay={80}>
+        <div className="card" data-aos="fade-up">
           <h3 style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-dark)', marginBottom: 14 }}>
             <i className="fa-thin fa-chart-bar" style={{ marginLeft: 8, color: 'var(--primary)' }} /> عدد المهام لكل تطوير
           </h3>
@@ -84,7 +84,7 @@ export default function ChartsSection() {
         </div>
 
         {/* Chart 5: Progress by quarter (Area) */}
-        <div className="card" data-aos="fade-up" data-aos-delay={80}>
+        <div className="card" data-aos="fade-up">
           <h3 style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-dark)', marginBottom: 14 }}>
             <i className="fa-thin fa-chart-area" style={{ marginLeft: 8, color: 'var(--primary)' }} /> نسبة تقدم الإنجاز المتوقعة
           </h3>

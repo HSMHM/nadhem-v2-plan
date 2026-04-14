@@ -66,7 +66,7 @@ export default function DigitalSection() {
 
       <div className="grid g2">
         {strategies.map((s, i) => (
-          <div key={i} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)}>
+          <div key={i} className="card" data-aos="fade-up">
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
               <div className="ic" style={{ width: 44, height: 44, borderRadius: 12, background: `${s.color}18`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <i className={`fa-thin fa-${s.icon}`} style={{ fontSize: 20, color: s.color }} aria-hidden="true" />

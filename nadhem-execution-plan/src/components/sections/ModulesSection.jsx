@@ -8,7 +8,7 @@ export default function ModulesSection() {
 
       <div className="grid g4">
         {modules.map((m, i) => (
-          <div key={m.id} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)} style={{ textAlign: 'center', padding: 20 }}>
+          <div key={m.id} className="card" data-aos="fade-up" style={{ textAlign: 'center', padding: 20 }}>
             <div className="ic" style={{ margin: '0 auto 10px' }}>
               <i className={`fa-thin fa-${m.icon}`} aria-hidden="true" />
             </div>

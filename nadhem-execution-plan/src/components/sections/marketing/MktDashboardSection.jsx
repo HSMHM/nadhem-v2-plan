@@ -48,7 +48,7 @@ export default function MktDashboardSection() {
           style={{ marginBottom: 32 }}
         >
           {mktStats.map((s, i) => (
-            <div key={i} data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)}>
+            <div key={i} data-aos="fade-up">
               <StatCard {...s} glass />
             </div>
           ))}
@@ -65,7 +65,7 @@ export default function MktDashboardSection() {
                 key={i}
                 className="glass"
                 data-aos="fade-up"
-                data-aos-delay={Math.min(i * 80, 600)}
+               
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10 }}>
                   <div className="ic" style={{ background: 'rgba(42,132,138,0.15)', flexShrink: 0 }}>

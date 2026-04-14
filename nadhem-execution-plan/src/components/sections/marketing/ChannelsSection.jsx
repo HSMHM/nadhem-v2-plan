@@ -10,7 +10,7 @@ export default function ChannelsSection() {
         <div
           key={gi}
           data-aos="fade-up"
-          data-aos-delay={Math.min(gi * 80, 600)}
+         
           style={{ marginBottom: 28 }}
         >
           <h3 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: 14, color: 'var(--text-dark)' }}>
@@ -19,7 +19,7 @@ export default function ChannelsSection() {
 
           <div className="grid g2">
             {group.items.map((ch, ci) => (
-              <div key={ci} className="card" data-aos="fade-up" data-aos-delay={Math.min(ci * 80, 600)}>
+              <div key={ci} className="card" data-aos="fade-up">
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10 }}>
                   <div className="ic">
                     <i className={`fa-thin fa-${ch.icon}`} style={{ color: '#2A848A' }} aria-hidden="true" />

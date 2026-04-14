@@ -32,14 +32,14 @@ export default function WelcomePage({ onEnter }) {
         </div>
 
         {/* CTA Button */}
-        <div data-aos="fade-up" data-aos-delay={150} style={{ textAlign: 'center', marginBottom: 56 }}>
+        <div data-aos="fade-up" style={{ textAlign: 'center', marginBottom: 56 }}>
           <button className="welcome-btn" onClick={onEnter}>
             استعراض
           </button>
         </div>
 
         {/* Agenda */}
-        <div data-aos="fade-up" data-aos-delay={300} style={{ maxWidth: 800, margin: '0 auto' }}>
+        <div data-aos="fade-up" style={{ maxWidth: 800, margin: '0 auto' }}>
           <h2 style={{
             color: 'rgba(255,255,255,0.7)', fontSize: '1rem', fontWeight: 600,
             textAlign: 'center', marginBottom: 20, letterSpacing: '0.5px',
@@ -50,7 +50,7 @@ export default function WelcomePage({ onEnter }) {
 
           <div className="welcome-agenda">
             {agenda.map((item, i) => (
-              <div key={i} className="agenda-row" data-aos="fade-up" data-aos-delay={Math.min(350 + i * 60, 700)}>
+              <div key={i} className="agenda-row" data-aos="fade-up">
                 <span className="agenda-num">{item.num}</span>
                 <div className="agenda-info">
                   <span className="agenda-title">{item.title}</span>
