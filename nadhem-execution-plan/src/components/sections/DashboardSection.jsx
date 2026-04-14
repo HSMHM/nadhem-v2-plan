@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import StatCard from '../common/StatCard';
 import { ResponsivePie } from '@nivo/pie';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
@@ -19,36 +18,34 @@ const stats = [
 
 const committeeColors = ['#2A848A', '#BA5A31', '#452059', '#A61C61', '#10B981', '#F59E0B', '#EF4444', '#6366F1'];
 
-const fadeIn = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.4 } } };
-const stagger = { visible: { transition: { staggerChildren: 0.08 } } };
-
 export default function DashboardSection() {
   return (
+    <>
     <section id="dashboard" className="hero">
       <div className="glow" style={{ top: -100, right: -100 }} />
       <div className="glow" style={{ bottom: -100, left: -100 }} />
 
       <div className="hero-inner">
-        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} style={{ textAlign: 'center', marginBottom: 40 }}>
+        <div data-aos="fade-up" style={{ textAlign: 'center', marginBottom: 40 }}>
           <img src="/logos/white-logo.png" alt="نظم" style={{ width: 150, height: 'auto' }} />
           <h1 style={{ color: '#fff', fontSize: '1.7rem', fontWeight: 700, marginTop: 14, marginBottom: 6 }}>
             خطة تنفيذ تطوير منتج نظم — 2026
           </h1>
           <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.95rem' }}>من الخارطة إلى التنفيذ — 292 مهمة خلال 8 أشهر (مايو – ديسمبر)</p>
-        </motion.div>
+        </div>
 
-        <motion.div className="grid g3" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }} style={{ marginBottom: 32 }}>
+        <div className="grid g3" style={{ marginBottom: 32 }}>
           {stats.map((s, i) => (
-            <motion.div key={i} variants={fadeIn}>
+            <div key={i} data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)}>
               <StatCard {...s} glass />
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Charts row */}
         <div className="grid g3" style={{ marginBottom: 0 }}>
           {/* Donut: tasks by phase */}
-          <motion.div className="glass" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <div className="glass" data-aos="fade-up">
             <h3 style={{ color: '#fff', fontSize: '1rem', fontWeight: 600, marginBottom: 12 }}>
               <i className="fa-thin fa-chart-pie" style={{ marginLeft: 8 }} /> توزيع المهام حسب المرحلة
             </h3>
@@ -71,10 +68,10 @@ export default function DashboardSection() {
                 )}
               />
             </div>
-          </motion.div>
+          </div>
 
           {/* Bar: developments by quarter */}
-          <motion.div className="glass" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
+          <div className="glass" data-aos="fade-up" data-aos-delay={80}>
             <h3 style={{ color: '#fff', fontSize: '1rem', fontWeight: 600, marginBottom: 12 }}>
               <i className="fa-thin fa-calendar-days" style={{ marginLeft: 8 }} /> التطويرات حسب الربع
             </h3>
@@ -89,10 +86,10 @@ export default function DashboardSection() {
                 </Bar>
               </BarChart>
             </ResponsiveContainer>
-          </motion.div>
+          </div>
 
           {/* Horizontal bar: tasks by committee */}
-          <motion.div className="glass" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
+          <div className="glass" data-aos="fade-up" data-aos-delay={160}>
             <h3 style={{ color: '#fff', fontSize: '1rem', fontWeight: 600, marginBottom: 12 }}>
               <i className="fa-thin fa-people-group" style={{ marginLeft: 8 }} /> المهام حسب اللجنة
             </h3>
@@ -107,9 +104,11 @@ export default function DashboardSection() {
                 </Bar>
               </BarChart>
             </ResponsiveContainer>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
+    <div className="hero-divider" />
+    </>
   );
 }

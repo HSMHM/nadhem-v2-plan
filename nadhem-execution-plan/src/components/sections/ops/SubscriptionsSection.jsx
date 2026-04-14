@@ -1,9 +1,5 @@
-import { motion } from 'framer-motion';
 import SectionHeader from '../../common/SectionHeader';
 import { subscriptionsData } from '../../../data/operations';
-
-const fadeIn = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.4 } } };
-const stagger = { visible: { transition: { staggerChildren: 0.08 } } };
 
 const summaryCards = [
   { label: 'اشتراك نشط', key: 'active', color: '#10B981', icon: 'circle-check' },
@@ -19,16 +15,12 @@ export default function SubscriptionsSection() {
       <SectionHeader icon="file-contract" title="متابعة الاشتراكات" />
 
       {/* Summary cards */}
-      <motion.div
+      <div
         className="grid g4"
-        variants={stagger}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
         style={{ marginBottom: 24 }}
       >
-        {summaryCards.map((c) => (
-          <motion.div key={c.key} className="card" variants={fadeIn} style={{ textAlign: 'center' }}>
+        {summaryCards.map((c, i) => (
+          <div key={c.key} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)} style={{ textAlign: 'center' }}>
             <div className="ic" style={{ margin: '0 auto 10px' }}>
               <i className={`fa-thin fa-${c.icon}`} style={{ color: c.color }} aria-hidden="true" />
             </div>
@@ -38,11 +30,11 @@ export default function SubscriptionsSection() {
             <div style={{ color: 'var(--text-muted)', fontSize: '0.78rem', marginTop: 4 }}>
               {c.label}
             </div>
-          </motion.div>
+          </div>
         ))}
 
         {/* Renewal rate card with warning */}
-        <motion.div className="card" variants={fadeIn} style={{ textAlign: 'center' }}>
+        <div className="card" data-aos="fade-up" data-aos-delay={Math.min(3 * 80, 600)} style={{ textAlign: 'center' }}>
           <div className="ic" style={{ margin: '0 auto 10px' }}>
             <i className="fa-thin fa-arrow-rotate-right" style={{ color: '#EF4444' }} aria-hidden="true" />
           </div>
@@ -57,11 +49,11 @@ export default function SubscriptionsSection() {
               <i className="fa-thin fa-triangle-exclamation" style={{ marginLeft: 4 }} /> يحتاج تحسين عاجل
             </span>
           </div>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
 
       {/* Tasks */}
-      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+      <div data-aos="fade-up">
         <h3 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: 12, color: 'var(--text-dark)' }}>
           <i className="fa-thin fa-list-check" style={{ marginLeft: 8 }} /> المهام الدورية
         </h3>
@@ -74,7 +66,7 @@ export default function SubscriptionsSection() {
             </div>
           ))}
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

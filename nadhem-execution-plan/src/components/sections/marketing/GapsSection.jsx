@@ -1,9 +1,5 @@
-import { motion } from 'framer-motion';
 import SectionHeader from '../../common/SectionHeader';
 import { gaps } from '../../../data/marketing';
-
-const fadeIn = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.4 } } };
-const stagger = { visible: { transition: { staggerChildren: 0.08 } } };
 
 const priorityMap = {
   highest: { cls: 'badge-d', label: 'أولوية قصوى' },
@@ -16,11 +12,11 @@ export default function GapsSection() {
     <section id="mkt-gaps" className="section">
       <SectionHeader icon="clipboard-list-check" title="النواقص والتوصيات" />
 
-      <motion.div className="grid g2" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+      <div className="grid g2">
         {gaps.map((g, i) => {
           const p = priorityMap[g.priority] || priorityMap.medium;
           return (
-            <motion.div key={i} className="card" variants={fadeIn}>
+            <div key={i} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
                 <div className="ic" style={{ width: 44, height: 44, borderRadius: 12, background: 'rgba(239,68,68,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <i className={`fa-thin fa-${g.icon}`} style={{ fontSize: 20, color: 'var(--danger)' }} aria-hidden="true" />
@@ -46,10 +42,10 @@ export default function GapsSection() {
                 </div>
                 <p style={{ fontSize: '0.82rem', color: 'var(--text)', lineHeight: 1.7, margin: 0 }}>{g.recommendation}</p>
               </div>
-            </motion.div>
+            </div>
           );
         })}
-      </motion.div>
+      </div>
     </section>
   );
 }

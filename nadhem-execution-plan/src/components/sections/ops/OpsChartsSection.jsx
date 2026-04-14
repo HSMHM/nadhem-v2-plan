@@ -1,10 +1,7 @@
-import { motion } from 'framer-motion';
 import SectionHeader from '../../common/SectionHeader';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 import { ResponsivePie } from '@nivo/pie';
 import { opsTasksSummary } from '../../../data/operations';
-
-const fadeIn = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.4 } } };
 
 const categoryColors = ['#2A848A', '#BA5A31', '#452059', '#A61C61', '#10B981', '#F59E0B', '#6366F1'];
 
@@ -44,7 +41,7 @@ export default function OpsChartsSection() {
 
       <div className="grid g2">
         {/* Chart 1: Client Status Pie */}
-        <motion.div className="card" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
+        <div className="card" data-aos="fade-up">
           <h3 style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-dark)', marginBottom: 14 }}>
             <i className="fa-thin fa-heart-pulse" style={{ marginLeft: 8, color: '#10B981' }} aria-hidden="true" />
             حالة العملاء النشطين
@@ -71,10 +68,10 @@ export default function OpsChartsSection() {
               )}
             />
           </div>
-        </motion.div>
+        </div>
 
         {/* Chart 2: Tasks by Frequency Donut */}
-        <motion.div className="card" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
+        <div className="card" data-aos="fade-up">
           <h3 style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-dark)', marginBottom: 14 }}>
             <i className="fa-thin fa-chart-pie" style={{ marginLeft: 8, color: 'var(--primary)' }} aria-hidden="true" />
             المهام حسب التكرار
@@ -101,10 +98,10 @@ export default function OpsChartsSection() {
               )}
             />
           </div>
-        </motion.div>
+        </div>
 
         {/* Chart 3: Tasks by Category Horizontal Bar */}
-        <motion.div className="card" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
+        <div className="card" data-aos="fade-up">
           <h3 style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-dark)', marginBottom: 14 }}>
             <i className="fa-thin fa-layer-group" style={{ marginLeft: 8, color: 'var(--secondary)' }} aria-hidden="true" />
             المهام حسب الفئة
@@ -125,10 +122,10 @@ export default function OpsChartsSection() {
               </Bar>
             </BarChart>
           </ResponsiveContainer>
-        </motion.div>
+        </div>
 
         {/* Chart 4: Weekly Work Hours Card */}
-        <motion.div className="card" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+        <div className="card" data-aos="fade-up" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
           <h3 style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-dark)', marginBottom: 20, alignSelf: 'stretch' }}>
             <i className="fa-thin fa-clock" style={{ marginLeft: 8, color: 'var(--accent-orange)' }} aria-hidden="true" />
             ساعات العمل التشغيلية الأسبوعية
@@ -158,7 +155,7 @@ export default function OpsChartsSection() {
             <span><i className="fa-thin fa-equals" style={{ marginLeft: 4 }} aria-hidden="true" />{days} أيام x {dailyHours} ساعات</span>
             <span><i className="fa-thin fa-plus" style={{ marginLeft: 4 }} aria-hidden="true" />{opsTasksSummary.monthlyExtra} ساعة إضافية/شهر</span>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

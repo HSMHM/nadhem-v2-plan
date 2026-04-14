@@ -1,9 +1,5 @@
-import { motion } from 'framer-motion';
 import SectionHeader from '../../common/SectionHeader';
 import { competitorIntelData } from '../../../data/operations';
-
-const fadeIn = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.4 } } };
-const stagger = { visible: { transition: { staggerChildren: 0.08 } } };
 
 export default function CompetitorIntelSection() {
   const { competitors, tasks } = competitorIntelData;
@@ -13,16 +9,12 @@ export default function CompetitorIntelSection() {
       <SectionHeader icon="binoculars" title="دراسة المنافسين" />
 
       {/* Competitor cards */}
-      <motion.div
+      <div
         className="grid g2"
-        variants={stagger}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
         style={{ marginBottom: 24 }}
       >
         {competitors.map((c, i) => (
-          <motion.div key={i} className="card" variants={fadeIn} style={{ padding: 20 }}>
+          <div key={i} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)} style={{ padding: 20 }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
               <h4 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-dark)', margin: 0 }}>
                 {c.name}
@@ -58,12 +50,12 @@ export default function CompetitorIntelSection() {
             <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
               <i className="fa-thin fa-calendar" style={{ marginLeft: 4 }} /> آخر مراجعة: {c.lastReview}
             </div>
-          </motion.div>
+          </div>
         ))}
-      </motion.div>
+      </div>
 
       {/* Tasks */}
-      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+      <div data-aos="fade-up">
         <h3 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: 12, color: 'var(--text-dark)' }}>
           <i className="fa-thin fa-list-check" style={{ marginLeft: 8 }} /> المهام الدورية
         </h3>
@@ -76,7 +68,7 @@ export default function CompetitorIntelSection() {
             </div>
           ))}
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

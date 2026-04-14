@@ -1,17 +1,14 @@
-import { motion } from 'framer-motion';
 import SectionHeader from '../common/SectionHeader';
 import { packages, packageMatrix } from '../../data/packages';
-
-const fadeIn = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.4 } } };
 
 export default function PackagesSection() {
   return (
     <section id="packages" className="section">
       <SectionHeader icon="box-taped" title="هيكلة الباقات" subtitle="4 باقات سنوية متصاعدة تناسب مختلف أحجام الفعاليات" />
 
-      <motion.div className="grid g4" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={{ visible: { transition: { staggerChildren: 0.1 } } }} style={{ marginBottom: 28 }}>
-        {packages.map((pkg) => (
-          <motion.div key={pkg.id} className="card" variants={fadeIn} style={{
+      <div className="grid g4" style={{ marginBottom: 28 }}>
+        {packages.map((pkg, i) => (
+          <div key={pkg.id} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)} style={{
             textAlign: 'center', position: 'relative',
             ...(pkg.isCustom ? { border: '2px solid var(--secondary)', background: 'linear-gradient(135deg, rgba(69,32,89,0.03), rgba(42,132,138,0.03))' } : {}),
           }}>
@@ -28,11 +25,11 @@ export default function PackagesSection() {
             <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginBottom: 6 }}>ريال سعودي / سنوياً</div>
             <p style={{ fontSize: '0.78rem', color: 'var(--text)', marginBottom: 10 }}>{pkg.target}</p>
             <span className="badge badge-p">{pkg.moduleCount} وحدة</span>
-          </motion.div>
+          </div>
         ))}
-      </motion.div>
+      </div>
 
-      <motion.div className="card" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ overflow: 'auto' }}>
+      <div className="card" data-aos="fade-up" style={{ overflow: 'auto' }}>
         <h3 style={{ fontSize: '1.05rem', fontWeight: 600, color: 'var(--text-dark)', marginBottom: 14 }}>
           <i className="fa-thin fa-table-cells" style={{ marginLeft: 8, color: 'var(--primary)' }} /> مصفوفة الوحدات والباقات
         </h3>
@@ -63,7 +60,7 @@ export default function PackagesSection() {
             ))}
           </tbody>
         </table>
-      </motion.div>
+      </div>
     </section>
   );
 }

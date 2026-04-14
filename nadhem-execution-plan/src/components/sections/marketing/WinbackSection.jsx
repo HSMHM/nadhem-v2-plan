@@ -1,9 +1,5 @@
-import { motion } from 'framer-motion';
 import SectionHeader from '../../common/SectionHeader';
 import { winbackPlan } from '../../../data/marketing';
-
-const fadeIn = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.4 } } };
-const stagger = { visible: { transition: { staggerChildren: 0.08 } } };
 
 const phaseColors = ['#452059', '#2A848A', '#BA5A31'];
 
@@ -14,14 +10,9 @@ export default function WinbackSection() {
 
       {/* Timeline phases */}
       <div className="tl" style={{ marginBottom: 28 }}>
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
+        <div>
           {winbackPlan.phases.map((phase, i) => (
-            <motion.div key={i} className="tl-item" variants={fadeIn}>
+            <div key={i} className="tl-item" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)}>
               <div className="card" style={{ borderRight: `3px solid ${phaseColors[i]}` }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
                   <div className="ic" style={{ background: `${phaseColors[i]}15` }}>
@@ -42,36 +33,31 @@ export default function WinbackSection() {
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
 
-      {/* Target card */}
-      <motion.div
-        className="card"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        style={{
-          textAlign: 'center',
-          background: 'linear-gradient(135deg, rgba(69,32,89,0.06), rgba(42,132,138,0.06))',
-          border: '1px solid rgba(69,32,89,0.12)',
-        }}
-      >
-        <div className="ic" style={{ width: 56, height: 56, borderRadius: 14, margin: '0 auto 12px', background: 'rgba(16,185,129,0.1)' }}>
-          <i className="fa-thin fa-bullseye-arrow" style={{ fontSize: 24, color: '#10B981' }} aria-hidden="true" />
+      {/* Dual target cards */}
+      <div className="grid g2">
+        <div className="card" data-aos="fade-up" style={{ textAlign: 'center', background: 'linear-gradient(135deg, rgba(42,132,138,0.06), rgba(42,132,138,0.02))', borderColor: 'rgba(42,132,138,0.15)' }}>
+          <div className="ic" style={{ width: 56, height: 56, borderRadius: 14, margin: '0 auto 12px', background: 'rgba(42,132,138,0.1)' }}>
+            <i className="fa-thin fa-user-plus" style={{ fontSize: 24, color: 'var(--primary)' }} aria-hidden="true" />
+          </div>
+          <div style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--text-dark)', marginBottom: 6 }}>هدف الاكتساب</div>
+          <div style={{ fontSize: '1.6rem', fontWeight: 700, color: 'var(--primary)', marginBottom: 4 }}>10 – 15 عميل جديد</div>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.82rem', margin: 0 }}>من جميع القطاعات (غير ربحي + حكومي + خاص)</p>
         </div>
-        <div style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--text-dark)', marginBottom: 6 }}>
-          هدف الاستعادة
+
+        <div className="card" data-aos="fade-up" data-aos-delay={80} style={{ textAlign: 'center', background: 'linear-gradient(135deg, rgba(186,90,49,0.06), rgba(186,90,49,0.02))', borderColor: 'rgba(186,90,49,0.15)' }}>
+          <div className="ic" style={{ width: 56, height: 56, borderRadius: 14, margin: '0 auto 12px', background: 'rgba(186,90,49,0.1)' }}>
+            <i className="fa-thin fa-user-clock" style={{ fontSize: 24, color: 'var(--accent-orange)' }} aria-hidden="true" />
+          </div>
+          <div style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--text-dark)', marginBottom: 6 }}>هدف الاستعادة</div>
+          <div style={{ fontSize: '1.6rem', fontWeight: 700, color: 'var(--accent-orange)', marginBottom: 4 }}>8 – 10 عميل مُستعاد</div>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.82rem', margin: 0 }}>من الـ 71 عميل سابق</p>
         </div>
-        <div style={{ fontSize: '1.6rem', fontWeight: 700, color: '#10B981', marginBottom: 4 }}>
-          15-20% من 71 = 11-14 عميل مُستعاد
-        </div>
-        <p style={{ color: 'var(--text-muted)', fontSize: '0.82rem', margin: 0 }}>
-          {winbackPlan.targetConversion}
-        </p>
-      </motion.div>
+      </div>
     </section>
   );
 }

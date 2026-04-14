@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import Sidebar, { devNavItems, opsNavItems, marketingNavItems } from './components/Sidebar';
 import PlanTabs from './components/PlanTabs';
-import { motion, AnimatePresence } from 'framer-motion';
 
 // Dev sections
 import DashboardSection from './components/sections/DashboardSection';
@@ -48,14 +47,12 @@ function ScrollToTop() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
   return (
-    <AnimatePresence>
-      {visible && (
-        <motion.button className="scroll-top" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.8 }}
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          <i className="fa-thin fa-circle-arrow-up" aria-hidden="true" />
-        </motion.button>
-      )}
-    </AnimatePresence>
+    <button
+      className={`scroll-top ${visible ? 'visible' : ''}`}
+      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+    >
+      <i className="fa-thin fa-circle-arrow-up" aria-hidden="true" />
+    </button>
   );
 }
 
@@ -130,6 +127,7 @@ function App() {
         {plan === 'marketing' && (
           <>
             <MktDashboardSection />
+            <div className="hero-divider" />
             <ChallengeSection />
             <PersonasSection />
             <ChannelsSection />

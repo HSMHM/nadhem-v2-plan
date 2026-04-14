@@ -1,8 +1,4 @@
-import { motion } from 'framer-motion';
 import SectionHeader from '../../common/SectionHeader';
-
-const fadeIn = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.4 } } };
-const stagger = { visible: { transition: { staggerChildren: 0.1 } } };
 
 const partnerships = [
   {
@@ -29,12 +25,11 @@ const partnerships = [
   },
   {
     icon: 'user-check',
-    title: 'برنامج إحالات العملاء الحاليين',
+    title: 'توصيات العملاء الحاليين',
     description: 'العملاء الحاليون (الـ 7) هم أقوى قناة تسويقية — العميل الراضي يوصي بالمنتج لزملائه في القطاع.',
     actions: [
-      'إطلاق برنامج إحالات رسمي مع حوافز واضحة',
-      'خصم أو مدة إضافية مجانية لكل عميل يحيل عميلاً جديداً',
-      'متابعة دورية مع العملاء لطلب ترشيحات',
+      'التواصل الدوري مع العملاء وطلب ترشيحات لمنظمات أخرى',
+      'تقديم تجربة ممتازة تجعل العميل يتحدث عن نظم من تلقاء نفسه',
     ],
     color: '#10B981',
   },
@@ -56,9 +51,9 @@ export default function PartnershipsSection() {
     <section id="mkt-partnerships" className="section">
       <SectionHeader icon="handshake" title="الشراكات والقنوات" />
 
-      <motion.div className="grid g2" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+      <div className="grid g2">
         {partnerships.map((p, i) => (
-          <motion.div key={i} className="card" variants={fadeIn}>
+          <div key={i} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
               <div className="ic" style={{ width: 44, height: 44, borderRadius: 12, background: `${p.color}18`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <i className={`fa-thin fa-${p.icon}`} style={{ fontSize: 20, color: p.color }} aria-hidden="true" />
@@ -76,9 +71,9 @@ export default function PartnershipsSection() {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
         ))}
-      </motion.div>
+      </div>
     </section>
   );
 }

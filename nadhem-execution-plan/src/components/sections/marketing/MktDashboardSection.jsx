@@ -1,9 +1,5 @@
-import { motion } from 'framer-motion';
 import StatCard from '../../common/StatCard';
 import { mktStats, mktTargets } from '../../../data/marketing';
-
-const fadeIn = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.4 } } };
-const stagger = { visible: { transition: { staggerChildren: 0.08 } } };
 
 export default function MktDashboardSection() {
   return (
@@ -12,10 +8,8 @@ export default function MktDashboardSection() {
       <div className="glow" style={{ bottom: -100, left: -100 }} />
 
       <div className="hero-inner">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+        <div
+          data-aos="fade-up"
           style={{ textAlign: 'center', marginBottom: 40 }}
         >
           <img src="/logos/white-logo.png" alt="نظم" style={{ width: 150, height: 'auto' }} />
@@ -23,9 +17,9 @@ export default function MktDashboardSection() {
             خطة التسويق — منتج نظم 2026
           </h1>
           <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.95rem' }}>
-            6,348 منظمة غير ربحية — 7 عملاء نشطون — فرصة نمو كبيرة
+            سوق واسع بكل القطاعات — 7 عملاء نشطون — هدف 25-32 عميل بنهاية 2026
           </p>
-        </motion.div>
+        </div>
 
         {/* PM role note */}
         <div style={{
@@ -49,39 +43,29 @@ export default function MktDashboardSection() {
         </div>
 
         {/* Stat cards */}
-        <motion.div
+        <div
           className="grid g3"
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
           style={{ marginBottom: 32 }}
         >
           {mktStats.map((s, i) => (
-            <motion.div key={i} variants={fadeIn}>
+            <div key={i} data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)}>
               <StatCard {...s} glass />
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Targets cards */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
+        <div data-aos="fade-up">
           <h3 style={{ color: '#fff', fontSize: '1rem', fontWeight: 600, marginBottom: 16 }}>
             <i className="fa-thin fa-bullseye-arrow" style={{ marginLeft: 8 }} /> الأهداف المستهدفة نهاية 2026
           </h3>
           <div className="grid g3" style={{ marginBottom: 0 }}>
             {mktTargets.map((t, i) => (
-              <motion.div
+              <div
                 key={i}
                 className="glass"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.06 }}
+                data-aos="fade-up"
+                data-aos-delay={Math.min(i * 80, 600)}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10 }}>
                   <div className="ic" style={{ background: 'rgba(42,132,138,0.15)', flexShrink: 0 }}>
@@ -99,10 +83,10 @@ export default function MktDashboardSection() {
                     <div style={{ color: '#EF4444', fontSize: '1.1rem', fontWeight: 700 }}>{t.current}</div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

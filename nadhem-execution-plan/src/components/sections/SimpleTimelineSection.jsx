@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import SectionHeader from '../common/SectionHeader';
 import { simpleTimeline } from '../../data/timeline';
 
@@ -12,12 +11,10 @@ export default function SimpleTimelineSection() {
       <div className="card">
         <div className="tl">
           {simpleTimeline.map((q, qi) => (
-            <motion.div
+            <div
               key={qi} className="tl-q"
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: qi * 0.1 }}
+              data-aos="fade-up"
+              data-aos-delay={Math.min(qi * 80, 600)}
             >
               <div className="tl-q-label" style={{ color: qColors[q.quarter] }}>
                 <span style={{ marginLeft: 8 }}>{q.quarter}</span> — {q.period}
@@ -36,7 +33,7 @@ export default function SimpleTimelineSection() {
                   </span>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

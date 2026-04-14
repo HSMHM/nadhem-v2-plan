@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import SectionHeader from '../common/SectionHeader';
 
 const dsTimeline = [
@@ -23,7 +22,7 @@ export default function DesignSystemSection() {
       <SectionHeader icon="palette" title="التصميم الموحد (Design System)" subtitle="متى وكيف سيُطبق التصميم الموحد" />
 
       <div className="grid g2" style={{ marginBottom: 28 }}>
-        <motion.div className="card" initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+        <div className="card" data-aos="fade-up">
           <h3 style={{ fontSize: '1.05rem', fontWeight: 600, color: 'var(--text-dark)', marginBottom: 16 }}>
             <i className="fa-thin fa-calendar-days" style={{ marginLeft: 8, color: 'var(--primary)' }} /> الخطة الزمنية
           </h3>
@@ -38,9 +37,9 @@ export default function DesignSystemSection() {
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div className="card" initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
+        <div className="card" data-aos="fade-up" data-aos-delay={80}>
           <h3 style={{ fontSize: '1.05rem', fontWeight: 600, color: 'var(--text-dark)', marginBottom: 16 }}>
             <i className="fa-thin fa-list-check" style={{ marginLeft: 8, color: 'var(--primary)' }} /> ماذا يتضمن؟
           </h3>
@@ -54,7 +53,7 @@ export default function DesignSystemSection() {
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
 
       <div className="card" style={{ background: 'rgba(245,158,11,0.06)', borderColor: 'var(--warning)' }}>

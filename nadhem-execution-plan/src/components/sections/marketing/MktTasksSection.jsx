@@ -1,10 +1,6 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import SectionHeader from '../../common/SectionHeader';
 import { mktTasks } from '../../../data/marketing';
-
-const fadeIn = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.4 } } };
-const stagger = { visible: { transition: { staggerChildren: 0.06 } } };
 
 const priorityMap = {
   highest: { cls: 'badge-d', label: 'قصوى' },
@@ -37,17 +33,14 @@ export default function MktTasksSection() {
         ))}
       </div>
 
-      <motion.div
+      <div
         className="task-list"
-        variants={stagger}
-        initial="hidden"
-        animate="visible"
         key={activeTab}
       >
-        {tasks.map((t) => {
+        {tasks.map((t, i) => {
           const p = priorityMap[t.priority] || priorityMap.medium;
           return (
-            <motion.div key={t.id} className="task-item" variants={fadeIn}>
+            <div key={t.id} className="task-item" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)}>
               <span className="task-id">{t.id}</span>
               <span className="task-text">{t.task}</span>
               <span className={`badge ${p.cls}`} style={{ fontSize: '0.68rem', marginInlineStart: 'auto', flexShrink: 0 }}>
@@ -57,10 +50,10 @@ export default function MktTasksSection() {
                 <span>{t.frequency}</span>
                 <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>{t.duration}</span>
               </span>
-            </motion.div>
+            </div>
           );
         })}
-      </motion.div>
+      </div>
     </section>
   );
 }

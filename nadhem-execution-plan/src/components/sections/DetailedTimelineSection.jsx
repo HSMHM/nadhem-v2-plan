@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import SectionHeader from '../common/SectionHeader';
 import { detailedTimeline } from '../../data/timeline';
 
@@ -9,7 +8,7 @@ export default function DetailedTimelineSection() {
     <section id="timeline-detailed" className="section">
       <SectionHeader icon="list-timeline" title="الجدول الزمني المفصل" subtitle="مدة كل مرحلة لكل تطوير بالأيام" />
 
-      <motion.div className="card" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ overflow: 'auto' }}>
+      <div className="card" data-aos="fade-up" style={{ overflow: 'auto' }}>
         <table className="tbl">
           <thead>
             <tr>
@@ -51,7 +50,7 @@ export default function DetailedTimelineSection() {
             </div>
           ))}
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import SectionHeader from '../common/SectionHeader';
 import PhaseTable from '../common/PhaseTable';
 import { developments } from '../../data/developments';
@@ -51,66 +50,58 @@ function DevelopmentCard({ dev }) {
         <i className={`fa-thin fa-chevron-down chevron ${open ? 'open' : ''}`} aria-hidden="true" />
       </div>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            className="dev-body"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <p className="dev-desc">{dev.description}</p>
-            <div className="dev-meta">
-              <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-                <i className="fa-thin fa-location-dot" style={{ marginLeft: 4 }} /> {dev.location}
-              </span>
-            </div>
+      {open && (
+        <div className="dev-body">
+          <p className="dev-desc">{dev.description}</p>
+          <div className="dev-meta">
+            <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+              <i className="fa-thin fa-location-dot" style={{ marginLeft: 4 }} /> {dev.location}
+            </span>
+          </div>
 
-            {/* Phase duration summary */}
-            <div className="grid g4" style={{ marginBottom: 16, gap: 10 }}>
-              {phaseNames.map(p => (
-                <div key={p.key} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 12px', borderRadius: 8, background: 'var(--border-light)' }}>
-                  <i className={`fa-thin fa-${p.icon}`} style={{ color: p.color, fontSize: 14 }} />
-                  <span style={{ fontSize: '0.78rem', color: 'var(--text-dark)', fontWeight: 500 }}>{p.label}</span>
-                  <span style={{ marginRight: 'auto', fontSize: '0.78rem', color: p.color, fontWeight: 600 }}>
-                    {p.key === 'analysis' || p.key === 'training'
-                      ? `${dev.totalDays?.[p.key] || (dev.training ? 2.5 : 0)} يوم`
-                      : 'الفريق التقني'}
-                  </span>
-                </div>
-              ))}
-            </div>
+          {/* Phase duration summary */}
+          <div className="grid g4" style={{ marginBottom: 16, gap: 10 }}>
+            {phaseNames.map(p => (
+              <div key={p.key} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 12px', borderRadius: 8, background: 'var(--border-light)' }}>
+                <i className={`fa-thin fa-${p.icon}`} style={{ color: p.color, fontSize: 14 }} />
+                <span style={{ fontSize: '0.78rem', color: 'var(--text-dark)', fontWeight: 500 }}>{p.label}</span>
+                <span style={{ marginRight: 'auto', fontSize: '0.78rem', color: p.color, fontWeight: 600 }}>
+                  {p.key === 'analysis' || p.key === 'training'
+                    ? `${dev.totalDays?.[p.key] || (dev.training ? 2.5 : 0)} يوم`
+                    : 'الفريق التقني'}
+                </span>
+              </div>
+            ))}
+          </div>
 
-            {/* Phase progress bar */}
-            <div style={{ display: 'flex', height: 6, borderRadius: 9999, overflow: 'hidden', marginBottom: 16 }}>
-              <div style={{ width: `${(dev.totalDays.analysis / dev.totalDays.total) * 100}%`, background: '#2A848A' }} />
-              <div style={{ width: `${(dev.totalDays.design / dev.totalDays.total) * 100}%`, background: '#A61C61' }} />
-              <div style={{ width: `${(dev.totalDays.implementation / dev.totalDays.total) * 100}%`, background: '#BA5A31' }} />
-              <div style={{ width: `${(2.5 / dev.totalDays.total) * 100}%`, background: '#452059' }} />
-            </div>
+          {/* Phase progress bar */}
+          <div style={{ display: 'flex', height: 6, borderRadius: 9999, overflow: 'hidden', marginBottom: 16 }}>
+            <div style={{ width: `${(dev.totalDays.analysis / dev.totalDays.total) * 100}%`, background: '#2A848A' }} />
+            <div style={{ width: `${(dev.totalDays.design / dev.totalDays.total) * 100}%`, background: '#A61C61' }} />
+            <div style={{ width: `${(dev.totalDays.implementation / dev.totalDays.total) * 100}%`, background: '#BA5A31' }} />
+            <div style={{ width: `${(2.5 / dev.totalDays.total) * 100}%`, background: '#452059' }} />
+          </div>
 
-            {/* Phase tabs */}
-            <div className="phase-tabs">
-              {phaseNames.map(p => (
-                <button key={p.key} className={`phase-tab ${phase === p.key ? 'active' : ''}`} onClick={() => setPhase(p.key)}>
-                  <i className={`fa-thin fa-${p.icon}`} style={{ marginLeft: 6 }} />
-                  <span>{p.label}</span>
-                  <span style={{ fontSize: '0.6rem', color: p.badgeColor, display: 'block', marginTop: 2 }}>{p.badge}</span>
-                </button>
-              ))}
-            </div>
+          {/* Phase tabs */}
+          <div className="phase-tabs">
+            {phaseNames.map(p => (
+              <button key={p.key} className={`phase-tab ${phase === p.key ? 'active' : ''}`} onClick={() => setPhase(p.key)}>
+                <i className={`fa-thin fa-${p.icon}`} style={{ marginLeft: 6 }} />
+                <span>{p.label}</span>
+                <span style={{ fontSize: '0.6rem', color: p.badgeColor, display: 'block', marginTop: 2 }}>{p.badge}</span>
+              </button>
+            ))}
+          </div>
 
-            <TaskList tasks={dev[phase] || []} phase={phase} />
+          <TaskList tasks={dev[phase] || []} phase={phase} />
 
-            <div style={{ textAlign: 'center', marginTop: 16, padding: '10px 0', borderTop: '1px solid var(--border-light)' }}>
-              <span style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--primary)' }}>
-                المجموع: {dev.totalDays.total} يوم عمل (التحليل والتدريب: مدير المنتج — التصميم والتنفيذ: الفريق التقني)
-              </span>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          <div style={{ textAlign: 'center', marginTop: 16, padding: '10px 0', borderTop: '1px solid var(--border-light)' }}>
+            <span style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--primary)' }}>
+              المجموع: {dev.totalDays.total} يوم عمل (التحليل والتدريب: مدير المنتج — التصميم والتنفيذ: الفريق التقني)
+            </span>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

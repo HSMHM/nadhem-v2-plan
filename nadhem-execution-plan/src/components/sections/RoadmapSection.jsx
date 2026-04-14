@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import SectionHeader from '../common/SectionHeader';
 import {
   sectorData,
@@ -16,9 +15,6 @@ import {
   roadmapModules,
   roadmapTimeline,
 } from '../../data/roadmap';
-
-const fadeIn = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.4 } } };
-const stagger = { visible: { transition: { staggerChildren: 0.06 } } };
 
 function SubHeader({ icon, title, color }) {
   return (
@@ -75,9 +71,9 @@ function DevTabs() {
           </button>
         ))}
       </div>
-      <motion.div className="grid g2" initial="hidden" animate="visible" key={tab} variants={stagger}>
+      <div className="grid g2" key={tab}>
         {items.map((d, i) => (
-          <motion.div key={i} className="card" variants={fadeIn} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
+          <div key={i} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
             <div className="ic" style={{ marginTop: 2 }}>
               <i className={`fa-thin fa-${d.icon}`} aria-hidden="true" />
             </div>
@@ -86,9 +82,9 @@ function DevTabs() {
               <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)', margin: '0 0 8px', lineHeight: 1.7 }}>{d.description}</p>
               <PriorityBadge priority={d.priority} />
             </div>
-          </motion.div>
+          </div>
         ))}
-      </motion.div>
+      </div>
     </>
   );
 }
@@ -100,21 +96,21 @@ export default function RoadmapSection() {
 
       {/* التمركز القطاعي */}
       <SubHeader icon="chart-pie" title="التمركز القطاعي — 2025" />
-      <motion.div className="grid g3" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
+      <div className="grid g3">
         {sectorData.sectors.map((s, i) => (
-          <motion.div key={i} className="card" variants={fadeIn} style={{ textAlign: 'center' }}>
+          <div key={i} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)} style={{ textAlign: 'center' }}>
             <div style={{ fontSize: '2.2rem', fontWeight: 700, color: s.color }}>{s.value}%</div>
             <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-dark)', marginTop: 4 }}>{s.label}</div>
-          </motion.div>
+          </div>
         ))}
-      </motion.div>
+      </div>
       <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginTop: 10, textAlign: 'center' }}>{sectorData.note}</p>
 
       {/* اللجان ونسبة الاعتماد */}
       <SubHeader icon="people-group" title="اللجان ونسبة الاعتماد لكل لجنة" />
-      <motion.div className="grid g2" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
+      <div className="grid g2">
         {committeesAdoption.map((c, i) => (
-          <motion.div key={i} className="card" variants={fadeIn}>
+          <div key={i} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
               <h4 style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-dark)' }}>{c.name}</h4>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -124,51 +120,51 @@ export default function RoadmapSection() {
             </div>
             <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginBottom: 10 }}>{c.desc}</p>
             <ProgressBar value={c.pct} color={c.pct >= 90 ? 'var(--success)' : c.pct >= 40 ? 'var(--warning)' : 'var(--danger)'} />
-          </motion.div>
+          </div>
         ))}
-      </motion.div>
+      </div>
 
       {/* مؤشر الجاهزية التشغيلية */}
       <SubHeader icon="gauge-high" title="مؤشر الجاهزية التشغيلية" />
-      <motion.div className="grid g3" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} style={{ marginBottom: 8 }}>
-        <motion.div className="card" variants={fadeIn} style={{ textAlign: 'center', borderTop: '3px solid var(--warning)' }}>
+      <div className="grid g3" style={{ marginBottom: 8 }}>
+        <div className="card" data-aos="fade-up" style={{ textAlign: 'center', borderTop: '3px solid var(--warning)' }}>
           <div style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--warning)' }}>{readinessData.avgAdoption}%</div>
           <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>متوسط الاعتماد العام</div>
-        </motion.div>
-        <motion.div className="card" variants={fadeIn} style={{ textAlign: 'center', borderTop: '3px solid var(--success)' }}>
+        </div>
+        <div className="card" data-aos="fade-up" data-aos-delay={80} style={{ textAlign: 'center', borderTop: '3px solid var(--success)' }}>
           <div style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--success)' }}>{readinessData.completedCommittees}</div>
           <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>لجان مكتملة (90%+)</div>
-        </motion.div>
-        <motion.div className="card" variants={fadeIn} style={{ textAlign: 'center', borderTop: '3px solid var(--danger)' }}>
+        </div>
+        <div className="card" data-aos="fade-up" data-aos-delay={160} style={{ textAlign: 'center', borderTop: '3px solid var(--danger)' }}>
           <div style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--danger)' }}>{readinessData.activationGap}%</div>
           <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>فجوة التفعيل</div>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
 
       {/* المستخدمون */}
       <SubHeader icon="users" title="المستخدمون وأنواعهم" />
-      <motion.div className="grid g4" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
+      <div className="grid g4">
         {userTypes.map((u, i) => (
-          <motion.div key={i} className="card" variants={fadeIn} style={{ textAlign: 'center', padding: '18px 14px', position: 'relative' }}>
+          <div key={i} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)} style={{ textAlign: 'center', padding: '18px 14px', position: 'relative' }}>
             {u.isNew && <span className="badge badge-d" style={{ position: 'absolute', top: 8, left: 8, fontSize: '0.6rem' }}>جديد</span>}
             <div className="ic" style={{ margin: '0 auto 10px' }}>
               <i className={`fa-thin fa-${u.icon}`} aria-hidden="true" />
             </div>
             <div style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--text-dark)' }}>{u.name}</div>
-          </motion.div>
+          </div>
         ))}
-      </motion.div>
+      </div>
 
       {/* الخصائص الأكثر استخداماً */}
       <SubHeader icon="star" title="الخصائص الأكثر استخداماً" />
-      <motion.div className="grid g2" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
+      <div className="grid g2">
         {topFeatures.map((f, i) => (
-          <motion.div key={i} className="card" variants={fadeIn} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 18px' }}>
+          <div key={i} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 18px' }}>
             <span style={{ color: 'var(--primary)', fontWeight: 700, fontSize: '0.85rem', minWidth: 26 }}>{i + 1}.</span>
             <span style={{ fontSize: '0.88rem', color: 'var(--text-dark)' }}>{f}</span>
-          </motion.div>
+          </div>
         ))}
-      </motion.div>
+      </div>
 
       {/* صوت العميل / رضا العملاء */}
       <SubHeader icon="face-smile" title="صوت العميل — نسبة الرضا" />
@@ -219,18 +215,18 @@ export default function RoadmapSection() {
 
       {/* المنافسون */}
       <SubHeader icon="shield-halved" title="أبرز المنافسين" />
-      <motion.div className="grid g3" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} style={{ marginBottom: 24 }}>
+      <div className="grid g3" style={{ marginBottom: 24 }}>
         {competitorCategories.map((c, i) => (
-          <motion.div key={i} className="card" variants={fadeIn} style={{ textAlign: 'center' }}>
+          <div key={i} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)} style={{ textAlign: 'center' }}>
             <h4 style={{ fontSize: '0.88rem', fontWeight: 600, color: 'var(--text-dark)', marginBottom: 10 }}>{c.category}</h4>
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'center' }}>
               {c.competitors.map((name, j) => (
                 <span key={j} className="badge badge-q">{name}</span>
               ))}
             </div>
-          </motion.div>
+          </div>
         ))}
-      </motion.div>
+      </div>
 
       {/* مقارنة الأنظمة */}
       <SubHeader icon="table-columns" title="مقارنة بين الأنظمة" />
@@ -263,16 +259,16 @@ export default function RoadmapSection() {
 
       {/* التحديات */}
       <SubHeader icon="triangle-exclamation" title="التحديات الحالية" color="var(--danger)" />
-      <motion.div className="grid g3" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
+      <div className="grid g3">
         {challengesData.map((c, i) => (
-          <motion.div key={i} className="card" variants={fadeIn} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '16px 18px' }}>
+          <div key={i} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '16px 18px' }}>
             <div className="ic" style={{ background: 'rgba(239,68,68,0.08)' }}>
               <i className={`fa-thin fa-${c.icon}`} style={{ color: 'var(--danger)' }} aria-hidden="true" />
             </div>
             <span style={{ fontSize: '0.85rem', color: 'var(--text-dark)', lineHeight: 1.7 }}>{c.title}</span>
-          </motion.div>
+          </div>
         ))}
-      </motion.div>
+      </div>
 
       {/* التطويرات المطلوبة */}
       <SubHeader icon="rocket-launch" title="التطويرات المطلوبة (15 تطوير)" />
@@ -280,14 +276,14 @@ export default function RoadmapSection() {
 
       {/* الوحدات */}
       <SubHeader icon="puzzle-piece" title="الوحدات (16 Module)" />
-      <motion.div className="grid g4" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
+      <div className="grid g4">
         {roadmapModules.map((m, i) => (
-          <motion.div key={i} className="card" variants={fadeIn} style={{ textAlign: 'center', padding: '16px 12px' }}>
+          <div key={i} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)} style={{ textAlign: 'center', padding: '16px 12px' }}>
             <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 28, height: 28, borderRadius: 8, background: 'var(--primary-light)', color: 'var(--primary)', fontWeight: 700, fontSize: '0.78rem', marginBottom: 8 }}>{i + 1}</span>
             <div style={{ fontSize: '0.82rem', fontWeight: 500, color: 'var(--text-dark)', lineHeight: 1.6 }}>{m}</div>
-          </motion.div>
+          </div>
         ))}
-      </motion.div>
+      </div>
 
       {/* الجدول الزمني */}
       <SubHeader icon="calendar-days" title="الجدول الزمني" />

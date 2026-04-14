@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import SectionHeader from '../common/SectionHeader';
 import { ResponsivePie } from '@nivo/pie';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, AreaChart, Area } from 'recharts';
@@ -14,7 +13,7 @@ export default function ChartsSection() {
 
       <div className="grid g2" style={{ marginBottom: 20 }}>
         {/* Chart 1: Tasks by phase (Donut) */}
-        <motion.div className="card" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+        <div className="card" data-aos="fade-up">
           <h3 style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-dark)', marginBottom: 14 }}>
             <i className="fa-thin fa-chart-pie" style={{ marginLeft: 8, color: 'var(--primary)' }} /> توزيع المهام حسب المرحلة
           </h3>
@@ -37,10 +36,10 @@ export default function ChartsSection() {
               )}
             />
           </div>
-        </motion.div>
+        </div>
 
         {/* Chart 2: Tasks per development (Horizontal Bar) */}
-        <motion.div className="card" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
+        <div className="card" data-aos="fade-up" data-aos-delay={80}>
           <h3 style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-dark)', marginBottom: 14 }}>
             <i className="fa-thin fa-chart-bar" style={{ marginLeft: 8, color: 'var(--primary)' }} /> عدد المهام لكل تطوير
           </h3>
@@ -55,12 +54,12 @@ export default function ChartsSection() {
               </Bar>
             </BarChart>
           </ResponsiveContainer>
-        </motion.div>
+        </div>
       </div>
 
       <div className="grid g2" style={{ marginBottom: 20 }}>
         {/* Chart 3: Before/After comparison (Grouped Bar) */}
-        <motion.div className="card" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+        <div className="card" data-aos="fade-up">
           <h3 style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-dark)', marginBottom: 14 }}>
             <i className="fa-thin fa-arrow-right-arrow-left" style={{ marginLeft: 8, color: 'var(--primary)' }} /> مقارنة قبل/بعد — نسبة اعتماد اللجان
           </h3>
@@ -82,10 +81,10 @@ export default function ChartsSection() {
               <div style={{ width: 12, height: 12, borderRadius: 3, background: '#10B981' }} /> بعد (متوقع)
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Chart 5: Progress by quarter (Area) */}
-        <motion.div className="card" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
+        <div className="card" data-aos="fade-up" data-aos-delay={80}>
           <h3 style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-dark)', marginBottom: 14 }}>
             <i className="fa-thin fa-chart-area" style={{ marginLeft: 8, color: 'var(--primary)' }} /> نسبة تقدم الإنجاز المتوقعة
           </h3>
@@ -104,7 +103,7 @@ export default function ChartsSection() {
               <Area type="monotone" dataKey="value" stroke="#2A848A" strokeWidth={3} fill="url(#colorProgress)" dot={{ fill: '#2A848A', r: 5 }} />
             </AreaChart>
           </ResponsiveContainer>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

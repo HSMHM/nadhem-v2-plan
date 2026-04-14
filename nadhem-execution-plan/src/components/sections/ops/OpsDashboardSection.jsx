@@ -1,11 +1,7 @@
-import { motion } from 'framer-motion';
 import StatCard from '../../common/StatCard';
 import { ResponsivePie } from '@nivo/pie';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 import { opsStats, opsTasksSummary } from '../../../data/operations';
-
-const fadeIn = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.4 } } };
-const stagger = { visible: { transition: { staggerChildren: 0.08 } } };
 
 const categoryColors = ['#2A848A', '#BA5A31', '#452059', '#A61C61', '#10B981', '#F59E0B', '#6366F1'];
 
@@ -37,15 +33,14 @@ export default function OpsDashboardSection() {
   }));
 
   return (
+    <>
     <section id="ops-dashboard" className="hero">
       <div className="glow" style={{ top: -100, right: -100 }} />
       <div className="glow" style={{ bottom: -100, left: -100 }} />
 
       <div className="hero-inner">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+        <div
+          data-aos="fade-up"
           style={{ textAlign: 'center', marginBottom: 40 }}
         >
           <img src="/logos/white-logo.png" alt="نظم" style={{ width: 150, height: 'auto' }} />
@@ -55,7 +50,7 @@ export default function OpsDashboardSection() {
           <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.95rem' }}>
             78 اشتراك — 7 نشط — خطة تشغيلية لتحسين التجديد والاحتفاظ
           </p>
-        </motion.div>
+        </div>
 
         <div style={{
           background: 'rgba(255,255,255,0.06)',
@@ -77,25 +72,21 @@ export default function OpsDashboardSection() {
           </p>
         </div>
 
-        <motion.div
+        <div
           className="grid g3"
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
           style={{ marginBottom: 32 }}
         >
           {opsStats.map((s, i) => (
-            <motion.div key={i} variants={fadeIn}>
+            <div key={i} data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)}>
               <StatCard {...s} glass />
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Charts row */}
         <div className="grid g3" style={{ marginBottom: 0 }}>
           {/* Donut: tasks by frequency */}
-          <motion.div className="glass" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <div className="glass" data-aos="fade-up">
             <h3 style={{ color: '#fff', fontSize: '1rem', fontWeight: 600, marginBottom: 12 }}>
               <i className="fa-thin fa-chart-pie" style={{ marginLeft: 8 }} /> المهام حسب التكرار
             </h3>
@@ -121,10 +112,10 @@ export default function OpsDashboardSection() {
                 )}
               />
             </div>
-          </motion.div>
+          </div>
 
           {/* Donut: client status */}
-          <motion.div className="glass" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
+          <div className="glass" data-aos="fade-up">
             <h3 style={{ color: '#fff', fontSize: '1rem', fontWeight: 600, marginBottom: 12 }}>
               <i className="fa-thin fa-heart-pulse" style={{ marginLeft: 8 }} /> حالة العملاء النشطين
             </h3>
@@ -150,10 +141,10 @@ export default function OpsDashboardSection() {
                 )}
               />
             </div>
-          </motion.div>
+          </div>
 
           {/* Horizontal Bar: tasks by category */}
-          <motion.div className="glass" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
+          <div className="glass" data-aos="fade-up">
             <h3 style={{ color: '#fff', fontSize: '1rem', fontWeight: 600, marginBottom: 12 }}>
               <i className="fa-thin fa-layer-group" style={{ marginLeft: 8 }} /> المهام حسب الفئة
             </h3>
@@ -173,9 +164,11 @@ export default function OpsDashboardSection() {
                 </Bar>
               </BarChart>
             </ResponsiveContainer>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
+    <div className="hero-divider" />
+    </>
   );
 }

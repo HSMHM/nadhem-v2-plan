@@ -1,9 +1,5 @@
-import { motion } from 'framer-motion';
 import SectionHeader from '../../common/SectionHeader';
 import { personas } from '../../../data/marketing';
-
-const fadeIn = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.4 } } };
-const stagger = { visible: { transition: { staggerChildren: 0.08 } } };
 
 const priorityMap = {
   highest: { cls: 'badge badge-d', label: 'أعلى أولوية' },
@@ -16,17 +12,11 @@ export default function PersonasSection() {
     <section id="mkt-personas" className="section">
       <SectionHeader icon="users-viewfinder" title="شرائح العملاء المستهدفة" />
 
-      <motion.div
-        className="grid g2"
-        variants={stagger}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
+      <div className="grid g2">
         {personas.map((p, i) => {
           const pri = priorityMap[p.priority] || priorityMap.medium;
           return (
-            <motion.div key={i} className="card" variants={fadeIn}>
+            <div key={i} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
                 <div className="ic">
                   <i className={`fa-thin fa-${p.icon}`} style={{ color: '#452059' }} aria-hidden="true" />
@@ -43,7 +33,7 @@ export default function PersonasSection() {
               {/* Pain points */}
               <div style={{ marginBottom: 12 }}>
                 <h5 style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-dark)', marginBottom: 6 }}>
-                  <i className="fa-thin fa-face-frown" style={{ marginLeft: 6, color: '#EF4444' }} /> نقاط الألم
+                  <i className="fa-thin fa-face-frown" style={{ marginLeft: 6, color: '#EF4444' }} /> نقاط الضعف
                 </h5>
                 <ul style={{ margin: 0, paddingRight: 18, paddingLeft: 0 }}>
                   {p.painPoints.map((pt, j) => (
@@ -52,34 +42,12 @@ export default function PersonasSection() {
                 </ul>
               </div>
 
-              {/* Buying trigger */}
-              <div style={{
-                background: 'rgba(42,132,138,0.06)',
-                borderRadius: 8,
-                padding: '8px 12px',
-                marginBottom: 8,
-              }}>
-                <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#2A848A' }}>
-                  <i className="fa-thin fa-bell" style={{ marginLeft: 6 }} /> محفز الشراء:
-                </span>
-                <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginRight: 6 }}>{p.buyingTrigger}</span>
-              </div>
 
-              {/* Decision maker */}
-              <div style={{
-                background: 'rgba(69,32,89,0.05)',
-                borderRadius: 8,
-                padding: '8px 12px',
-              }}>
-                <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#452059' }}>
-                  <i className="fa-thin fa-user-tie" style={{ marginLeft: 6 }} /> متخذ القرار:
-                </span>
-                <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginRight: 6 }}>{p.decisionMaker}</span>
-              </div>
-            </motion.div>
+
+            </div>
           );
         })}
-      </motion.div>
+      </div>
     </section>
   );
 }

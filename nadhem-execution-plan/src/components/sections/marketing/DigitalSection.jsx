@@ -1,8 +1,4 @@
-import { motion } from 'framer-motion';
 import SectionHeader from '../../common/SectionHeader';
-
-const fadeIn = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.4 } } };
-const stagger = { visible: { transition: { staggerChildren: 0.1 } } };
 
 const strategies = [
   {
@@ -68,9 +64,9 @@ export default function DigitalSection() {
     <section id="mkt-digital" className="section">
       <SectionHeader icon="globe" title="التسويق الرقمي" />
 
-      <motion.div className="grid g2" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+      <div className="grid g2">
         {strategies.map((s, i) => (
-          <motion.div key={i} className="card" variants={fadeIn}>
+          <div key={i} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
               <div className="ic" style={{ width: 44, height: 44, borderRadius: 12, background: `${s.color}18`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <i className={`fa-thin fa-${s.icon}`} style={{ fontSize: 20, color: s.color }} aria-hidden="true" />
@@ -98,9 +94,9 @@ export default function DigitalSection() {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
         ))}
-      </motion.div>
+      </div>
     </section>
   );
 }

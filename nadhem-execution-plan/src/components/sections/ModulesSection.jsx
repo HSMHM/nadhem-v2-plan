@@ -1,17 +1,14 @@
-import { motion } from 'framer-motion';
 import SectionHeader from '../common/SectionHeader';
 import { modules } from '../../data/modules';
-
-const fadeIn = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.4 } } };
 
 export default function ModulesSection() {
   return (
     <section id="modules" className="section">
       <SectionHeader icon="cubes" title="الوحدات (16 Module)" subtitle="كل وحدة تمثل مجموعة خصائص مترابطة يمكن تفعيلها أو إيقافها حسب الباقة" />
 
-      <motion.div className="grid g4" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={{ visible: { transition: { staggerChildren: 0.05 } } }}>
-        {modules.map((m) => (
-          <motion.div key={m.id} className="card" variants={fadeIn} style={{ textAlign: 'center', padding: 20 }}>
+      <div className="grid g4">
+        {modules.map((m, i) => (
+          <div key={m.id} className="card" data-aos="fade-up" data-aos-delay={Math.min(i * 80, 600)} style={{ textAlign: 'center', padding: 20 }}>
             <div className="ic" style={{ margin: '0 auto 10px' }}>
               <i className={`fa-thin fa-${m.icon}`} aria-hidden="true" />
             </div>
@@ -22,9 +19,9 @@ export default function ModulesSection() {
               {m.description}
             </p>
             <span className="badge badge-p" style={{ fontSize: '0.65rem' }}>{m.committee}</span>
-          </motion.div>
+          </div>
         ))}
-      </motion.div>
+      </div>
 
       <div className="card" style={{ marginTop: 20, background: 'var(--primary-light)', borderColor: 'var(--primary)' }}>
         <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
