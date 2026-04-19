@@ -5,7 +5,7 @@ export const opsStats = [
   { icon: 'arrow-rotate-right', value: 0, label: 'معدل التجديد %', color: '#EF4444', suffix: '%' },
   { icon: 'heart-pulse', value: 5, label: 'عملاء بحالة صحية', color: '#10B981' },
   { icon: 'eye', value: 2, label: 'عملاء يحتاجون متابعة', color: '#F59E0B' },
-  { icon: 'list-check', value: 52, label: 'مهمة تشغيلية دورية', color: '#2A848A' },
+  { icon: 'list-check', value: 59, label: 'مهمة تشغيلية دورية', color: '#2A848A' },
   { icon: 'clock', value: 5, label: 'ساعات عمل تشغيلية يومياً', color: '#BA5A31', suffix: 'س' },
 ];
 
@@ -108,6 +108,49 @@ export const reportsData = [
   { title: 'التقرير السنوي', icon: 'calendar-star', frequency: 'يناير من كل سنة', color: 'var(--accent-pink)', contents: ['ملخص العام — الإنجازات والتحديات', 'نمو الاشتراكات والإيرادات', 'ملخص التطويرات المُنفذة', 'دراسة السوق والمنافسة السنوية', 'خطة العام القادم — أهداف ومبادرات'] },
 ];
 
+export const customerSuccessData = {
+  intro: 'العميل يحصل على الاشتراك لكنه لا يستوعب تفاصيل النظام. الحل: رحلة تمكين رسمية مكوّنة من أربع محطات متتابعة — تهيئة، إطلاق الفعالية، التقارير، والخصائص المتقدمة — يحصل فيها العميل على شرح عملي لكل مرحلة حتى يستفيد من كامل قدرات المنصة.',
+  stages: [
+    {
+      id: 'onboarding',
+      title: 'تهيئة العميل الجديد',
+      icon: 'wand-magic-sparkles',
+      color: '#2A848A',
+      desc: 'شرح إعدادات الحساب، الهوية البصرية، صلاحيات المستخدمين، وربط الدومين — حتى يكون النظام جاهزاً قبل أي فعالية.',
+    },
+    {
+      id: 'launch',
+      title: 'إطلاق أول فعالية',
+      icon: 'rocket-launch',
+      color: '#BA5A31',
+      desc: 'مرافقة العميل خطوة بخطوة من إنشاء الفعالية حتى فتح التسجيل: الواجهة العامة، نموذج التسجيل، الباقات، وإطلاق الفعالية للعلن.',
+    },
+    {
+      id: 'reports',
+      title: 'الحصول على التقارير',
+      icon: 'chart-line-up',
+      color: '#452059',
+      desc: 'شرح لوحة المؤشرات، تقارير كل لجنة، التقارير اللحظية، تصدير PDF و Excel، وقراءة الأرقام لاتخاذ قرارات.',
+    },
+    {
+      id: 'advanced',
+      title: 'الاستفادة من بقية خصائص النظام',
+      icon: 'layer-group',
+      color: '#A61C61',
+      desc: 'استعراض الرعايات، إدارة العارضين وخريطة المعرض، الجلسات والمتحدثين، الاستشارات، البرامج المصاحبة، الحملات الإعلانية، النماذج، والدعوات.',
+    },
+  ],
+  tasks: [
+    { id: '6.1', task: 'جلسة تهيئة أولى مع كل عميل جديد بعد الاشتراك — شرح إعدادات الحساب والصلاحيات والهوية', frequency: 'عند كل اشتراك جديد', day: 'خلال 3 أيام من الاشتراك', duration: '1 ساعة' },
+    { id: '6.2', task: 'جلسة شرح مسار إطلاق الفعالية — من إنشائها حتى فتح التسجيل للعلن', frequency: 'عند كل فعالية جديدة', day: '—', duration: '1 ساعة' },
+    { id: '6.3', task: 'جلسة شرح التقارير ومؤشرات الأداء — قراءة الأرقام وتصدير التقارير', frequency: 'بعد كل فعالية', day: 'قبل/بعد انطلاق التسجيل', duration: '45 دقيقة' },
+    { id: '6.4', task: 'جلسات متخصصة لكل خاصية متقدمة (الرعايات، المعارض والخريطة، الجلسات، الاستشارات، الحملات، الدعوات)', frequency: 'حسب احتياج العميل', day: '—', duration: '30-45 دقيقة/خاصية' },
+    { id: '6.5', task: 'إعداد وتحديث أدلة استخدام مكتوبة وفيديوهات قصيرة لكل مرحلة', frequency: 'مرة واحدة ثم تحديث ربع سنوي', day: '—', duration: '4 ساعات/دليل' },
+    { id: '6.6', task: 'مكالمة متابعة بعد أسبوعين من تهيئة العميل للتحقق من استيعابه وحل أي إشكال', frequency: 'عند كل عميل جديد', day: 'بعد أسبوعين من التهيئة', duration: '30 دقيقة' },
+    { id: '6.7', task: 'قياس مدى استخدام كل عميل للخصائص المتقدمة وتوصيته بما لم يستخدمه بعد', frequency: 'شهري', day: 'الأسبوع الأخير', duration: '1 ساعة' },
+  ],
+};
+
 export const opsCalendar = {
   daily: [
     { task: 'مراجعة رسائل العملاء والرد عليها (بريد، واتساب)', time: '8:30 صباحاً', duration: '45 دقيقة' },
@@ -134,13 +177,14 @@ export const opsCalendar = {
 };
 
 export const opsTasksSummary = {
-  total: 52,
+  total: 59,
   byFrequency: [
     { frequency: 'يومي', count: 3, color: 'var(--danger)' },
     { frequency: 'أسبوعي', count: 9, color: 'var(--accent-orange)' },
-    { frequency: 'شهري', count: 10, color: 'var(--primary)' },
+    { frequency: 'شهري', count: 11, color: 'var(--primary)' },
     { frequency: 'ربع سنوي', count: 8, color: 'var(--secondary)' },
-    { frequency: 'حسب الحاجة', count: 5, color: 'var(--text-muted)' },
+    { frequency: 'عند كل عميل/فعالية', count: 3, color: 'var(--accent-pink)' },
+    { frequency: 'حسب الحاجة', count: 6, color: 'var(--text-muted)' },
   ],
   byCategory: [
     { category: 'الاشتراكات', count: 6, icon: 'file-contract' },
@@ -148,6 +192,7 @@ export const opsTasksSummary = {
     { category: 'المنافسين', count: 6, icon: 'binoculars' },
     { category: 'أفضل الممارسات', count: 5, icon: 'lightbulb' },
     { category: 'الحضور الميداني', count: 5, icon: 'person-walking' },
+    { category: 'تمكين العميل', count: 7, icon: 'user-graduate' },
     { category: 'التقارير', count: 4, icon: 'file-chart-column' },
     { category: 'مهام يومية', count: 3, icon: 'clock' },
   ],

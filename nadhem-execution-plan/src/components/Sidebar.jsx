@@ -13,6 +13,7 @@ export const devNavItems = [
 export const opsNavItems = [
   { id: 'ops-dashboard', label: 'لوحة المؤشرات التشغيلية', icon: 'gauge-high' },
   { id: 'ops-subscriptions', label: 'متابعة الاشتراكات', icon: 'file-contract' },
+  { id: 'ops-customer-success', label: 'تمكين العميل من النظام', icon: 'user-graduate' },
   { id: 'ops-feedback', label: 'تقييم العملاء والأثر', icon: 'star-half-stroke' },
   { id: 'ops-competitors', label: 'دراسة المنافسين', icon: 'binoculars' },
   { id: 'ops-practices', label: 'أفضل الممارسات', icon: 'lightbulb' },
@@ -20,6 +21,13 @@ export const opsNavItems = [
   { id: 'ops-reports', label: 'التقارير الدورية', icon: 'file-chart-column' },
   { id: 'ops-calendar', label: 'الجدول التشغيلي', icon: 'calendar-check' },
   { id: 'ops-charts', label: 'الرسوم البيانية', icon: 'chart-pie' },
+];
+
+export const journeyNavItems = [
+  { id: 'journey-overview', label: 'نظرة عامة', icon: 'compass' },
+  { id: 'journey-growth', label: 'نمو المنتج', icon: 'seedling' },
+  { id: 'journey-development', label: 'تطوير المنتج', icon: 'rocket-launch' },
+  { id: 'journey-operations', label: 'تشغيل المنتج', icon: 'gears' },
 ];
 
 export const marketingNavItems = [
@@ -35,7 +43,7 @@ export const marketingNavItems = [
   { id: 'mkt-calendar', label: 'الجدول الزمني', icon: 'calendar-check' },
 ];
 
-const navMap = { dev: devNavItems, ops: opsNavItems, marketing: marketingNavItems };
+const navMap = { dev: devNavItems, ops: opsNavItems, marketing: marketingNavItems, journey: journeyNavItems };
 
 export default function Sidebar({ active, onNav, isOpen, onClose, plan = 'dev' }) {
   const items = navMap[plan] || devNavItems;

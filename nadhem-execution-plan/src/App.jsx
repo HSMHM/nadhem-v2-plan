@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import WelcomePage from './components/WelcomePage';
-import Sidebar, { devNavItems, opsNavItems, marketingNavItems } from './components/Sidebar';
+import Sidebar, { devNavItems, opsNavItems, marketingNavItems, journeyNavItems } from './components/Sidebar';
 import PlanTabs from './components/PlanTabs';
 
 // Dev sections
@@ -17,6 +17,7 @@ import RoadmapSection from './components/sections/RoadmapSection';
 // Ops sections
 import OpsDashboardSection from './components/sections/ops/OpsDashboardSection';
 import SubscriptionsSection from './components/sections/ops/SubscriptionsSection';
+import CustomerSuccessSection from './components/sections/ops/CustomerSuccessSection';
 import CustomerFeedbackSection from './components/sections/ops/CustomerFeedbackSection';
 import CompetitorIntelSection from './components/sections/ops/CompetitorIntelSection';
 import BestPracticesSection from './components/sections/ops/BestPracticesSection';
@@ -37,7 +38,10 @@ import GapsSection from './components/sections/marketing/GapsSection';
 import MktTasksSection from './components/sections/marketing/MktTasksSection';
 import MktCalendarSection from './components/sections/marketing/MktCalendarSection';
 
-const navMap = { dev: devNavItems, ops: opsNavItems, marketing: marketingNavItems };
+// Journey
+import ProductJourneySection from './components/sections/journey/ProductJourneySection';
+
+const navMap = { dev: devNavItems, ops: opsNavItems, marketing: marketingNavItems, journey: journeyNavItems };
 
 function ScrollToTop() {
   const [visible, setVisible] = useState(false);
@@ -90,13 +94,19 @@ function App() {
     return <WelcomePage onEnter={() => { setShowWelcome(false); window.scrollTo({ top: 0 }); }} />;
   }
 
-  return (
-    <div className="app">
-      <button className="mobile-btn" onClick={() => setSidebarOpen(true)}>
-        <i className="fa-thin fa-bars" aria-hidden="true" />
-      </button>
+  const isJourney = plan === 'journey';
 
-      <Sidebar active={active} onNav={handleNav} isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} plan={plan} />
+  return (
+    <div className={`app ${isJourney ? 'app-journey' : ''}`}>
+      {!isJourney && (
+        <button className="mobile-btn" onClick={() => setSidebarOpen(true)}>
+          <i className="fa-thin fa-bars" aria-hidden="true" />
+        </button>
+      )}
+
+      {!isJourney && (
+        <Sidebar active={active} onNav={handleNav} isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} plan={plan} />
+      )}
 
       <main className="main">
         <PlanTabs active={plan} onChange={handlePlanChange} />
@@ -119,6 +129,7 @@ function App() {
           <>
             <OpsDashboardSection />
             <SubscriptionsSection />
+            <CustomerSuccessSection />
             <CustomerFeedbackSection />
             <CompetitorIntelSection />
             <BestPracticesSection />
@@ -143,6 +154,10 @@ function App() {
             <MktTasksSection />
             <MktCalendarSection />
           </>
+        )}
+
+        {plan === 'journey' && (
+          <ProductJourneySection />
         )}
       </main>
 
