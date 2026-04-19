@@ -255,6 +255,9 @@ body{font-family:var(--font);color:var(--text);background:var(--bg);line-height:
 .journey-kpi-ic{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:color-mix(in srgb, var(--kpi-accent) 18%, transparent);color:var(--kpi-accent);font-size:18px;flex-shrink:0}
 .journey-kpi-num{font-size:1.5rem;font-weight:700;color:#fff;line-height:1}
 .journey-kpi-lbl{font-size:0.76rem;color:rgba(255,255,255,0.5);margin-top:4px}
+.journey-hero-meta{display:inline-flex;align-items:center;gap:10px;margin-top:22px;padding:8px 18px;border-radius:9999px;background:rgba(139,92,246,0.12);border:1px solid rgba(139,92,246,0.25);color:rgba(255,255,255,0.85);font-size:0.82rem}
+.journey-hero-meta i{color:#A78BFA;font-size:14px}
+.journey-hero-meta strong{color:#fff;font-weight:600}
 
 /* Grid of 3 columns */
 .journey-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
@@ -277,16 +280,39 @@ body{font-family:var(--font);color:var(--text);background:var(--bg);line-height:
 .journey-col-count-num{font-size:1.05rem;font-weight:700}
 .journey-col-count-label{font-size:0.72rem;opacity:0.85}
 
-.journey-col-pillars{display:flex;flex-direction:column;gap:10px;padding:0 22px}
+.journey-col-pillars{display:flex;flex-direction:column;gap:12px;padding:0 22px}
+
+/* Month header strip (inside each column) */
+.journey-col-months{display:grid;grid-template-columns:repeat(8,1fr);gap:3px;margin:0 22px 12px;padding:8px 0;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06)}
+.journey-col-month{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:0.64rem;color:rgba(255,255,255,0.45);text-align:center}
+.journey-col-month-num{font-size:0.72rem;font-weight:700;color:rgba(255,255,255,0.7)}
+.journey-col-month-lbl{font-size:0.6rem}
 
 /* Pillar */
-.journey-pillar{position:relative;display:flex;align-items:flex-start;gap:12px;padding:14px 14px;border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);transition:all .25s}
-.journey-pillar:hover{background:rgba(255,255,255,0.06);border-color:color-mix(in srgb,var(--pillar-accent) 30%,rgba(255,255,255,0.06));transform:translateX(-2px)}
-.journey-pillar-num{font-size:0.7rem;font-weight:700;color:var(--pillar-accent);opacity:0.7;min-width:22px;margin-top:3px;letter-spacing:0.5px}
+.journey-pillar{position:relative;display:flex;flex-direction:column;gap:10px;padding:14px;border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);transition:all .25s}
+.journey-pillar:hover{background:rgba(255,255,255,0.055);border-color:color-mix(in srgb,var(--pillar-accent) 30%,rgba(255,255,255,0.06))}
+.journey-pillar-top{display:flex;align-items:flex-start;gap:12px}
+.journey-pillar-num{font-size:0.78rem;font-weight:700;color:var(--pillar-accent);min-width:26px;padding:3px 8px;border-radius:6px;background:color-mix(in srgb,var(--pillar-accent) 18%,transparent);text-align:center;letter-spacing:0.5px;flex-shrink:0;align-self:flex-start;margin-top:2px}
 .journey-pillar-icon{width:36px;height:36px;border-radius:10px;background:color-mix(in srgb,var(--pillar-accent) 15%,transparent);color:var(--pillar-accent);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;border:1px solid color-mix(in srgb,var(--pillar-accent) 25%,transparent)}
 .journey-pillar-body{flex:1;min-width:0}
-.journey-pillar-title{font-size:0.88rem;font-weight:600;color:#fff;margin:0 0 4px;line-height:1.65}
+.journey-pillar-title{font-size:0.9rem;font-weight:600;color:#fff;margin:0 0 4px;line-height:1.65}
 .journey-pillar-desc{font-size:0.76rem;color:rgba(255,255,255,0.55);margin:0;line-height:1.85}
+
+/* Reason */
+.journey-pillar-reason{display:flex;align-items:flex-start;gap:8px;padding:9px 12px;border-radius:10px;background:color-mix(in srgb,var(--pillar-accent) 8%,rgba(255,255,255,0.02));border:1px dashed color-mix(in srgb,var(--pillar-accent) 30%,transparent);font-size:0.74rem;color:rgba(255,255,255,0.7);line-height:1.85}
+.journey-pillar-reason i{color:var(--pillar-accent);font-size:13px;margin-top:3px;flex-shrink:0}
+.journey-pillar-reason strong{color:var(--pillar-accent);font-weight:600;margin-left:2px}
+
+/* Timeline */
+.journey-pillar-track-label{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:0.7rem;color:rgba(255,255,255,0.5);padding-top:4px}
+.journey-pillar-track-label i{color:var(--pillar-accent);margin-left:4px;font-size:12px}
+.journey-pillar-track-range{color:#fff;font-weight:600;font-size:0.72rem}
+.journey-pillar-timeline{display:grid;grid-template-columns:repeat(8,1fr);gap:3px}
+.journey-pill-seg{height:20px;border-radius:5px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.04);display:flex;align-items:center;justify-content:center;transition:all .25s;position:relative}
+.journey-pill-seg.active{background:color-mix(in srgb,var(--pillar-accent) 85%,#000 15%);border-color:color-mix(in srgb,var(--pillar-accent) 50%,transparent);box-shadow:0 0 8px color-mix(in srgb,var(--pillar-accent) 35%,transparent)}
+.journey-pill-seg.active.is-start{border-top-right-radius:8px;border-bottom-right-radius:8px}
+.journey-pill-seg.active.is-end{border-top-left-radius:8px;border-bottom-left-radius:8px}
+.journey-pill-seg-num{font-size:0.64rem;font-weight:700;color:#fff;letter-spacing:0.3px}
 
 /* Footer */
 .journey-footer{margin-top:48px;padding:16px 22px;border-radius:14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;gap:12px;color:rgba(255,255,255,0.6);font-size:0.82rem;line-height:1.85}
@@ -299,7 +325,9 @@ body{font-family:var(--font);color:var(--text);background:var(--bg);line-height:
   .journey-col-header{padding:20px 18px 16px;gap:12px}
   .journey-col-summary{margin:16px 18px 12px}
   .journey-col-count{margin:0 18px 16px}
+  .journey-col-months{margin:0 18px 10px}
   .journey-col-pillars{padding:0 18px}
+  .journey-col-month-lbl{display:none}
 }
 @media(max-width:1023px){
   .journey-root{padding:40px 20px 60px}
@@ -320,9 +348,13 @@ body{font-family:var(--font);color:var(--text);background:var(--bg);line-height:
   .journey-col-header{padding:18px 16px 14px;gap:10px}
   .journey-col-summary{margin:14px 16px 12px}
   .journey-col-count{margin:0 16px 14px}
+  .journey-col-months{margin:0 16px 10px}
   .journey-col-pillars{padding:0 16px}
   .journey-col-icon{width:46px;height:46px;font-size:20px}
   .journey-col-title{font-size:1.1rem}
+  .journey-pill-seg{height:18px}
+  .journey-pill-seg-num{font-size:0.6rem}
+  .journey-col-month-lbl{display:none}
   .journey-pillar{padding:12px}
   .journey-pillar-icon{width:32px;height:32px;font-size:13px}
   .journey-pillar-title{font-size:0.82rem}

@@ -1,21 +1,74 @@
-import { journeySections, journeyMeta } from '../../../data/journey';
+import { journeySections, journeyMeta, journeyMonths } from '../../../data/journey';
+
+function PillarTimeline({ startMonth, endMonth }) {
+  return (
+    <div className="journey-pillar-timeline" aria-label={`من ${journeyMonths[startMonth].label} إلى ${journeyMonths[endMonth].label}`}>
+      {journeyMonths.map((m, i) => {
+        const active = i >= startMonth && i <= endMonth;
+        const isStart = i === startMonth;
+        const isEnd = i === endMonth;
+        return (
+          <div
+            key={i}
+            className={`journey-pill-seg ${active ? 'active' : ''} ${isStart ? 'is-start' : ''} ${isEnd ? 'is-end' : ''}`}
+            title={m.label}
+          >
+            {active && <span className="journey-pill-seg-num">{m.num}</span>}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
 
 function PillarCard({ pillar, index, accent }) {
   return (
     <div
       className="journey-pillar"
       data-aos="fade-up"
-      data-aos-delay={index * 40}
+      data-aos-delay={index * 30}
       style={{ '--pillar-accent': accent }}
     >
-      <div className="journey-pillar-num">{String(index + 1).padStart(2, '0')}</div>
-      <div className="journey-pillar-icon">
-        <i className={`fa-thin fa-${pillar.icon}`} aria-hidden="true" />
+      <div className="journey-pillar-top">
+        <div className="journey-pillar-num">{String(index + 1).padStart(2, '0')}</div>
+        <div className="journey-pillar-icon">
+          <i className={`fa-thin fa-${pillar.icon}`} aria-hidden="true" />
+        </div>
+        <div className="journey-pillar-body">
+          <h4 className="journey-pillar-title">{pillar.title}</h4>
+          <p className="journey-pillar-desc">{pillar.desc}</p>
+        </div>
       </div>
-      <div className="journey-pillar-body">
-        <h4 className="journey-pillar-title">{pillar.title}</h4>
-        <p className="journey-pillar-desc">{pillar.desc}</p>
+
+      <div className="journey-pillar-reason">
+        <i className="fa-thin fa-circle-info" aria-hidden="true" />
+        <span>
+          <strong>السبب:</strong> {pillar.reason}
+        </span>
       </div>
+
+      <div className="journey-pillar-track-label">
+        <span>
+          <i className="fa-thin fa-calendar-range" aria-hidden="true" /> رحلة التنفيذ
+        </span>
+        <span className="journey-pillar-track-range">
+          {journeyMonths[pillar.startMonth].label} — {journeyMonths[pillar.endMonth].label}
+        </span>
+      </div>
+      <PillarTimeline startMonth={pillar.startMonth} endMonth={pillar.endMonth} />
+    </div>
+  );
+}
+
+function ColumnMonthHeader() {
+  return (
+    <div className="journey-col-months">
+      {journeyMonths.map((m) => (
+        <div key={m.num} className="journey-col-month">
+          <span className="journey-col-month-num">{m.num}</span>
+          <span className="journey-col-month-lbl">{m.label}</span>
+        </div>
+      ))}
     </div>
   );
 }
@@ -46,8 +99,9 @@ function JourneyColumn({ section }) {
       </div>
       <div className="journey-col-count" data-aos="fade-up">
         <span className="journey-col-count-num">{section.pillars.length}</span>
-        <span className="journey-col-count-label">بند رئيسي</span>
+        <span className="journey-col-count-label">بند رئيسي مرتّب بالأولوية</span>
       </div>
+      <ColumnMonthHeader />
       <div className="journey-col-pillars">
         {section.pillars.map((p, i) => (
           <PillarCard key={i} pillar={p} index={i} accent={section.color} />
@@ -75,6 +129,11 @@ export default function ProductJourneySection() {
           <h1 className="journey-hero-title">{journeyMeta.title}</h1>
           <p className="journey-hero-sub">{journeyMeta.subtitle}</p>
 
+          <div className="journey-hero-meta">
+            <i className="fa-thin fa-flag" aria-hidden="true" />
+            <span>نقطة الانطلاق: <strong>1 مايو 2026</strong> — حتى <strong>31 ديسمبر 2026</strong></span>
+          </div>
+
           <div className="journey-kpis">
             {journeyMeta.kpis.map((k, i) => (
               <div key={i} className="journey-kpi" style={{ '--kpi-accent': k.color }}>
@@ -99,7 +158,7 @@ export default function ProductJourneySection() {
         <footer className="journey-footer" data-aos="fade-up">
           <i className="fa-thin fa-circle-info" aria-hidden="true" />
           <span>
-            هذه رؤوس الأقلام الرئيسية — التفاصيل الكاملة لكل بند (المهام التفصيلية، المسؤولين، التواريخ) متوفرة في تبويبات خطط التطوير والتشغيل والتسويق.
+            ترتيب البنود يعكس الأولوية التنفيذية. المدد التقريبية موضّحة على الشريط الزمني لكل بند — التفاصيل الكاملة في تبويبات خطط التطوير والتشغيل والتسويق.
           </span>
         </footer>
       </div>
