@@ -16,6 +16,7 @@ import RoadmapSection from './components/sections/RoadmapSection';
 
 // Ops sections
 import OpsDashboardSection from './components/sections/ops/OpsDashboardSection';
+import UrgentSprintSection from './components/sections/ops/UrgentSprintSection';
 import SubscriptionsSection from './components/sections/ops/SubscriptionsSection';
 import CustomerSuccessSection from './components/sections/ops/CustomerSuccessSection';
 import CustomerFeedbackSection from './components/sections/ops/CustomerFeedbackSection';
@@ -128,6 +129,7 @@ function App() {
         {plan === 'ops' && (
           <>
             <OpsDashboardSection />
+            <UrgentSprintSection />
             <SubscriptionsSection />
             <CustomerSuccessSection />
             <CustomerFeedbackSection />

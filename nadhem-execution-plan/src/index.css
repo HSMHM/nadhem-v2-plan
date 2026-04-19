@@ -283,7 +283,7 @@ body{font-family:var(--font);color:var(--text);background:var(--bg);line-height:
 .journey-col-pillars{display:flex;flex-direction:column;gap:12px;padding:0 22px}
 
 /* Month header strip (inside each column) */
-.journey-col-months{display:grid;grid-template-columns:repeat(8,1fr);gap:3px;margin:0 22px 12px;padding:8px 0;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06)}
+.journey-col-months{display:grid;grid-template-columns:repeat(9,1fr);gap:3px;margin:0 22px 12px;padding:8px 0;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06)}
 .journey-col-month{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:0.64rem;color:rgba(255,255,255,0.45);text-align:center}
 .journey-col-month-num{font-size:0.72rem;font-weight:700;color:rgba(255,255,255,0.7)}
 .journey-col-month-lbl{font-size:0.6rem}
@@ -307,7 +307,10 @@ body{font-family:var(--font);color:var(--text);background:var(--bg);line-height:
 .journey-pillar-track-label{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:0.7rem;color:rgba(255,255,255,0.5);padding-top:4px}
 .journey-pillar-track-label i{color:var(--pillar-accent);margin-left:4px;font-size:12px}
 .journey-pillar-track-range{color:#fff;font-weight:600;font-size:0.72rem}
-.journey-pillar-timeline{display:grid;grid-template-columns:repeat(8,1fr);gap:3px}
+.journey-pillar-timeline{display:grid;grid-template-columns:repeat(9,1fr);gap:3px}
+.journey-pillar-urgent{background:rgba(239,68,68,0.06)}
+.journey-pill-seg.is-urgent-month{border-color:rgba(239,68,68,0.35);background:rgba(239,68,68,0.05)}
+.journey-pillar-timeline.is-urgent .journey-pill-seg.active{background:#EF4444 !important;border-color:rgba(239,68,68,0.7);box-shadow:0 0 8px rgba(239,68,68,0.45)}
 .journey-pill-seg{height:20px;border-radius:5px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.04);display:flex;align-items:center;justify-content:center;transition:all .25s;position:relative}
 .journey-pill-seg.active{background:color-mix(in srgb,var(--pillar-accent) 85%,#000 15%);border-color:color-mix(in srgb,var(--pillar-accent) 50%,transparent);box-shadow:0 0 8px color-mix(in srgb,var(--pillar-accent) 35%,transparent)}
 .journey-pill-seg.active.is-start{border-top-right-radius:8px;border-bottom-right-radius:8px}

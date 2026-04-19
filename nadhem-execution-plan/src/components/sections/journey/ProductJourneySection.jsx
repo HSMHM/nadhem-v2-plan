@@ -1,8 +1,8 @@
 import { journeySections, journeyMeta, journeyMonths } from '../../../data/journey';
 
-function PillarTimeline({ startMonth, endMonth }) {
+function PillarTimeline({ startMonth, endMonth, urgent }) {
   return (
-    <div className="journey-pillar-timeline" aria-label={`من ${journeyMonths[startMonth].label} إلى ${journeyMonths[endMonth].label}`}>
+    <div className={`journey-pillar-timeline ${urgent ? 'is-urgent' : ''}`} aria-label={`من ${journeyMonths[startMonth].label} إلى ${journeyMonths[endMonth].label}`}>
       {journeyMonths.map((m, i) => {
         const active = i >= startMonth && i <= endMonth;
         const isStart = i === startMonth;
@@ -10,8 +10,9 @@ function PillarTimeline({ startMonth, endMonth }) {
         return (
           <div
             key={i}
-            className={`journey-pill-seg ${active ? 'active' : ''} ${isStart ? 'is-start' : ''} ${isEnd ? 'is-end' : ''}`}
+            className={`journey-pill-seg ${active ? 'active' : ''} ${isStart ? 'is-start' : ''} ${isEnd ? 'is-end' : ''} ${m.urgent ? 'is-urgent-month' : ''}`}
             title={m.label}
+            style={urgent && active ? { background: '#EF4444' } : undefined}
           >
             {active && <span className="journey-pill-seg-num">{m.num}</span>}
           </div>
@@ -22,13 +23,29 @@ function PillarTimeline({ startMonth, endMonth }) {
 }
 
 function PillarCard({ pillar, index, accent }) {
+  const effectiveAccent = pillar.urgent ? '#EF4444' : accent;
   return (
     <div
-      className="journey-pillar"
+      className={`journey-pillar ${pillar.urgent ? 'journey-pillar-urgent' : ''}`}
       data-aos="fade-up"
       data-aos-delay={index * 30}
-      style={{ '--pillar-accent': accent }}
+      style={{
+        '--pillar-accent': effectiveAccent,
+        ...(pillar.urgent ? { borderColor: 'rgba(239,68,68,0.45)', boxShadow: '0 0 0 1px rgba(239,68,68,0.25)' } : {}),
+      }}
     >
+      {pillar.urgent && (
+        <div style={{
+          display: 'inline-flex', alignItems: 'center', gap: 6,
+          padding: '4px 10px', borderRadius: 999,
+          background: '#EF4444', color: '#fff',
+          fontSize: '0.72rem', fontWeight: 700,
+          marginBottom: 10,
+        }}>
+          <i className="fa-thin fa-bolt" aria-hidden="true" />
+          <span>عاجلة{pillar.urgentLabel ? ` · ${pillar.urgentLabel}` : ''}</span>
+        </div>
+      )}
       <div className="journey-pillar-top">
         <div className="journey-pillar-num">{String(index + 1).padStart(2, '0')}</div>
         <div className="journey-pillar-icon">
@@ -55,7 +72,7 @@ function PillarCard({ pillar, index, accent }) {
           {journeyMonths[pillar.startMonth].label} — {journeyMonths[pillar.endMonth].label}
         </span>
       </div>
-      <PillarTimeline startMonth={pillar.startMonth} endMonth={pillar.endMonth} />
+      <PillarTimeline startMonth={pillar.startMonth} endMonth={pillar.endMonth} urgent={pillar.urgent} />
     </div>
   );
 }
@@ -64,7 +81,12 @@ function ColumnMonthHeader() {
   return (
     <div className="journey-col-months">
       {journeyMonths.map((m) => (
-        <div key={m.num} className="journey-col-month">
+        <div
+          key={m.num}
+          className="journey-col-month"
+          style={m.urgent ? { color: '#EF4444', fontWeight: 700 } : undefined}
+          title={m.urgent ? 'شهر الحزمة العاجلة' : m.label}
+        >
           <span className="journey-col-month-num">{m.num}</span>
           <span className="journey-col-month-lbl">{m.label}</span>
         </div>
@@ -129,9 +151,20 @@ export default function ProductJourneySection() {
           <h1 className="journey-hero-title">{journeyMeta.title}</h1>
           <p className="journey-hero-sub">{journeyMeta.subtitle}</p>
 
+          <div style={{
+            display: 'inline-flex', alignItems: 'center', gap: 10,
+            padding: '10px 18px', borderRadius: 999,
+            background: 'rgba(239,68,68,0.14)', border: '1px solid rgba(239,68,68,0.45)',
+            color: '#fff', fontSize: '0.85rem', fontWeight: 600,
+            marginBottom: 14,
+          }}>
+            <i className="fa-thin fa-bolt" style={{ color: '#EF4444' }} aria-hidden="true" />
+            <span>حزمة تحسينات عاجلة قبل الإطلاق — <strong style={{ color: '#EF4444' }}>19 أبريل → 14 مايو 2026</strong></span>
+          </div>
+
           <div className="journey-hero-meta">
             <i className="fa-thin fa-flag" aria-hidden="true" />
-            <span>نقطة الانطلاق: <strong>1 مايو 2026</strong> — حتى <strong>31 ديسمبر 2026</strong></span>
+            <span>نقطة الانطلاق العاجلة: <strong>19 أبريل 2026</strong> — ثم الخطة الأساسية <strong>1 مايو</strong> حتى <strong>31 ديسمبر 2026</strong></span>
           </div>
 
           <div className="journey-kpis">

@@ -46,17 +46,19 @@ function StatusBadge({ status }) {
 
 function PriorityBadge({ priority }) {
   const map = {
+    urgent: { cls: '', label: 'عاجلة', style: { background: '#EF4444', color: '#fff', fontWeight: 700 } },
     high: { cls: 'badge-d', label: 'أولوية عالية' },
     medium: { cls: 'badge-w', label: 'أولوية متوسطة' },
     low: { cls: 'badge-p', label: 'أولوية منخفضة' },
   };
   const p = map[priority] || map.medium;
-  return <span className={`badge ${p.cls}`}>{p.label}</span>;
+  return <span className={`badge ${p.cls}`} style={p.style}>{p.label}</span>;
 }
 
 function DevTabs() {
-  const [tab, setTab] = useState('structure');
+  const [tab, setTab] = useState('urgent');
   const tabs = [
+    { id: 'urgent', label: 'عاجلة (قبل الإطلاق)' },
     { id: 'structure', label: 'البنية والنظام' },
     { id: 'features', label: 'الخصائص والمزايا' },
     { id: 'technical', label: 'تقنية ومستقبلية' },

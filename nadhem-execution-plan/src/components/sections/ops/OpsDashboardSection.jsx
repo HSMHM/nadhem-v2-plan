@@ -52,6 +52,23 @@ export default function OpsDashboardSection() {
           </p>
         </div>
 
+        <div data-aos="fade-up" style={{
+          background: 'rgba(239,68,68,0.12)',
+          border: '1px solid rgba(239,68,68,0.35)',
+          borderRadius: 12,
+          padding: '14px 20px',
+          marginBottom: 20,
+          display: 'flex',
+          alignItems: 'center',
+          gap: 12,
+        }}>
+          <i className="fa-thin fa-bolt" style={{ color: '#EF4444', fontSize: 20 }} aria-hidden="true" />
+          <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.85rem', margin: 0, lineHeight: 1.7 }}>
+            <strong style={{ color: '#fff' }}>حزمة تحسينات عاجلة سارية الآن </strong>
+            (19 أبريل – 14 مايو): 4 تطويرات متوازية + 7 مهام تشغيلية يومية/عند الطلب. تفاصيلها في قسم «الحزمة العاجلة».
+          </p>
+        </div>
+
         <div style={{
           background: 'rgba(255,255,255,0.06)',
           border: '1px solid rgba(255,255,255,0.1)',

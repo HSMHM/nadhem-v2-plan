@@ -3,7 +3,7 @@ import SectionHeader from '../common/SectionHeader';
 import PhaseTable from '../common/PhaseTable';
 import { developments } from '../../data/developments';
 
-const periodLabel = { P1: 'مايو – يونيو', P2: 'يوليو – أغسطس', P3: 'سبتمبر – أكتوبر', P4: 'نوفمبر – ديسمبر' };
+const periodLabel = { P0: '19 أبريل – 14 مايو', P1: 'مايو – يونيو', P2: 'يوليو – أغسطس', P3: 'سبتمبر – أكتوبر', P4: 'نوفمبر – ديسمبر' };
 const phaseNames = [
   { key: 'analysis', label: 'التحليل', badge: 'مدير المنتج', icon: 'magnifying-glass-chart', color: '#2A848A', badgeColor: 'var(--primary)' },
   { key: 'design', label: 'التصميم', badge: 'فريق التصميم', icon: 'pen-ruler', color: '#A61C61', badgeColor: 'var(--accent-pink)' },
@@ -38,13 +38,18 @@ function DevelopmentCard({ dev }) {
   const totalTasks = dev.analysis.length + dev.design.length + dev.implementation.length + (dev.training?.length || 0);
 
   return (
-    <div className="dev-card">
+    <div className={`dev-card ${dev.urgent ? 'dev-card-urgent' : ''}`} style={dev.urgent ? { borderColor: '#EF4444', boxShadow: '0 0 0 2px rgba(239,68,68,0.12)' } : undefined}>
       <div className="dev-header" onClick={() => setOpen(!open)}>
         <div className="num">{dev.id}</div>
-        <div className="ic" style={{ width: 36, height: 36, borderRadius: 8 }}>
+        <div className="ic" style={{ width: 36, height: 36, borderRadius: 8, background: dev.urgent ? 'rgba(239,68,68,0.12)' : undefined, color: dev.urgent ? '#EF4444' : undefined }}>
           <i className={`fa-thin fa-${dev.icon}`} style={{ fontSize: 16 }} aria-hidden="true" />
         </div>
         <div className="title">{dev.title}</div>
+        {dev.urgent && (
+          <span className="badge" style={{ background: '#EF4444', color: '#fff', fontWeight: 700 }}>
+            <i className="fa-thin fa-bolt" style={{ marginLeft: 4 }} /> عاجلة
+          </span>
+        )}
         <span className="badge badge-q">{periodLabel[dev.quarter]}</span>
         <span className="badge badge-p">{totalTasks} مهمة</span>
         <i className={`fa-thin fa-chevron-down chevron ${open ? 'open' : ''}`} aria-hidden="true" />
@@ -58,6 +63,28 @@ function DevelopmentCard({ dev }) {
               <i className="fa-thin fa-location-dot" style={{ marginLeft: 4 }} /> {dev.location}
             </span>
           </div>
+
+          {dev.urgent && (
+            <div style={{ background: 'rgba(239,68,68,0.06)', border: '1px solid rgba(239,68,68,0.25)', borderRadius: 10, padding: '12px 14px', marginBottom: 16 }}>
+              <div style={{ display: 'flex', gap: 10, alignItems: 'center', marginBottom: dev.milestones ? 10 : 0 }}>
+                <i className="fa-thin fa-bolt" style={{ color: '#EF4444', fontSize: 18 }} />
+                <div style={{ fontSize: '0.82rem', color: 'var(--text-dark)', fontWeight: 600 }}>
+                  حزمة عاجلة — من {dev.startDate} إلى {dev.endDate}
+                </div>
+              </div>
+              {dev.milestones && (
+                <div style={{ display: 'grid', gap: 6, paddingRight: 26 }}>
+                  {dev.milestones.map((m, i) => (
+                    <div key={i} style={{ fontSize: '0.78rem', color: 'var(--text)', display: 'flex', gap: 8, alignItems: 'center' }}>
+                      <i className="fa-thin fa-flag-checkered" style={{ color: '#EF4444' }} />
+                      <span style={{ flex: 1 }}>{m.label}</span>
+                      <span style={{ color: '#EF4444', fontWeight: 600 }}>{m.deadline}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
 
           {/* Phase duration summary */}
           <div className="grid g4" style={{ marginBottom: 16, gap: 10 }}>
@@ -109,7 +136,7 @@ function DevelopmentCard({ dev }) {
 export default function DevelopmentsSection() {
   return (
     <section id="developments" className="section">
-      <SectionHeader icon="rocket-launch" title="التطويرات المطلوبة" subtitle="15 تطويراً مخططاً — اضغط على أي تطوير لعرض مهامه التفصيلية" />
+      <SectionHeader icon="rocket-launch" title="التطويرات المطلوبة" subtitle="19 تطويراً (4 عاجلة + 15 مخططة) — اضغط على أي تطوير لعرض مهامه التفصيلية" />
 
       <div className="card" style={{
         background: 'rgba(42,132,138,0.04)',

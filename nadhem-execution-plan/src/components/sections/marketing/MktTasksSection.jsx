@@ -3,6 +3,7 @@ import SectionHeader from '../../common/SectionHeader';
 import { mktTasks } from '../../../data/marketing';
 
 const priorityMap = {
+  urgent: { cls: '', label: 'عاجلة', style: { background: '#EF4444', color: '#fff', fontWeight: 700 } },
   highest: { cls: 'badge-d', label: 'قصوى' },
   high: { cls: 'badge-w', label: 'عالية' },
   medium: { cls: 'badge-p', label: 'متوسطة' },
@@ -43,7 +44,7 @@ export default function MktTasksSection() {
             <div key={t.id} className="task-item" data-aos="fade-up">
               <span className="task-id">{t.id}</span>
               <span className="task-text">{t.task}</span>
-              <span className={`badge ${p.cls}`} style={{ fontSize: '0.68rem', marginInlineStart: 'auto', flexShrink: 0 }}>
+              <span className={`badge ${p.cls}`} style={{ fontSize: '0.68rem', marginInlineStart: 'auto', flexShrink: 0, ...(p.style || {}) }}>
                 {p.label}
               </span>
               <span className="task-dur" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 2 }}>

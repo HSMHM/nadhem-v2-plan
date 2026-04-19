@@ -1,7 +1,7 @@
 import SectionHeader from '../common/SectionHeader';
 import { simpleTimeline } from '../../data/timeline';
 
-const qColors = { P1: '#2A848A', P2: '#BA5A31', P3: '#A61C61', P4: '#452059' };
+const qColors = { P0: '#EF4444', P1: '#2A848A', P2: '#BA5A31', P3: '#A61C61', P4: '#452059' };
 
 export default function SimpleTimelineSection() {
   return (
@@ -18,6 +18,11 @@ export default function SimpleTimelineSection() {
             >
               <div className="tl-q-label" style={{ color: qColors[q.quarter] }}>
                 <span style={{ marginLeft: 8 }}>{q.quarter}</span> — {q.period}
+                {q.urgent && (
+                  <span style={{ marginRight: 10, fontSize: '0.75rem', fontWeight: 700, background: qColors[q.quarter], color: '#fff', padding: '2px 10px', borderRadius: 6 }}>
+                    <i className="fa-thin fa-bolt" style={{ marginLeft: 4 }} /> عاجل
+                  </span>
+                )}
                 <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginRight: 12, fontWeight: 400 }}>
                   ({q.developments.length} تطويرات)
                 </span>

@@ -2,6 +2,7 @@ import SectionHeader from '../../common/SectionHeader';
 import { personas } from '../../../data/marketing';
 
 const priorityMap = {
+  urgent: { cls: 'badge', label: 'عاجلة', style: { background: '#EF4444', color: '#fff', fontWeight: 700 } },
   highest: { cls: 'badge badge-d', label: 'أعلى أولوية' },
   high: { cls: 'badge badge-w', label: 'أولوية عالية', style: { background: 'rgba(239,68,68,0.1)', color: '#EF4444' } },
   medium: { cls: 'badge badge-p', label: 'أولوية متوسطة' },

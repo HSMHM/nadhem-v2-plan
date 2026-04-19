@@ -1,11 +1,16 @@
 export const simpleTimeline = [
-  { quarter: 'P1', period: 'مايو – يونيو 2026', developments: ['خطة الوحدات (Modules)', 'إعادة هيكلة اللجان', 'دمج لجنة الشراكات'] },
-  { quarter: 'P2', period: 'يوليو – أغسطس 2026', developments: ['تطوير خارطة المعرض', 'التوقيع الإلكتروني', 'قوالب الأقسام', 'الخصومات اللوجستية'] },
-  { quarter: 'P3', period: 'سبتمبر – أكتوبر 2026', developments: ['النفاذ الوطني', 'السحب والإفلات', 'التقارير والمؤشرات', 'الدعوات التفاعلية'] },
-  { quarter: 'P4', period: 'نوفمبر – ديسمبر 2026', developments: ['أجهزة الخدمات الذاتية', 'تطبيق الهواتف', 'الذكاء الاصطناعي', 'التصميم الموحد'] },
+  { quarter: 'P0', period: '19 أبريل – 14 مايو 2026 (عاجلة)', urgent: true, developments: ['توحيد نماذج الحسابات + الفئات بأسعار + توحيد المشاركين', 'إعادة تصميم واجهات الإدمن + ثيمان للواجهة الخارجية', 'نقل الجلسات والجدول + إلغاء الشراكات في بطاقة "منصة التوقيع"', 'تقارير ورسوم بيانية محسّنة'] },
+  { quarter: 'P1', period: 'مايو – يونيو 2026', developments: ['خطة الوحدات (Modules)', 'إعادة هيكلة اللجان — v2', 'دمج وتوحيد بنية اللجان — v2'] },
+  { quarter: 'P2', period: 'يوليو – أغسطس 2026', developments: ['تطوير خارطة المعرض', 'التوقيع الإلكتروني', 'قوالب الأقسام — v2', 'الخصومات اللوجستية'] },
+  { quarter: 'P3', period: 'سبتمبر – أكتوبر 2026', developments: ['النفاذ الوطني', 'السحب والإفلات', 'التقارير والمؤشرات — v2', 'الدعوات التفاعلية'] },
+  { quarter: 'P4', period: 'نوفمبر – ديسمبر 2026', developments: ['أجهزة الخدمات الذاتية', 'تطبيق الهواتف', 'الذكاء الاصطناعي', 'التصميم الموحد — v2'] },
 ];
 
 export const detailedTimeline = [
+  { id: 101, title: 'توحيد نماذج الحسابات + الفئات + المشاركين (عاجل)', analysis: 6, design: 9, implementation: 16, total: 32.5, urgent: true },
+  { id: 102, title: 'إعادة تصميم واجهات الإدمن + ثيمان (عاجل)', analysis: 2.5, design: 17, implementation: 21, total: 40.5, urgent: true },
+  { id: 103, title: 'نقل الجلسات والجدول + إلغاء الشراكات (عاجل)', analysis: 3, design: 3, implementation: 9, total: 15, urgent: true },
+  { id: 104, title: 'تقارير ورسوم محسّنة (عاجل)', analysis: 2.5, design: 4, implementation: 10, total: 17, urgent: true },
   { id: 1, title: 'خطة الوحدات (Modules)', analysis: 12, design: 12, implementation: 21, total: 45 },
   { id: 2, title: 'إعادة هيكلة اللجان', analysis: 10, design: 8, implementation: 14, total: 32 },
   { id: 11, title: 'دمج الشراكات', analysis: 3, design: 3, implementation: 5, total: 11 },
@@ -25,12 +30,13 @@ export const detailedTimeline = [
 
 export const chartData = {
   tasksByPhase: [
-    { name: 'التحليل', value: 68, color: '#2A848A' },
-    { name: 'التصميم', value: 72, color: '#A61C61' },
-    { name: 'التنفيذ', value: 107, color: '#BA5A31' },
-    { name: 'التدريب والتسليم', value: 45, color: '#452059' },
+    { name: 'التحليل', value: 84, color: '#2A848A' },
+    { name: 'التصميم', value: 86, color: '#A61C61' },
+    { name: 'التنفيذ', value: 131, color: '#BA5A31' },
+    { name: 'التدريب والتسليم', value: 54, color: '#452059' },
   ],
   tasksByQuarter: [
+    { name: 'P0', label: '19 أبريل–14 مايو (عاجل)', value: 4 },
     { name: 'P1', label: 'مايو–يونيو', value: 3 },
     { name: 'P2', label: 'يوليو–أغسطس', value: 4 },
     { name: 'P3', label: 'سبتمبر–أكتوبر', value: 4 },
@@ -47,6 +53,10 @@ export const chartData = {
     { name: 'لجنة الرعايات', value: 22 },
   ],
   tasksByDev: [
+    { name: 'ثيمات + واجهات الإدمن (عاجل)', value: 18 },
+    { name: 'توحيد نماذج الحسابات (عاجل)', value: 22 },
+    { name: 'تقارير ورسوم (عاجل)', value: 14 },
+    { name: 'نقل الجلسات + منصة التوقيع (عاجل)', value: 14 },
     { name: 'خطة الوحدات', value: 18 },
     { name: 'قوالب الأقسام', value: 15 },
     { name: 'تطبيق الهواتف', value: 15 },
@@ -73,10 +83,11 @@ export const chartData = {
     { name: 'اللوجستية', before: 0, after: 75 },
   ],
   progressByQuarter: [
-    { name: 'بداية مايو', value: 0 },
-    { name: 'نهاية يونيو', value: 20 },
-    { name: 'نهاية أغسطس', value: 45 },
-    { name: 'نهاية أكتوبر', value: 75 },
+    { name: '19 أبريل (انطلاق عاجل)', value: 0 },
+    { name: 'نهاية الحزمة العاجلة', value: 10 },
+    { name: 'نهاية يونيو', value: 28 },
+    { name: 'نهاية أغسطس', value: 50 },
+    { name: 'نهاية أكتوبر', value: 78 },
     { name: 'نهاية ديسمبر', value: 100 },
   ],
 };

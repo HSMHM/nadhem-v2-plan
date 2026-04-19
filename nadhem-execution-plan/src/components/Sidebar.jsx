@@ -12,6 +12,7 @@ export const devNavItems = [
 
 export const opsNavItems = [
   { id: 'ops-dashboard', label: 'لوحة المؤشرات التشغيلية', icon: 'gauge-high' },
+  { id: 'ops-urgent-sprint', label: 'الحزمة العاجلة', icon: 'bolt' },
   { id: 'ops-subscriptions', label: 'متابعة الاشتراكات', icon: 'file-contract' },
   { id: 'ops-customer-success', label: 'تمكين العميل من النظام', icon: 'user-graduate' },
   { id: 'ops-feedback', label: 'تقييم العملاء والأثر', icon: 'star-half-stroke' },
