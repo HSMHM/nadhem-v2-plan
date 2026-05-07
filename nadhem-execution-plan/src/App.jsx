@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import WelcomePage from './components/WelcomePage';
-import Sidebar, { devNavItems, opsNavItems, marketingNavItems, journeyNavItems } from './components/Sidebar';
+import Sidebar, { devNavItems, opsNavItems, marketingNavItems, journeyNavItems, asanaNavItems } from './components/Sidebar';
 import PlanTabs from './components/PlanTabs';
+import './components/sections/asana/asana.css';
 
 // Dev sections
 import DashboardSection from './components/sections/DashboardSection';
@@ -42,7 +43,13 @@ import MktCalendarSection from './components/sections/marketing/MktCalendarSecti
 // Journey
 import ProductJourneySection from './components/sections/journey/ProductJourneySection';
 
-const navMap = { dev: devNavItems, ops: opsNavItems, marketing: marketingNavItems, journey: journeyNavItems };
+// Asana simulation
+import AsanaOverviewSection from './components/sections/asana/AsanaOverviewSection';
+import AsanaTasksSection from './components/sections/asana/AsanaTasksSection';
+import AsanaTemplateSection from './components/sections/asana/AsanaTemplateSection';
+import AsanaPipelineSection from './components/sections/asana/AsanaPipelineSection';
+
+const navMap = { dev: devNavItems, ops: opsNavItems, marketing: marketingNavItems, journey: journeyNavItems, asana: asanaNavItems };
 
 function ScrollToTop() {
   const [visible, setVisible] = useState(false);
@@ -96,16 +103,18 @@ function App() {
   }
 
   const isJourney = plan === 'journey';
+  const isAsana = plan === 'asana';
+  const isFullPage = isJourney || isAsana;
 
   return (
-    <div className={`app ${isJourney ? 'app-journey' : ''}`}>
-      {!isJourney && (
+    <div className={`app ${isJourney ? 'app-journey' : ''} ${isAsana ? 'app-asana' : ''}`}>
+      {!isFullPage && (
         <button className="mobile-btn" onClick={() => setSidebarOpen(true)}>
           <i className="fa-thin fa-bars" aria-hidden="true" />
         </button>
       )}
 
-      {!isJourney && (
+      {!isFullPage && (
         <Sidebar active={active} onNav={handleNav} isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} plan={plan} />
       )}
 
@@ -160,6 +169,15 @@ function App() {
 
         {plan === 'journey' && (
           <ProductJourneySection />
+        )}
+
+        {plan === 'asana' && (
+          <>
+            <AsanaOverviewSection />
+            <AsanaTasksSection />
+            <AsanaTemplateSection />
+            <AsanaPipelineSection />
+          </>
         )}
       </main>
 

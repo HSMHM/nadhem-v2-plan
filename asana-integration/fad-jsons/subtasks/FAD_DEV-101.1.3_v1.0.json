@@ -1,0 +1,22 @@
+{
+  "_document": "Feature Analysis Document (FAD) — Subtask",
+  "_parent_id": "DEV-101",
+  "_parent_title": "توحيد نماذج إنشاء الحسابات + فئات متغيرة بأسعار",
+  "_phase": "analysis",
+  "_savedAt": "2026-05-07T11:19:10.698Z",
+  "_savedBy": "آلي — generate-fad-jsons.js",
+  "_requestType": "change",
+  "_asana_name": "[101.1.3] توحيد نماذج المتحدثين ومدراء الجلسات والمستشارين ومقدمي الأوراق والبرامج تحت \"المشاركين\" بمنطق multi-role",
+  "_asana_notes": "Duration: 1.5 يوم\n\nParent: [DEV-101] توحيد نماذج إنشاء الحسابات + فئات متغيرة بأسعار\nPhase: تحليل\n\nFAD attached: FAD_DEV-101.1.3_v1.0.json",
+  "version": "1.0",
+  "feature_id": "NDM-DEV-P0-F101.1.3",
+  "feature_name": "توحيد نماذج المتحدثين ومدراء الجلسات والمستشارين ومقدمي الأوراق والبرامج تحت \"المشاركين\" بمنطق multi-role",
+  "product": "نظم (Nadhem)",
+  "pm_name": "أحمد محمد",
+  "analyst": "سارة علي",
+  "analysis_date": "2026-05-07",
+  "priority": "P1",
+  "request_type": "change",
+  "estimated_duration": "1.5 يوم",
+  "change_to_be": "توحيد نماذج المتحدثين ومدراء الجلسات والمستشارين ومقدمي الأوراق والبرامج تحت \"المشاركين\" بمنطق multi-role"
+}

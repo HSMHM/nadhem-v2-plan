@@ -1,0 +1,4 @@
+.env
+.asana-state.json
+node_modules/
+*.log

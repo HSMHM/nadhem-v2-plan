@@ -1,0 +1,22 @@
+{
+  "_document": "Feature Analysis Document (FAD) — Subtask",
+  "_parent_id": "DEV-9",
+  "_parent_title": "تطبيق الهواتف الذكية",
+  "_phase": "implementation",
+  "_savedAt": "2026-05-07T11:19:10.698Z",
+  "_savedBy": "آلي — generate-fad-jsons.js",
+  "_requestType": "new",
+  "_asana_name": "[9.3.5] ربط التطبيق بالواجهات البرمجية الحالية",
+  "_asana_notes": "Duration: 4 أيام\n\nParent: [DEV-9] تطبيق الهواتف الذكية\nPhase: تنفيذ\n\nFAD attached: FAD_DEV-9.3.5_v1.0.json",
+  "version": "1.0",
+  "feature_id": "NDM-DEV-P4-F9.3.5",
+  "feature_name": "ربط التطبيق بالواجهات البرمجية الحالية",
+  "product": "نظم (Nadhem)",
+  "pm_name": "أحمد محمد",
+  "analyst": "سارة علي",
+  "analysis_date": "2026-05-07",
+  "priority": "P4",
+  "request_type": "new",
+  "estimated_duration": "4 أيام",
+  "new_description": "ربط التطبيق بالواجهات البرمجية الحالية"
+}

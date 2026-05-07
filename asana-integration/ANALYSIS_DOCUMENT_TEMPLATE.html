@@ -1,0 +1,2692 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نموذج وثيقة تحليل الميزة - Feature Analysis Document | TTS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ===== CSS VARIABLES & RESET ===== */
+:root {
+  --primary: #480683;
+  --primary-light: #6a1ba0;
+  --secondary: #ce0886;
+  --secondary-light: #e84aab;
+  --accent: #f0e6f6;
+  --gradient: linear-gradient(135deg, #480683 0%, #ce0886 100%);
+  --gradient-subtle: linear-gradient(135deg, #480683 0%, #7b2fa0 50%, #ce0886 100%);
+  --bg: #fafafa;
+  --bg-section: #ffffff;
+  --text: #353435;
+  --text-light: #6a737b;
+  --text-muted: #9ca3af;
+  --border: #e5e7eb;
+  --border-light: #f3f4f6;
+  --success: #059669;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --radius: 6px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-md: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  font-size: 14px;
+  direction: rtl;
+}
+
+/* ===== TOOLBAR ===== */
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--gradient);
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 2px 8px rgba(152,45,125,0.25);
+  flex-wrap: wrap;
+}
+
+.toolbar-title {
+  color: white;
+  font-weight: 700;
+  font-size: 15px;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.toolbar .btn {
+  padding: 7px 18px;
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: var(--radius);
+  background: transparent;
+  color: white;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.toolbar .btn:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.5);
+}
+.toolbar .btn.active {
+  background: white;
+  color: var(--primary);
+  border-color: white;
+}
+.toolbar .btn-accent {
+  background: rgba(255,255,255,0.2);
+  border-color: rgba(255,255,255,0.4);
+}
+.toolbar .btn-accent:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+/* ===== PAGE CONTAINER ===== */
+.page-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+/* ===== COVER PAGE ===== */
+.cover-page {
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  margin-bottom: 40px;
+  page-break-after: always;
+}
+
+.cover-header {
+  background: var(--gradient);
+  padding: 55px 50px;
+  text-align: center;
+  position: relative;
+}
+.cover-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 3px;
+  background: rgba(255,255,255,0.3);
+}
+
+.cover-logo {
+  margin-bottom: 28px;
+}
+.cover-logo img { height: 60px; filter: brightness(0) invert(1); }
+.cover-logo-text { font-size: 14px; opacity: 0.7; margin-top: 6px; color: white; }
+
+.cover-title {
+  color: white;
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+.cover-subtitle {
+  color: rgba(255,255,255,0.9);
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  margin-bottom: 16px;
+}
+.cover-tagline {
+  color: rgba(255,255,255,0.75);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.cover-body { padding: 45px 50px; }
+
+.cover-meta-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 28px;
+}
+.cover-meta-table td {
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--border-light);
+  font-size: 14px;
+}
+.cover-meta-table td:first-child {
+  font-weight: 700;
+  color: var(--primary);
+  width: 200px;
+}
+.cover-meta-table tr:last-child td { border-bottom: none; }
+
+.cover-notice {
+  background: #fdf6fb;
+  border: 1px solid #f0d4ea;
+  border-right: 3px solid var(--primary);
+  padding: 18px 22px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  color: #5a1d4a;
+  line-height: 2;
+}
+
+/* ===== TABLE OF CONTENTS ===== */
+.toc {
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 36px 45px;
+  margin-bottom: 40px;
+  page-break-after: always;
+  position: relative;
+}
+.toc::before { content:''; position:absolute; top:0; right:0; left:0; height:3px; background:var(--gradient); border-radius:var(--radius) var(--radius) 0 0; }
+.toc h2 {
+  color: var(--primary);
+  font-size: 20px;
+  margin-bottom: 22px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.toc-list { list-style: none; }
+.toc-list li {
+  padding: 9px 0;
+  border-bottom: 1px dotted var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.toc-list li:hover { color: var(--primary); padding-right: 6px; }
+.toc-list li a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+.toc-list li .toc-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--gradient);
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.toc-list li .toc-dots {
+  flex: 1;
+  border-bottom: 1px dotted var(--border);
+  margin: 0 10px;
+  height: 1px;
+  align-self: flex-end;
+  margin-bottom: 8px;
+}
+.toc-list li:last-child { border-bottom: none; }
+
+/* ===== SECTION STYLING ===== */
+.section {
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 28px;
+  overflow: hidden;
+  page-break-inside: avoid;
+  position: relative;
+}
+.section::before { content:''; position:absolute; top:0; right:0; left:0; height:3px; background:var(--gradient); z-index:1; }
+
+.section-header {
+  padding: 16px 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--border-light);
+  background: #fafafa;
+}
+.section-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--gradient);
+  color: white;
+  font-size: 14px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.section-title {
+  color: var(--text);
+  font-size: 18px;
+  font-weight: 700;
+}
+.section-required {
+  background: #fef2f2;
+  color: var(--secondary);
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-right: auto;
+}
+
+.section-body { padding: 28px; }
+
+.subsection-title {
+  color: var(--primary);
+  font-size: 16px;
+  font-weight: 600;
+  margin: 22px 0 10px;
+  padding-right: 12px;
+  border-right: 3px solid var(--secondary);
+}
+.subsection-title:first-child { margin-top: 0; }
+
+.section-hint {
+  background: #fdf6fb;
+  border: 1px solid #f0d4ea;
+  border-right: 3px solid var(--primary);
+  padding: 10px 16px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  color: #5a1d4a;
+  margin-bottom: 14px;
+}
+
+/* ===== USAGE GUIDE (Section 0) ===== */
+.usage-guide {
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 28px;
+  overflow: hidden;
+  position: relative;
+}
+.usage-guide::before { content:''; position:absolute; top:0; right:0; left:0; height:3px; background:var(--gradient); }
+.usage-guide-body { padding: 28px; }
+.usage-guide-body ol { padding-right: 24px; margin: 12px 0; line-height: 2.2; }
+.usage-guide-body ol li { margin-bottom: 4px; }
+
+/* ===== TABLES ===== */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0;
+  font-size: 13px;
+}
+.data-table thead th {
+  background: var(--gradient);
+  color: white;
+  padding: 10px 14px;
+  font-weight: 700;
+  text-align: right;
+  white-space: nowrap;
+  font-size: 12px;
+}
+.data-table thead th:first-child { border-radius: 0 var(--radius) 0 0; }
+.data-table thead th:last-child { border-radius: var(--radius) 0 0 0; }
+.data-table tbody td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border-light);
+  vertical-align: top;
+}
+.data-table tbody tr:nth-child(even) { background: #fafafa; }
+.data-table tbody tr:hover { background: #fdf6fb; }
+.data-table tbody tr:last-child td { border-bottom: none; }
+
+.data-table code, .inline-code {
+  background: #f1f5f9;
+  color: var(--primary);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  direction: ltr;
+  display: inline-block;
+}
+
+/* Key-value table variant */
+.kv-table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+.kv-table td {
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--border-light);
+}
+.kv-table td:first-child {
+  font-weight: 700;
+  color: var(--primary);
+  width: 220px;
+  background: #fafafa;
+  border-left: 1px solid var(--border-light);
+}
+.kv-table tr:last-child td { border-bottom: none; }
+.kv-table tr:first-child td:first-child { border-radius: 0 var(--radius) 0 0; }
+.kv-table tr:first-child td:last-child { border-radius: var(--radius) 0 0 0; }
+
+/* ===== CODE BLOCKS ===== */
+.code-block {
+  background: #1e1e2e;
+  color: #e2e8f0;
+  padding: 18px 22px;
+  border-radius: var(--radius);
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.9;
+  direction: ltr;
+  text-align: left;
+  margin: 14px 0;
+  overflow-x: auto;
+  position: relative;
+}
+.code-block .kw { color: #c792ea; font-weight: 700; }
+.code-block .str { color: #c3e88d; }
+.code-block .cmt { color: #64748b; font-style: italic; }
+.code-block-label {
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  background: var(--primary);
+  color: white;
+  padding: 2px 10px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: 'Cairo', sans-serif;
+}
+
+/* ===== FORM ELEMENTS (FILL MODE) ===== */
+.form-input,
+.form-textarea,
+.form-select {
+  font-family: 'Cairo', sans-serif;
+  font-size: 13px;
+  border: 1px solid #ddd;
+  border-radius: var(--radius);
+  padding: 8px 12px;
+  width: 100%;
+  transition: all 0.2s;
+  background: white;
+  color: var(--text);
+  direction: rtl;
+}
+.form-input:focus, .form-textarea:focus, .form-select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(152,45,125,0.1);
+}
+.form-textarea { min-height: 80px; resize: vertical; line-height: 1.8; }
+.form-input.sm { width: 120px; display: inline-block; }
+.form-input.code-dir { direction: ltr; text-align: left; font-family: 'Courier New', monospace; }
+
+.add-row-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  background: white;
+  border: 1px dashed #ccc;
+  border-radius: var(--radius);
+  color: var(--primary);
+  font-family: 'Cairo', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.2s;
+}
+.add-row-btn:hover {
+  border-color: var(--primary);
+  background: #fdf6fb;
+}
+
+/* ===== CHECKBOX STYLING ===== */
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+}
+.check-item input[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 4px;
+  position: relative;
+  transition: all 0.2s;
+}
+.check-item input[type="checkbox"]:checked {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+.check-item input[type="checkbox"]:checked::after {
+  content: '\2713';
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* ===== UTILITY ===== */
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+}
+.badge-high { background: #fef2f2; color: #dc2626; }
+.badge-med { background: #fffbeb; color: #d97706; }
+.badge-low { background: #f0fdf4; color: #16a34a; }
+
+.status-dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  margin-left: 6px;
+}
+.status-dot.green { background: var(--success); }
+.status-dot.yellow { background: var(--warning); }
+.status-dot.red { background: var(--danger); }
+
+.divider {
+  height: 1px;
+  background: var(--border-light);
+  margin: 22px 0;
+}
+
+.summary-box {
+  border: 2px solid transparent;
+  border-image: var(--gradient) 1;
+  border-radius: 0;
+  padding: 20px;
+  margin: 16px 0;
+  background: #fdf6fb;
+}
+.summary-box .kv-table td:first-child { background: transparent; }
+
+/* ===== FILL MODE vs READ MODE ===== */
+body.read-mode .fill-only { display: none !important; }
+body.fill-mode .read-only { display: none !important; }
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  .toolbar, #progressBar, #progressLabel { display: none !important; }
+  body { background: white; font-size: 11px; }
+  .page-container { max-width: 100%; padding: 0; }
+  .section { box-shadow: none; border: 1px solid #eee; margin-bottom: 18px; break-inside: avoid; }
+  .cover-page { box-shadow: none; }
+  .toc { box-shadow: none; border: 1px solid #eee; }
+  .add-row-btn { display: none !important; }
+  .usage-guide { box-shadow: none; border: 1px solid #eee; }
+
+  @page {
+    size: A4;
+    margin: 20mm 15mm 25mm 15mm;
+    @bottom-center {
+      content: "شركة التحول التقني - صفحة " counter(page);
+      font-family: 'Cairo', sans-serif;
+      font-size: 9px;
+      color: #94a3b8;
+    }
+  }
+
+  .cover-page { page-break-after: always; }
+  .toc { page-break-after: always; }
+  .section { page-break-inside: avoid; }
+  .page-break { page-break-before: always; }
+
+  .section::before { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .section-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .section-num { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .data-table thead th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .data-table tbody tr:nth-child(even) { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .code-block { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .cover-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .toc-list li .toc-num { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+/* ===== FOOTER ===== */
+.doc-footer {
+  text-align: center;
+  padding: 28px;
+  color: var(--text-muted);
+  font-size: 12px;
+  border-top: 1px solid var(--border);
+  margin-top: 36px;
+}
+.doc-footer span { color: var(--primary); font-weight: 700; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .cover-header { padding: 36px 24px; }
+  .cover-title { font-size: 22px; }
+  .cover-body, .section-body, .toc { padding: 18px; }
+  .toolbar { padding: 8px 14px; }
+  .toolbar-title { font-size: 12px; }
+  .toolbar .btn { padding: 5px 12px; font-size: 11px; }
+  .kv-table td:first-child { width: 140px; }
+}
+
+/* ===== ROLE-BASED VISIBILITY ===== */
+.section[data-role] { position: relative; }
+/* عند اختيار دور محدد: تخفى الأقسام التي لا تنتمي للدور كلياً */
+/* ملاحظة: role-all لا يُخفي شيئاً = عرض كامل */
+body.role-analyst .section[data-role]:not([data-role~="analyst"]) { display: none !important; }
+body.role-qa .section[data-role]:not([data-role~="qa"]) { display: none !important; }
+body.role-dev_lead .section[data-role]:not([data-role~="dev_lead"]) { display: none !important; }
+body.role-prod_lead .section[data-role]:not([data-role~="prod_lead"]) { display: none !important; }
+/* فهرس المحتويات يلتزم بنفس الفلترة */
+body.role-analyst .toc-list li[data-role]:not([data-role~="analyst"]) { display: none !important; }
+body.role-qa .toc-list li[data-role]:not([data-role~="qa"]) { display: none !important; }
+body.role-dev_lead .toc-list li[data-role]:not([data-role~="dev_lead"]) { display: none !important; }
+body.role-prod_lead .toc-list li[data-role]:not([data-role~="prod_lead"]) { display: none !important; }
+
+/* ===== REQUEST-TYPE BASED VISIBILITY (within Section 2) ===== */
+[data-req-type] { display: none; }
+body.req-new [data-req-type~="new"],
+body.req-change [data-req-type~="change"],
+body.req-integration [data-req-type~="integration"],
+[data-req-type~="all"] { display: block; }
+/* استثناء: صفوف الجداول تستخدم display: table-row */
+tr[data-req-type] { display: none; }
+body.req-new tr[data-req-type~="new"],
+body.req-change tr[data-req-type~="change"],
+body.req-integration tr[data-req-type~="integration"] { display: table-row !important; }
+/* استثناء: خلايا الجداول تستخدم display: table-cell */
+td[data-req-type] { display: none; }
+body.req-new td[data-req-type~="new"],
+body.req-change td[data-req-type~="change"],
+body.req-integration td[data-req-type~="integration"] { display: table-cell !important; }
+
+.req-block {
+  border: 1px dashed #e0d5ec;
+  background: #fdfbff;
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin: 14px 0;
+  position: relative;
+}
+.req-block-tag {
+  position: absolute;
+  top: -10px;
+  right: 16px;
+  background: var(--gradient);
+  color: white;
+  padding: 2px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+}
+.req-required-badge {
+  display: inline-block;
+  background: #fef2f2;
+  color: var(--secondary);
+  padding: 1px 8px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  margin-right: 8px;
+}
+.req-optional-badge {
+  display: inline-block;
+  background: #f0fdf4;
+  color: #16a34a;
+  padding: 1px 8px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  margin-right: 8px;
+}
+
+/* ===== ATTACHMENTS ===== */
+.attachments-list {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.attachment-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fafafa;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 8px 14px;
+  font-size: 13px;
+}
+.attachment-item .att-name {
+  flex: 1;
+  font-weight: 600;
+  color: var(--primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.attachment-item .att-size {
+  color: var(--text-muted);
+  font-size: 11px;
+}
+.attachment-item button {
+  border: none;
+  background: transparent;
+  color: var(--primary);
+  cursor: pointer;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+.attachment-item button:hover { background: #f0e6f6; }
+.attachment-item button.delete-btn { color: var(--danger); }
+
+.version-display {
+  display: inline-block;
+  background: var(--gradient);
+  color: white;
+  padding: 4px 14px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+.role-badge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 12px;
+  background: #f8f0f6;
+  color: var(--primary);
+  border: 1px solid #ecdae7;
+  margin-right: auto;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+/* ===== LOCKED INDICATOR ===== */
+.role-locked { position: relative; }
+.role-locked::before {
+  content: "قسم خاص بدور آخر";
+  display: block;
+  background: #fef3cd;
+  color: #856404;
+  padding: 6px 14px;
+  border-radius: var(--radius);
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* ===== TOAST ===== */
+.toast-notification {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--primary);
+  color: white;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 4px 16px rgba(152,45,125,0.3);
+  z-index: 10000;
+  transition: transform 0.4s ease;
+  pointer-events: none;
+}
+.toast-notification.show { transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body class="read-mode">
+
+<!-- ===== TOOLBAR ===== -->
+<div class="toolbar" id="toolbar">
+  <span class="toolbar-title">التحول التقني | TTS - وثيقة تحليل الميزة</span>
+  <select id="roleSelector" onchange="setRole(this.value)" style="padding:6px 12px;border-radius:6px;border:1px solid rgba(255,255,255,0.35);background:rgba(255,255,255,0.1);color:white;font-family:'Cairo';font-weight:600;font-size:13px;cursor:pointer;">
+    <option value="analyst" style="color:#333" selected>محلل / مدير منتج</option>
+    <option value="qa" style="color:#333">مختبر جودة (QA)</option>
+    <option value="dev_lead" style="color:#333">رئيس وحدة التطوير</option>
+    <option value="prod_lead" style="color:#333">رئيس وحدة المنتجات</option>
+    <option value="all" style="color:#333">جميع الأقسام (عرض كامل)</option>
+  </select>
+  <button class="btn active" id="btnRead" onclick="setMode('read')">وضع القراءة</button>
+  <button class="btn" id="btnFill" onclick="setMode('fill')">وضع التعبئة</button>
+  <div style="border-right:1px solid rgba(255,255,255,0.25);height:22px;margin:0 4px"></div>
+  <button class="btn btn-accent fill-only" onclick="saveToFile()">حفظ الملف</button>
+  <button class="btn fill-only" onclick="document.getElementById('loadFileInput').click()">تحميل ملف سابق</button>
+  <input type="file" id="loadFileInput" accept=".json" style="display:none" onchange="loadFromFile(event)">
+  <button class="btn btn-accent" onclick="window.print()">طباعة</button>
+  <button class="btn fill-only" onclick="exportJSON()">تصدير JSON</button>
+</div>
+
+<!-- ===== PROGRESS BAR ===== -->
+<div id="progressBar" class="fill-only" style="background:#eee;height:4px;position:sticky;top:52px;z-index:999;">
+  <div id="progressFill" style="height:100%;background:var(--gradient);width:0%;transition:width 0.5s ease;border-radius:0 2px 2px 0;"></div>
+</div>
+<div id="progressLabel" class="fill-only" style="position:sticky;top:56px;z-index:998;background:var(--bg);padding:4px 30px;font-size:11px;color:var(--text-muted);display:flex;justify-content:space-between;border-bottom:1px solid var(--border-light);">
+  <span id="progressText">اكتمال التعبئة: 0%</span>
+  <span id="roleLabel" style="font-weight:600;color:var(--primary)">جميع الأقسام</span>
+</div>
+
+<!-- ===== PAGE CONTAINER ===== -->
+<div class="page-container">
+
+<!-- ===== COVER PAGE ===== -->
+<div class="cover-page">
+  <div class="cover-header">
+    <div class="cover-logo"><img src="logo.svg" alt="التحول التقني" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><div style="display:none;font-size:26px;font-weight:800;color:white">التحول التقني | TTS</div><div class="cover-logo-text">Tech Transformation Solutions</div></div>
+    <h1 class="cover-title">نموذج وثيقة تحليل الميزة</h1>
+    <p class="cover-subtitle">Feature Analysis Document (FAD)</p>
+    <p class="cover-tagline">"التحول أساس التقدم"</p>
+  </div>
+  <div class="cover-body">
+    <table class="cover-meta-table">
+      <tr><td>الجهة</td><td>إدارة المنتجات والخدمات - شركة التحول التقني</td></tr>
+      <tr><td>الإصدار</td><td>1.0</td></tr>
+      <tr><td>رقم الوثيقة</td><td class="read-only"><code class="inline-code">S__-DEV-P__-F__</code></td><td class="fill-only"><input class="form-input code-dir" data-field="doc_id" placeholder="S__-DEV-P__-F__"></td></tr>
+      <tr><td>تاريخ الإعداد</td><td class="read-only">____/____/________</td><td class="fill-only"><input class="form-input" type="date" data-field="doc_date"></td></tr>
+      <tr><td>الحالة</td><td class="read-only">مسودة</td><td class="fill-only">
+        <select class="form-select" data-field="doc_status">
+          <option value="مسودة">مسودة</option>
+          <option value="قيد المراجعة">قيد المراجعة</option>
+          <option value="معتمد">معتمد</option>
+          <option value="يحتاج تعديل">يحتاج تعديل</option>
+        </select>
+      </td></tr>
+      <tr><td>السرية</td><td>سري - للاستخدام الداخلي فقط</td></tr>
+    </table>
+    <div class="cover-notice">
+      <strong>تعليمات:</strong> يبدأ <strong>مدير المنتج / المحلل</strong> بتعبئة القسمين 1 و 2 — حيث يُحدد <strong>نوع الطلب</strong> (خاصية جديدة / تغيير / تكامل خارجي) في القسم 1، ثم تظهر له تلقائياً الحقول المطلوبة في القسم 2.
+      <br><strong>الإصدار يُدار تلقائياً</strong> ويُزاد بعد كل عملية حفظ، مع تسجيل تلقائي في سجل التعديلات.
+      <br>الأقسام الأخرى (3-14) مخصصة لرئيس وحدة التطوير ومختبر الجودة وكلها <strong>اختيارية</strong>. اختر دورك من شريط الأدوات لرؤية أقسامك فقط.
+    </div>
+  </div>
+</div>
+
+<!-- ===== TABLE OF CONTENTS ===== -->
+<div class="toc">
+  <h2>فهرس المحتويات</h2>
+  <ul class="toc-list">
+    <li><a href="#sec0"><span class="toc-num">0</span>دليل استخدام الوثيقة</a><span class="toc-dots"></span><span class="badge badge-low">مرجعي</span></li>
+    <li data-role="analyst"><a href="#sec1"><span class="toc-num">1</span>معلومات الميزة الأساسية</a><span class="toc-dots"></span><span class="badge" style="background:#f0e6f6;color:#480683">محلل</span><span class="badge badge-high" style="margin-right:6px">إلزامي</span></li>
+    <li data-role="analyst"><a href="#sec2"><span class="toc-num">2</span>تفاصيل الطلب (ديناميكي)</a><span class="toc-dots"></span><span class="badge" style="background:#f0e6f6;color:#480683">محلل</span><span class="badge badge-high" style="margin-right:6px">إلزامي</span></li>
+    <li data-role="dev_lead"><a href="#sec3"><span class="toc-num">3</span>تحليل التأثير على النظام</a><span class="toc-dots"></span><span class="badge" style="background:#fff3e0;color:#d97706">رئيس تطوير</span><span class="badge badge-med" style="margin-right:6px">اختياري</span></li>
+    <li data-role="dev_lead"><a href="#sec4"><span class="toc-num">4</span>المدخلات والمخرجات</a><span class="toc-dots"></span><span class="badge" style="background:#fff3e0;color:#d97706">رئيس تطوير</span><span class="badge badge-med" style="margin-right:6px">اختياري</span></li>
+    <li data-role="dev_lead"><a href="#sec5"><span class="toc-num">5</span>المعادلات والمنطق الرياضي</a><span class="toc-dots"></span><span class="badge" style="background:#fff3e0;color:#d97706">رئيس تطوير</span><span class="badge badge-med" style="margin-right:6px">اختياري</span></li>
+    <li data-role="dev_lead"><a href="#sec6"><span class="toc-num">6</span>جدول القرار</a><span class="toc-dots"></span><span class="badge" style="background:#fff3e0;color:#d97706">رئيس تطوير</span><span class="badge badge-med" style="margin-right:6px">اختياري</span></li>
+    <li data-role="qa dev_lead"><a href="#sec7"><span class="toc-num">7</span>حالات الحدود</a><span class="toc-dots"></span><span class="badge" style="background:#e0f2fe;color:#0369a1">QA / تطوير</span><span class="badge badge-med" style="margin-right:6px">اختياري</span></li>
+    <li data-role="qa dev_lead"><a href="#sec8"><span class="toc-num">8</span>سيناريوهات BDD</a><span class="toc-dots"></span><span class="badge" style="background:#e0f2fe;color:#0369a1">QA / تطوير</span><span class="badge badge-med" style="margin-right:6px">اختياري</span></li>
+    <li data-role="dev_lead"><a href="#sec10"><span class="toc-num">10</span>التأثير على قاعدة البيانات</a><span class="toc-dots"></span><span class="badge" style="background:#fff3e0;color:#d97706">رئيس تطوير</span><span class="badge badge-med" style="margin-right:6px">اختياري</span></li>
+    <li data-role="dev_lead"><a href="#sec11"><span class="toc-num">11</span>متطلبات غير وظيفية</a><span class="toc-dots"></span><span class="badge" style="background:#fff3e0;color:#d97706">رئيس تطوير</span><span class="badge badge-med" style="margin-right:6px">اختياري</span></li>
+    <li data-role="dev_lead"><a href="#sec12"><span class="toc-num">12</span>المخاطر والتبعيات</a><span class="toc-dots"></span><span class="badge" style="background:#fff3e0;color:#d97706">رئيس تطوير</span><span class="badge badge-med" style="margin-right:6px">اختياري</span></li>
+    <li data-role="dev_lead"><a href="#sec13"><span class="toc-num">13</span>الرسائل والإشعارات</a><span class="toc-dots"></span><span class="badge" style="background:#fff3e0;color:#d97706">رئيس تطوير</span><span class="badge badge-med" style="margin-right:6px">اختياري</span></li>
+    <li data-role="dev_lead"><a href="#sec14"><span class="toc-num">14</span>ملخص للفريق البرمجي</a><span class="toc-dots"></span><span class="badge" style="background:#fff3e0;color:#d97706">رئيس تطوير</span><span class="badge badge-med" style="margin-right:6px">اختياري</span></li>
+    <li data-role="analyst qa dev_lead prod_lead"><a href="#sec15"><span class="toc-num">15</span>قائمة التحقق النهائية والتوقيعات</a><span class="toc-dots"></span><span class="badge badge-high">إلزامي</span></li>
+  </ul>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 0: دليل استخدام الوثيقة -->
+<!-- ================================================================ -->
+<div class="usage-guide" id="sec0">
+  <div class="section-header">
+    <span class="section-num">0</span>
+    <span class="section-title">دليل استخدام الوثيقة</span>
+  </div>
+  <div class="usage-guide-body">
+    <div class="section-hint" style="margin-bottom:18px;">
+      هذه الوثيقة هي النموذج المعتمد لتحليل أي ميزة جديدة قبل دخولها مرحلة التطوير. تهدف إلى ضمان وضوح المتطلبات واكتمال التحليل لجميع الأطراف المعنية.
+    </div>
+
+    <h3 class="subsection-title">خطوات الاستخدام</h3>
+    <ol>
+      <li>اختر دورك من قائمة الأدوار في الشريط العلوي — ستظهر الأقسام المخصصة لك فقط</li>
+      <li><strong>المحلل / مدير المنتج:</strong> يعبّئ القسم 1 (البيانات الأساسية + <strong>اختيار نوع الطلب</strong>) ثم القسم 2 (تفاصيل الطلب — يتغير حسب نوع الطلب) ثم يحفظ الملف</li>
+      <li>يُرسل ملف JSON الناتج عبر أسانا للمراجعة والاعتماد</li>
+      <li><strong>مختبر الجودة (QA):</strong> يحمّل الملف ويعبّئ القسمين 7 و 8 (اختياري) + قسم 15</li>
+      <li><strong>رئيس وحدة التطوير:</strong> يعبّئ ما يحتاج من الأقسام 3-14 (كلها اختيارية للتعمق التقني) + قسم 15</li>
+      <li><strong>رئيس وحدة المنتجات:</strong> يعتمد عبر قسم 15</li>
+    </ol>
+
+    <div style="border-top:1px dotted var(--border);margin:18px 0;"></div>
+
+    <h3 class="subsection-title">آلية الإصدار التلقائي</h3>
+    <div style="background:#fdf6fb;border-right:3px solid var(--primary);padding:14px 18px;border-radius:var(--radius);">
+      <ul style="padding-right:20px;line-height:2">
+        <li>رقم الإصدار <strong>للقراءة فقط</strong> ولا يمكن تعديله يدوياً</li>
+        <li>عند كل عملية حفظ (زر "حفظ الملف")، يُزاد الإصدار تلقائياً (+0.1)</li>
+        <li>يُضاف صف جديد في "سجل التعديلات" تلقائياً مع التاريخ ورقم الإصدار</li>
+        <li>اسم ملف JSON الناتج يحوي رقم الإصدار: <code>FAD_[معرف_الميزة]_v[الإصدار].json</code></li>
+      </ul>
+    </div>
+
+    <div style="border-top:1px dotted var(--border);margin:18px 0;"></div>
+
+    <h3 class="subsection-title">أنواع الطلبات (في القسم 1)</h3>
+    <table class="data-table">
+      <thead><tr><th>النوع</th><th>الوصف</th><th>الحقول الإجبارية في القسم 2</th></tr></thead>
+      <tbody>
+        <tr><td><strong>خاصية جديدة</strong></td><td>طلب إضافة وظيفة لم تكن موجودة</td><td>الوصف، قصص المستخدم، معايير القبول، الواجهات المتأثرة</td></tr>
+        <tr><td><strong>طلب تغيير</strong></td><td>تعديل سلوك ميزة قائمة</td><td>الوضع الحالي (As-Is)، الوضع المستهدف (To-Be)، الواجهات المتأثرة</td></tr>
+        <tr><td><strong>طلب تكامل خارجي</strong></td><td>الربط مع مزود خدمة خارجي</td><td>اسم المزود، نوع التكامل، البيانات التجريبية</td></tr>
+      </tbody>
+    </table>
+
+    <div style="border-top:1px dotted var(--border);margin:18px 0;"></div>
+
+    <h3 class="subsection-title">مصفوفة الأدوار والمسؤوليات</h3>
+    <table class="data-table">
+      <thead><tr><th>الدور</th><th>الأقسام المسؤول عنها</th><th>إلزامية؟</th></tr></thead>
+      <tbody>
+        <tr><td>محلل / مدير منتج</td><td>1، 2، 15</td><td><span class="badge badge-high">إلزامي</span></td></tr>
+        <tr><td>مختبر الجودة (QA)</td><td>7، 8، 15</td><td>اختياري — 15 إلزامي</td></tr>
+        <tr><td>رئيس وحدة التطوير</td><td>3، 4، 5، 6، 7، 8، 10، 11، 12، 13، 14، 15</td><td>كلها اختياري — 15 إلزامي</td></tr>
+        <tr><td>رئيس وحدة المنتجات</td><td>15</td><td><span class="badge badge-high">إلزامي</span></td></tr>
+      </tbody>
+    </table>
+
+    <div style="border-top:1px dotted var(--border);margin:18px 0;"></div>
+
+    <h3 class="subsection-title">تسمية الملف</h3>
+    <div style="background:#f5f5f5;padding:12px 18px;border-radius:var(--radius);font-family:'Courier New',monospace;direction:ltr;text-align:left;font-size:13px;">
+      FAD_[معرف_الميزة]_v[الإصدار].json
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 1: معلومات الميزة الأساسية -->
+<!-- ================================================================ -->
+<div class="section" id="sec1" data-role="analyst all" data-role-label="محلل / مدير منتج">
+  <div class="section-header">
+    <span class="section-num">1</span>
+    <span class="section-title">معلومات الميزة الأساسية</span>
+    <span class="section-required">* إلزامي</span>
+  </div>
+  <div class="section-body">
+    <!-- READ MODE -->
+    <div class="read-only">
+      <table class="kv-table">
+        <tr><td>معرف الميزة</td><td><code class="inline-code">S__-DEV-P__-F__</code></td></tr>
+        <tr><td>اسم الميزة</td><td>تسجيل الطالب في الدورة</td></tr>
+        <tr><td>المنتج</td><td>نظام إدارة التعليم (LMS)</td></tr>
+        <tr><td>مدير المنتج</td><td>أحمد محمد</td></tr>
+        <tr><td>المحلل</td><td>سارة علي</td></tr>
+        <tr><td>تاريخ التحليل</td><td>2026-04-19</td></tr>
+        <tr><td>الإصدار</td><td><span class="version-display">1.0</span> <span style="color:var(--text-muted);font-size:11px;margin-right:8px">(يُحدَّث تلقائياً عند كل حفظ)</span></td></tr>
+        <tr><td>الأولوية</td><td><span class="badge badge-high">P1</span></td></tr>
+        <tr><td>نوع الطلب</td><td><span class="badge" style="background:#eff6ff;color:#2563eb">خاصية جديدة</span></td></tr>
+        <tr><td>ميزة مشتركة بين منتجات</td><td>لا <span style="color:var(--text-muted);font-size:11px">(عند "نعم": تظهر قائمة المنتجات المختارة)</span></td></tr>
+      </table>
+    </div>
+    <!-- FILL MODE -->
+    <div class="fill-only">
+      <table class="kv-table">
+        <tr><td>معرف الميزة</td><td><input class="form-input code-dir" data-field="feature_id" placeholder="S__-DEV-P__-F__"></td></tr>
+        <tr><td>اسم الميزة</td><td><input class="form-input" data-field="feature_name" placeholder="اسم الميزة"></td></tr>
+        <tr><td>المنتج</td><td><input class="form-input" data-field="product" placeholder="اسم المنتج"></td></tr>
+        <tr><td>مدير المنتج</td><td><input class="form-input" data-field="pm_name" placeholder="الاسم"></td></tr>
+        <tr><td>المحلل</td><td><input class="form-input" data-field="analyst" placeholder="الاسم"></td></tr>
+        <tr><td>تاريخ التحليل</td><td><input class="form-input" type="date" data-field="analysis_date"></td></tr>
+        <tr><td>الإصدار</td><td>
+          <span class="version-display" id="versionDisplay" data-field="version">1.0</span>
+          <input type="hidden" data-field="version" id="versionInput" value="1.0">
+          <span style="color:var(--text-muted);font-size:11px;margin-right:8px">(للقراءة فقط - يُزاد +0.1 تلقائياً عند كل حفظ)</span>
+        </td></tr>
+        <tr><td>الأولوية</td><td>
+          <select class="form-select" data-field="priority" style="width:150px">
+            <option value="">-- اختر --</option>
+            <option value="P1">P1 - حرجة</option>
+            <option value="P2">P2 - عالية</option>
+            <option value="P3">P3 - متوسطة</option>
+            <option value="P4">P4 - منخفضة</option>
+          </select>
+        </td></tr>
+        <tr><td>نوع الطلب <span style="color:var(--secondary)">*</span></td><td>
+          <select class="form-select" data-field="request_type" id="requestTypeSelect" onchange="setRequestType(this.value)" style="width:220px">
+            <option value="">-- اختر نوع الطلب --</option>
+            <option value="new">خاصية جديدة</option>
+            <option value="change">طلب تغيير</option>
+            <option value="integration">طلب تكامل خارجي</option>
+          </select>
+        </td></tr>
+        <tr><td>ميزة مشتركة بين منتجات</td><td>
+          <select class="form-select" data-field="shared_feature" id="sharedFeatureSelect" onchange="toggleSharedProducts(this.value)" style="width:120px;display:inline-block;margin-left:10px">
+            <option value="لا">لا</option>
+            <option value="نعم">نعم</option>
+          </select>
+          <div id="sharedProductsBox" style="display:none;margin-top:10px;padding:14px;background:#fdf6fb;border:1px solid #f0d4ea;border-radius:var(--radius);">
+            <div style="font-size:12px;color:var(--text-light);margin-bottom:10px;">حدد المنتجات المشتركة:</div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;">
+              <label class="check-item" style="padding:4px 0"><input type="checkbox" data-field="prod_kayan" value="كيان"><span>كيان</span></label>
+              <label class="check-item" style="padding:4px 0"><input type="checkbox" data-field="prod_holol" value="حلول"><span>حلول</span></label>
+              <label class="check-item" style="padding:4px 0"><input type="checkbox" data-field="prod_bathl" value="بذل"><span>بذل</span></label>
+              <label class="check-item" style="padding:4px 0"><input type="checkbox" data-field="prod_atta" value="عطاء"><span>عطاء</span></label>
+              <label class="check-item" style="padding:4px 0"><input type="checkbox" data-field="prod_maharah" value="مهارة"><span>مهارة</span></label>
+              <label class="check-item" style="padding:4px 0"><input type="checkbox" data-field="prod_liqa" value="لقاء"><span>لقاء</span></label>
+              <label class="check-item" style="padding:4px 0"><input type="checkbox" data-field="prod_khebrah" value="خبرة"><span>خبرة</span></label>
+              <label class="check-item" style="padding:4px 0"><input type="checkbox" data-field="prod_nazem" value="نظّم"><span>نظّم</span></label>
+              <label class="check-item" style="padding:4px 0"><input type="checkbox" data-field="prod_mansatuk" value="منصتك"><span>منصتك</span></label>
+              <label class="check-item" style="padding:4px 0"><input type="checkbox" data-field="prod_other_check" id="prodOtherCheck" onchange="document.getElementById('prodOtherInput').disabled=!this.checked"><span>أخرى</span></label>
+            </div>
+            <input class="form-input" id="prodOtherInput" data-field="prod_other_text" placeholder="حدد المنتج/المنتجات الأخرى" style="margin-top:10px" disabled>
+          </div>
+        </td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 2: تفاصيل الطلب (ديناميكي حسب نوع الطلب) -->
+<!-- ================================================================ -->
+<div class="section" id="sec2" data-role="analyst" data-role-label="محلل / مدير منتج">
+  <div class="section-header">
+    <span class="section-num">2</span>
+    <span class="section-title">تفاصيل الطلب</span>
+    <span class="section-required">* إلزامي</span>
+  </div>
+  <div class="section-body">
+    <div class="section-hint" id="reqTypeHint">
+      <strong>تنبيه:</strong> الحقول الظاهرة في هذا القسم تتغير بناءً على <strong>نوع الطلب</strong> المحدد في القسم 1.
+      <span id="currentReqType" style="margin-right:8px;font-weight:700;color:var(--secondary)">— لم يُحدد نوع الطلب بعد</span>
+    </div>
+
+    <!-- ================================================== -->
+    <!-- A) خاصية جديدة -->
+    <!-- ================================================== -->
+    <div class="req-block" data-req-type="new">
+      <span class="req-block-tag">خاصية جديدة</span>
+
+      <h3 class="subsection-title">2.1 وصف الخاصية <span class="req-required-badge">إجباري</span></h3>
+      <div class="section-hint">اكتب وصفاً واضحاً ومختصراً للخاصية الجديدة. ماذا تفعل؟ لمن؟ لماذا مطلوبة؟</div>
+      <div class="read-only">
+        <p style="padding:14px;background:#fafafa;border-radius:var(--radius);line-height:2;">
+          تتيح هذه الميزة للطالب التسجيل في الدورات التدريبية المتاحة عبر النظام. يمكن للطالب اختيار الدورة والتسجيل فيها مباشرة (إذا كانت مجانية) أو بعد إتمام عملية الدفع (إذا كانت مدفوعة).
+        </p>
+      </div>
+      <div class="fill-only">
+        <textarea class="form-textarea" data-field="new_description" rows="4" placeholder="وصف الخاصية الجديدة..."></textarea>
+      </div>
+
+      <h3 class="subsection-title">2.2 قصص المستخدم (User Stories) <span class="req-required-badge">إجباري</span></h3>
+      <div class="section-hint">كل قصة بالصيغة: كـ [نوع المستخدم]، أريد [الإجراء]، حتى [الفائدة].</div>
+      <div class="fill-only">
+        <table class="data-table" id="tblUserStoriesNew">
+          <thead><tr><th>#</th><th>كـ...</th><th>أريد...</th><th>حتى...</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><input class="form-input sm" data-field="us_id_1" value="US-01" style="width:70px"></td>
+              <td><input class="form-input" data-field="us_as_1" placeholder="نوع المستخدم"></td>
+              <td><input class="form-input" data-field="us_want_1" placeholder="الإجراء/الوظيفة"></td>
+              <td><input class="form-input" data-field="us_so_1" placeholder="الفائدة/القيمة"></td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="add-row-btn" onclick="addTableRow('tblUserStoriesNew',['us_id','us_as','us_want','us_so'],'US')">+ إضافة قصة مستخدم</button>
+      </div>
+
+      <h3 class="subsection-title">2.3 معايير القبول (Acceptance Criteria) <span class="req-required-badge">إجباري</span></h3>
+      <div class="section-hint">كل معيار يجب أن يكون قابلاً للاختبار وواضحاً.</div>
+      <div class="fill-only">
+        <table class="data-table" id="tblACNew">
+          <thead><tr><th>#</th><th>المعيار</th><th>قابل للاختبار؟</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><input class="form-input" style="width:65px" data-field="ac_id_1" value="AC-01"></td>
+              <td><input class="form-input" data-field="ac_criteria_1" placeholder="المعيار"></td>
+              <td><select class="form-select" data-field="ac_testable_1" style="width:80px"><option>نعم</option><option>لا</option></select></td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="add-row-btn" onclick="addTableRow('tblACNew',['ac_id','ac_criteria','ac_testable'],'AC')">+ إضافة معيار</button>
+      </div>
+    </div>
+
+    <!-- ================================================== -->
+    <!-- B) طلب تغيير -->
+    <!-- ================================================== -->
+    <div class="req-block" data-req-type="change">
+      <span class="req-block-tag">طلب تغيير</span>
+
+      <h3 class="subsection-title">2.1 وصف الوضع الحالي (As-Is) <span class="req-required-badge">إجباري</span></h3>
+      <div class="section-hint">صف كيف يعمل النظام/الميزة حالياً قبل التغيير.</div>
+      <div class="fill-only">
+        <textarea class="form-textarea" data-field="change_as_is" rows="4" placeholder="الوضع الحالي قبل التغيير..."></textarea>
+      </div>
+
+      <h3 class="subsection-title">2.2 وصف التغيير المطلوب (To-Be) <span class="req-required-badge">إجباري</span></h3>
+      <div class="section-hint">صف الوضع المستهدف بعد إجراء التغيير، مع توضيح الفروقات.</div>
+      <div class="fill-only">
+        <textarea class="form-textarea" data-field="change_to_be" rows="4" placeholder="الوضع المستهدف بعد التغيير..."></textarea>
+      </div>
+
+      <h3 class="subsection-title">2.3 قصص المستخدم (User Stories) <span class="req-optional-badge">اختياري</span></h3>
+      <div class="fill-only">
+        <table class="data-table" id="tblUserStoriesChange">
+          <thead><tr><th>#</th><th>كـ...</th><th>أريد...</th><th>حتى...</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><input class="form-input sm" data-field="ch_us_id_1" value="US-01" style="width:70px"></td>
+              <td><input class="form-input" data-field="ch_us_as_1" placeholder="نوع المستخدم"></td>
+              <td><input class="form-input" data-field="ch_us_want_1" placeholder="الإجراء"></td>
+              <td><input class="form-input" data-field="ch_us_so_1" placeholder="الفائدة"></td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="add-row-btn" onclick="addTableRow('tblUserStoriesChange',['ch_us_id','ch_us_as','ch_us_want','ch_us_so'],'US')">+ إضافة قصة مستخدم</button>
+      </div>
+
+      <h3 class="subsection-title">2.4 معايير القبول <span class="req-optional-badge">اختياري</span></h3>
+      <div class="fill-only">
+        <table class="data-table" id="tblACChange">
+          <thead><tr><th>#</th><th>المعيار</th><th>قابل للاختبار؟</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><input class="form-input" style="width:65px" data-field="ch_ac_id_1" value="AC-01"></td>
+              <td><input class="form-input" data-field="ch_ac_criteria_1" placeholder="المعيار"></td>
+              <td><select class="form-select" data-field="ch_ac_testable_1" style="width:80px"><option>نعم</option><option>لا</option></select></td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="add-row-btn" onclick="addTableRow('tblACChange',['ch_ac_id','ch_ac_criteria','ch_ac_testable'],'AC')">+ إضافة معيار</button>
+      </div>
+    </div>
+
+    <!-- ================================================== -->
+    <!-- A & B: الواجهات المتأثرة (مشترك بين خاصية جديدة وطلب تغيير) -->
+    <!-- ================================================== -->
+    <div class="req-block" data-req-type="new change">
+      <span class="req-block-tag">خاصية جديدة + طلب تغيير</span>
+      <h3 class="subsection-title">الواجهات المتأثرة <span class="req-required-badge">إجباري</span></h3>
+      <div class="section-hint">حدد الواجهات التي ستتأثر بالخاصية/التغيير.</div>
+      <div class="fill-only">
+        <table class="data-table" id="tblInterfaces">
+          <thead><tr><th>الواجهة</th><th>متأثرة؟</th><th>وصف التأثير</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>واجهة مدير النظام / الموظف</td>
+              <td><select class="form-select" data-field="iface_admin" style="width:90px"><option>نعم</option><option>لا</option></select></td>
+              <td><input class="form-input" data-field="iface_admin_desc" placeholder="وصف التأثير"></td>
+            </tr>
+            <tr>
+              <td>واجهة المستخدم (User Interface)</td>
+              <td><select class="form-select" data-field="iface_user" style="width:90px"><option>نعم</option><option>لا</option></select></td>
+              <td><input class="form-input" data-field="iface_user_desc" placeholder="وصف التأثير"></td>
+            </tr>
+            <tr>
+              <td>الواجهة العامة (Public Interface)</td>
+              <td><select class="form-select" data-field="iface_public" style="width:90px"><option>نعم</option><option>لا</option></select></td>
+              <td><input class="form-input" data-field="iface_public_desc" placeholder="وصف التأثير"></td>
+            </tr>
+            <tr>
+              <td>API</td>
+              <td><select class="form-select" data-field="iface_api" style="width:90px"><option>نعم</option><option>لا</option></select></td>
+              <td><input class="form-input" data-field="iface_api_desc" placeholder="وصف التأثير"></td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="add-row-btn" onclick="addInterfaceRow()">+ إضافة واجهة أخرى</button>
+      </div>
+    </div>
+
+    <!-- ================================================== -->
+    <!-- C) طلب تكامل خارجي -->
+    <!-- ================================================== -->
+    <div class="req-block" data-req-type="integration">
+      <span class="req-block-tag">طلب تكامل خارجي</span>
+
+      <h3 class="subsection-title">2.1 معلومات مزود الخدمة <span class="req-required-badge">إجباري</span></h3>
+      <div class="fill-only">
+        <table class="kv-table">
+          <tr><td>اسم مزود الخدمة <span style="color:var(--secondary)">*</span></td>
+              <td><input class="form-input" data-field="int_provider_name" placeholder="مثال: STC Pay, Tabby, Twilio"></td></tr>
+          <tr><td>نوع التكامل <span style="color:var(--secondary)">*</span></td>
+              <td>
+                <select class="form-select" data-field="int_type" style="width:240px">
+                  <option value="">-- اختر النوع --</option>
+                  <option value="sms">رسائل نصية (SMS)</option>
+                  <option value="payment">دفع</option>
+                  <option value="streaming">بث (Streaming)</option>
+                  <option value="social">شبكات اجتماعية</option>
+                  <option value="other">أخرى</option>
+                </select>
+                <input class="form-input" data-field="int_type_other" placeholder="حدد إذا كان نوع آخر" style="margin-top:8px">
+              </td></tr>
+        </table>
+      </div>
+
+      <h3 class="subsection-title">2.2 البيانات التجريبية للربط (Sandbox/Test Credentials) <span class="req-required-badge">إجباري</span></h3>
+      <div class="section-hint">المعلومات اللازمة لاختبار التكامل (المفاتيح، نقاط النهاية، الحسابات التجريبية...).</div>
+      <div class="fill-only">
+        <textarea class="form-textarea" data-field="int_test_data" rows="6" placeholder="API Key (Sandbox): ___&#10;Endpoint: https://___&#10;Test Account: ___&#10;ملاحظات إضافية: ___" style="font-family:'Courier New',monospace;direction:ltr;text-align:left"></textarea>
+      </div>
+
+      <h3 class="subsection-title">2.3 ملف توثيق API <span class="req-optional-badge">اختياري</span></h3>
+      <div class="section-hint">ارفع ملف توثيق API الخاص بمزود الخدمة (PDF / Word / Postman / OpenAPI).</div>
+      <div class="fill-only">
+        <input type="file" id="intApiDocInput" accept=".pdf,.doc,.docx,.json,.yaml,.yml,.txt,.md" style="display:none" onchange="addAttachment('int_api_doc', event)">
+        <button class="add-row-btn" onclick="document.getElementById('intApiDocInput').click()">+ رفع ملف توثيق API</button>
+        <div class="attachments-list" id="attachments_int_api_doc"></div>
+      </div>
+
+      <h3 class="subsection-title">2.4 وصف الوظيفة أو الاستخدام المتوقع <span class="req-optional-badge">اختياري</span></h3>
+      <div class="fill-only">
+        <textarea class="form-textarea" data-field="int_usage_description" rows="4" placeholder="ما هي الوظيفة المطلوبة من التكامل؟ كيف ستُستخدم؟"></textarea>
+      </div>
+    </div>
+
+    <!-- ================================================== -->
+    <!-- المرفقات (مشتركة لجميع الأنواع) -->
+    <!-- ================================================== -->
+    <div class="req-block" data-req-type="new change integration">
+      <span class="req-block-tag">جميع الأنواع</span>
+      <h3 class="subsection-title">المرفقات <span class="req-optional-badge">اختياري</span></h3>
+      <div class="section-hint">ارفق أي ملفات داعمة (Mockups، عقود، رسوم توضيحية، أمثلة...).</div>
+      <div class="fill-only">
+        <input type="file" id="generalAttachInput" multiple style="display:none" onchange="addAttachment('general', event)">
+        <button class="add-row-btn" onclick="document.getElementById('generalAttachInput').click()">+ رفع مرفقات</button>
+        <div class="attachments-list" id="attachments_general"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 3: تحليل التأثير على النظام (NEW) -->
+<!-- ================================================================ -->
+<div class="section page-break" id="sec3" data-role="dev_lead" data-role-label="رئيس وحدة التطوير">
+  <div class="section-header">
+    <span class="section-num">3</span>
+    <span class="section-title">تحليل التأثير على النظام</span>
+    <span class="badge badge-med" style="margin-right:auto">اختياري</span>
+  </div>
+  <div class="section-body">
+    <div class="section-hint">يحدد هذا القسم تأثير الميزة الجديدة على الوحدات والميزات الموجودة في النظام، ويساعد في تقييم مخاطر الانحدار.</div>
+
+    <h3 class="subsection-title">3.1 الوحدات المتأثرة (Affected Modules)</h3>
+    <div class="read-only">
+      <table class="data-table">
+        <thead><tr><th>#</th><th>الوحدة/الخاصية الموجودة</th><th>نوع التأثير</th><th>وصف التأثير</th><th>مستوى الخطورة</th></tr></thead>
+        <tbody>
+          <tr><td>AM-01</td><td>وحدة إدارة الطلاب</td><td>تعديل مباشر</td><td>إضافة علاقة التسجيل في الدورات</td><td><span class="badge badge-med">متوسط</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="fill-only">
+      <table class="data-table" id="tblAffectedModules">
+        <thead><tr><th>#</th><th>الوحدة/الخاصية الموجودة</th><th>نوع التأثير</th><th>وصف التأثير</th><th>مستوى الخطورة</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><input class="form-input" style="width:65px" data-field="am_id_1" value="AM-01"></td>
+            <td><input class="form-input" data-field="am_module_1" placeholder="اسم الوحدة"></td>
+            <td><select class="form-select" data-field="am_type_1" style="width:140px">
+              <option value="تعديل مباشر">تعديل مباشر</option>
+              <option value="تبعية بيانات">تبعية بيانات</option>
+              <option value="تبعية منطقية">تبعية منطقية</option>
+              <option value="تأثير على الأداء">تأثير على الأداء</option>
+              <option value="تأثير على الأمان">تأثير على الأمان</option>
+            </select></td>
+            <td><input class="form-input" data-field="am_desc_1" placeholder="وصف التأثير"></td>
+            <td><select class="form-select" data-field="am_severity_1" style="width:100px">
+              <option value="عالي">عالي</option>
+              <option value="متوسط">متوسط</option>
+              <option value="منخفض">منخفض</option>
+            </select></td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="add-row-btn" onclick="addAffectedModuleRow()">+ إضافة وحدة</button>
+    </div>
+
+    <div style="border-top:1px dotted var(--border);margin:20px 0;"></div>
+
+    <h3 class="subsection-title">3.2 مصفوفة التتبع (Traceability Matrix)</h3>
+    <div class="read-only">
+      <table class="data-table">
+        <thead><tr><th>#</th><th>User Story</th><th>الميزات الموجودة المتأثرة</th><th>نوع العلاقة</th><th>إجراء مطلوب</th></tr></thead>
+        <tbody>
+          <tr><td>TM-01</td><td>US-01</td><td>نظام إدارة الدورات</td><td>تعتمد عليها</td><td>التأكد من توافق API</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="fill-only">
+      <table class="data-table" id="tblTraceability">
+        <thead><tr><th>#</th><th>User Story</th><th>الميزات الموجودة المتأثرة</th><th>نوع العلاقة</th><th>إجراء مطلوب</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><input class="form-input" style="width:65px" data-field="tm_id_1" value="TM-01"></td>
+            <td><input class="form-input" data-field="tm_story_1" placeholder="US-__"></td>
+            <td><input class="form-input" data-field="tm_feature_1" placeholder="الميزة المتأثرة"></td>
+            <td><select class="form-select" data-field="tm_relation_1" style="width:130px">
+              <option value="تعتمد عليها">تعتمد عليها</option>
+              <option value="تتعارض معها">تتعارض معها</option>
+              <option value="تُكملها">تُكملها</option>
+              <option value="تُعدّلها">تُعدّلها</option>
+            </select></td>
+            <td><input class="form-input" data-field="tm_action_1" placeholder="الإجراء المطلوب"></td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="add-row-btn" onclick="addTableRow('tblTraceability',['tm_id','tm_story','tm_feature','tm_relation','tm_action'],'TM')">+ إضافة صف</button>
+    </div>
+
+    <div style="border-top:1px dotted var(--border);margin:20px 0;"></div>
+
+    <h3 class="subsection-title">3.3 تحليل الانحدار (Regression Risk)</h3>
+    <div class="read-only">
+      <table class="data-table">
+        <thead><tr><th>#</th><th>المنطقة/الوحدة</th><th>احتمال التأثر</th><th>الاختبارات المطلوبة</th></tr></thead>
+        <tbody>
+          <tr><td>RR-01</td><td>عملية الدفع</td><td><span class="badge badge-high">عالي</span></td><td>اختبار كامل لسيناريوهات الدفع</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="fill-only">
+      <table class="data-table" id="tblRegression">
+        <thead><tr><th>#</th><th>المنطقة/الوحدة</th><th>احتمال التأثر</th><th>الاختبارات المطلوبة</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><input class="form-input" style="width:65px" data-field="rr_id_1" value="RR-01"></td>
+            <td><input class="form-input" data-field="rr_area_1" placeholder="المنطقة/الوحدة"></td>
+            <td><select class="form-select" data-field="rr_prob_1" style="width:100px">
+              <option value="عالي">عالي</option>
+              <option value="متوسط">متوسط</option>
+              <option value="منخفض">منخفض</option>
+            </select></td>
+            <td><input class="form-input" data-field="rr_tests_1" placeholder="الاختبارات المطلوبة"></td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="add-row-btn" onclick="addTableRow('tblRegression',['rr_id','rr_area','rr_prob','rr_tests'],'RR')">+ إضافة صف</button>
+    </div>
+
+    <div style="border-top:1px dotted var(--border);margin:20px 0;"></div>
+
+    <h3 class="subsection-title">3.4 ملخص التأثير</h3>
+    <div class="summary-box">
+      <div class="read-only">
+        <table class="kv-table">
+          <tr><td>عدد الوحدات المتأثرة</td><td>-</td></tr>
+          <tr><td>مستوى المخاطر الكلي</td><td>-</td></tr>
+          <tr><td>هل يحتاج اختبار انحدار شامل</td><td>-</td></tr>
+        </table>
+      </div>
+      <div class="fill-only">
+        <table class="kv-table">
+          <tr><td>عدد الوحدات المتأثرة</td><td><input class="form-input sm" data-field="impact_module_count" type="number" placeholder="0"></td></tr>
+          <tr><td>مستوى المخاطر الكلي</td><td>
+            <select class="form-select" data-field="impact_risk_level" style="width:130px">
+              <option value="">-- اختر --</option>
+              <option value="عالي">عالي</option>
+              <option value="متوسط">متوسط</option>
+              <option value="منخفض">منخفض</option>
+            </select>
+          </td></tr>
+          <tr><td>هل يحتاج اختبار انحدار شامل</td><td>
+            <select class="form-select" data-field="impact_needs_regression" style="width:100px">
+              <option value="">-- اختر --</option>
+              <option value="نعم">نعم</option>
+              <option value="لا">لا</option>
+            </select>
+          </td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 4: المدخلات والمخرجات -->
+<!-- ================================================================ -->
+<div class="section page-break" id="sec4" data-role="dev_lead" data-role-label="رئيس وحدة التطوير">
+  <div class="section-header">
+    <span class="section-num">4</span>
+    <span class="section-title">المدخلات والمخرجات</span>
+    <span class="badge badge-med" style="margin-right:auto">اختياري</span>
+  </div>
+  <div class="section-body">
+    <h3 class="subsection-title">4.1 جدول المدخلات (Inputs)</h3>
+    <div class="section-hint">لكل حقل إدخال في الميزة، حدد النوع والقيود ومعايير القبول.</div>
+
+    <div class="read-only">
+      <table class="data-table">
+        <thead><tr><th>#</th><th>اسم الحقل</th><th>النوع</th><th>القيود</th><th>إلزامي</th><th>القيمة الافتراضية</th><th>مثال</th></tr></thead>
+        <tbody>
+          <tr><td>I-01</td><td>معرف الدورة</td><td><code>relation</code></td><td><code>exists:courses,id</code></td><td>نعم</td><td>-</td><td>101</td></tr>
+          <tr><td>I-02</td><td>معرف الطالب</td><td><code>relation</code></td><td><code>exists:students,id</code></td><td>نعم</td><td>من الجلسة</td><td>505</td></tr>
+          <tr><td>I-03</td><td>طريقة الدفع</td><td><code>enum</code></td><td><code>values:free,wallet,card</code></td><td>نعم</td><td>free</td><td>wallet</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="fill-only">
+      <table class="data-table" id="tblInputs">
+        <thead><tr><th>#</th><th>اسم الحقل</th><th>النوع</th><th>القيود</th><th>إلزامي</th><th>القيمة الافتراضية</th><th>مثال</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><input class="form-input" style="width:60px" data-field="inp_id_1" value="I-01"></td>
+            <td><input class="form-input" data-field="inp_name_1" placeholder="اسم الحقل"></td>
+            <td><select class="form-select" data-field="inp_type_1" style="width:110px">
+              <option value="string">string</option><option value="integer">integer</option><option value="float">float</option>
+              <option value="boolean">boolean</option><option value="date">date</option><option value="datetime">datetime</option>
+              <option value="email">email</option><option value="file">file</option><option value="enum">enum</option>
+              <option value="array">array</option><option value="relation">relation</option>
+            </select></td>
+            <td><input class="form-input code-dir" data-field="inp_constraints_1" placeholder="min:3, max:255"></td>
+            <td><select class="form-select" data-field="inp_required_1" style="width:80px"><option>نعم</option><option>لا</option></select></td>
+            <td><input class="form-input" data-field="inp_default_1" placeholder="-"></td>
+            <td><input class="form-input" data-field="inp_example_1" placeholder="مثال"></td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="add-row-btn" onclick="addInputRow()">+ إضافة حقل إدخال</button>
+    </div>
+
+    <div class="divider"></div>
+
+    <h3 class="subsection-title">أنواع الحقول المعتمدة (مرجع)</h3>
+    <table class="data-table">
+      <thead><tr><th>النوع</th><th>الوصف</th><th>أمثلة على القيود</th></tr></thead>
+      <tbody>
+        <tr><td><code>string</code></td><td>نص</td><td><code>min:3</code>, <code>max:255</code>, <code>regex:/^[a-z]+$/</code></td></tr>
+        <tr><td><code>integer</code></td><td>عدد صحيح</td><td><code>min:0</code>, <code>max:1000000</code></td></tr>
+        <tr><td><code>float</code></td><td>عدد عشري</td><td><code>min:0.01</code>, <code>max:999999.99</code>, <code>decimal:2</code></td></tr>
+        <tr><td><code>boolean</code></td><td>صح/خطأ</td><td><code>true</code> / <code>false</code></td></tr>
+        <tr><td><code>date</code></td><td>تاريخ</td><td><code>after:today</code>, <code>before:2030-12-31</code></td></tr>
+        <tr><td><code>datetime</code></td><td>تاريخ ووقت</td><td><code>after:now</code></td></tr>
+        <tr><td><code>email</code></td><td>بريد إلكتروني</td><td><code>unique</code>, <code>verified</code></td></tr>
+        <tr><td><code>file</code></td><td>ملف</td><td><code>max_size:5MB</code>, <code>types:pdf,doc,docx</code></td></tr>
+        <tr><td><code>enum</code></td><td>قائمة محددة</td><td><code>values:active,inactive,pending</code></td></tr>
+        <tr><td><code>array</code></td><td>مصفوفة</td><td><code>min:1</code>, <code>max:10</code>, <code>items:string</code></td></tr>
+        <tr><td><code>relation</code></td><td>علاقة (FK)</td><td><code>exists:users,id</code></td></tr>
+      </tbody>
+    </table>
+
+    <div class="divider"></div>
+
+    <h3 class="subsection-title">4.2 جدول المخرجات (Outputs)</h3>
+    <div class="read-only">
+      <table class="data-table">
+        <thead><tr><th>#</th><th>اسم المخرج</th><th>النوع</th><th>الوصف</th><th>المعادلة/المنطق</th></tr></thead>
+        <tbody>
+          <tr><td>O-01</td><td>حالة التسجيل</td><td><code>enum</code></td><td>نتيجة عملية التسجيل</td><td><code>success | failed | pending</code></td></tr>
+          <tr><td>O-02</td><td>رقم الفاتورة</td><td><code>string</code></td><td>رقم فاتورة الدفع (إن وجد)</td><td>توليد تلقائي</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="fill-only">
+      <table class="data-table" id="tblOutputs">
+        <thead><tr><th>#</th><th>اسم المخرج</th><th>النوع</th><th>الوصف</th><th>المعادلة/المنطق</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><input class="form-input" style="width:60px" data-field="out_id_1" value="O-01"></td>
+            <td><input class="form-input" data-field="out_name_1" placeholder="اسم المخرج"></td>
+            <td><input class="form-input" data-field="out_type_1" placeholder="النوع"></td>
+            <td><input class="form-input" data-field="out_desc_1" placeholder="الوصف"></td>
+            <td><input class="form-input" data-field="out_logic_1" placeholder="المعادلة/المنطق"></td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="add-row-btn" onclick="addTableRow('tblOutputs',['out_id','out_name','out_type','out_desc','out_logic'],'O')">+ إضافة مخرج</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 5: المعادلات والمنطق الرياضي -->
+<!-- ================================================================ -->
+<div class="section page-break" id="sec5" data-role="dev_lead" data-role-label="رئيس وحدة التطوير">
+  <div class="section-header">
+    <span class="section-num">5</span>
+    <span class="section-title">المعادلات والمنطق الرياضي</span>
+    <span class="badge badge-med" style="margin-right:auto">اختياري</span>
+  </div>
+  <div class="section-body">
+    <div class="section-hint">هذا القسم إلزامي لأي ميزة تحتوي حسابات أو منطق شرطي. يُملأ من المحلل/مدير المنتج (الحد الأدنى)، ويُكمل لاحقاً من الفريق البرمجي.</div>
+
+    <h3 class="subsection-title">5.1 المعادلات الأساسية</h3>
+    <div class="read-only">
+      <div class="code-block">
+        <span class="code-block-label">Formula</span>
+المعادلة 1: حساب إجمالي الفاتورة
+الصيغة:    إجمالي_الفاتورة = سعر_الدورة × (1 + نسبة_الضريبة) - قيمة_الخصم
+مثال:      150 = 100 × (1 + 0.15) - 15 × 1
+القيود:    إجمالي_الفاتورة >= 0
+
+المعادلة 2: حساب الرصيد بعد الخصم
+الصيغة:    رصيد_المحفظة_الجديد = رصيد_المحفظة_الحالي - إجمالي_الفاتورة
+مثال:      850 = 1000 - 150
+القيود:    رصيد_المحفظة_الجديد >= 0
+      </div>
+    </div>
+    <div class="fill-only">
+      <textarea class="form-textarea" data-field="formulas" rows="10" placeholder="المعادلة 1: [اسم المعادلة]
+الصيغة:    [المتغير] = [المعادلة]
+مثال:
+القيود:    " style="font-family:'Courier New',monospace;direction:rtl;"></textarea>
+    </div>
+
+    <h3 class="subsection-title">5.2 الشروط المسبقة واللاحقة (Pre/Post Conditions)</h3>
+    <div class="section-hint">مستوحى من Hoare Logic -- يحدد ما يجب أن يكون صحيحاً قبل وبعد كل عملية. مطلوب من المحلل: الشروط الأساسية. يُكمل من المطور: التفاصيل التقنية.</div>
+    <div class="read-only">
+      <table class="data-table">
+        <thead><tr><th>#</th><th>العملية</th><th>الشرط المسبق (P)</th><th>الشرط اللاحق (Q)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>C-01</td>
+            <td>تسجيل طالب في دورة</td>
+            <td><code>{الطالب مسجل في النظام}</code> AND <code>{الدورة متاحة}</code> AND <code>{الطالب غير مسجل بها}</code></td>
+            <td><code>{عدد_المسجلين_بعد = عدد_المسجلين_قبل + 1}</code> AND <code>{حالة_التسجيل = active}</code></td>
+          </tr>
+          <tr>
+            <td>C-02</td>
+            <td>خصم رسوم الدورة</td>
+            <td><code>{رصيد_المحفظة >= سعر_الدورة}</code> AND <code>{سعر_الدورة > 0}</code></td>
+            <td><code>{رصيد_المحفظة_بعد = رصيد_المحفظة_قبل - سعر_الدورة}</code> AND <code>{رصيد_المحفظة_بعد >= 0}</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="fill-only">
+      <table class="data-table" id="tblConditions">
+        <thead><tr><th>#</th><th>العملية</th><th>الشرط المسبق (P)</th><th>الشرط اللاحق (Q)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><input class="form-input" style="width:60px" data-field="cond_id_1" value="C-01"></td>
+            <td><input class="form-input" data-field="cond_op_1" placeholder="العملية"></td>
+            <td><input class="form-input code-dir" data-field="cond_pre_1" placeholder="{شرط قبل التنفيذ}"></td>
+            <td><input class="form-input code-dir" data-field="cond_post_1" placeholder="{شرط بعد التنفيذ}"></td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="add-row-btn" onclick="addTableRow('tblConditions',['cond_id','cond_op','cond_pre','cond_post'],'C')">+ إضافة شرط</button>
+    </div>
+
+    <h3 class="subsection-title">5.3 الثوابت (Invariants)</h3>
+    <div class="read-only">
+      <table class="data-table">
+        <thead><tr><th>#</th><th>الثابت</th><th>الوصف</th></tr></thead>
+        <tbody>
+          <tr><td>INV-01</td><td><code>رصيد_المحفظة >= 0</code></td><td>الرصيد لا يكون سالباً أبداً</td></tr>
+          <tr><td>INV-02</td><td><code>عدد_المسجلين <= الحد_الأقصى_للدورة</code></td><td>لا يتجاوز عدد المسجلين سعة الدورة</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="fill-only">
+      <table class="data-table" id="tblInvariants">
+        <thead><tr><th>#</th><th>الثابت</th><th>الوصف</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><input class="form-input" style="width:70px" data-field="inv_id_1" value="INV-01"></td>
+            <td><input class="form-input code-dir" data-field="inv_cond_1" placeholder="الثابت"></td>
+            <td><input class="form-input" data-field="inv_desc_1" placeholder="الوصف"></td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="add-row-btn" onclick="addTableRow('tblInvariants',['inv_id','inv_cond','inv_desc'],'INV')">+ إضافة ثابت</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 6: جدول القرار -->
+<!-- ================================================================ -->
+<div class="section page-break" id="sec6" data-role="dev_lead" data-role-label="رئيس وحدة التطوير">
+  <div class="section-header">
+    <span class="section-num">6</span>
+    <span class="section-title">جدول القرار (Decision Table)</span>
+    <span class="badge badge-med" style="margin-right:auto">اختياري</span>
+  </div>
+  <div class="section-body">
+    <div class="section-hint">إلزامي لأي ميزة فيها منطق شرطي (if/else/switch). يُحدد كل الحالات الممكنة والنتيجة لكل حالة.</div>
+
+    <h3 class="subsection-title">6.1 جدول القرار الرئيسي</h3>
+    <div class="read-only">
+      <table class="data-table">
+        <thead><tr><th>#</th><th>الدورة متاحة</th><th>الطالب مسجل</th><th>طريقة الدفع</th><th>النتيجة</th><th>الإجراء</th></tr></thead>
+        <tbody>
+          <tr><td>R-01</td><td><span class="status-dot green"></span> نعم</td><td>لا</td><td>مجاني</td><td><span class="badge badge-low">تسجيل مباشر</span></td><td>إنشاء تسجيل + إشعار</td></tr>
+          <tr><td>R-02</td><td><span class="status-dot green"></span> نعم</td><td>لا</td><td>مدفوع - محفظة</td><td><span class="badge badge-low">تسجيل بعد الخصم</span></td><td>خصم + إنشاء تسجيل + فاتورة</td></tr>
+          <tr><td>R-03</td><td><span class="status-dot green"></span> نعم</td><td>لا</td><td>مدفوع - بطاقة</td><td><span class="badge badge-low">تسجيل بعد الدفع</span></td><td>بوابة دفع + إنشاء تسجيل + فاتورة</td></tr>
+          <tr><td>R-04</td><td><span class="status-dot green"></span> نعم</td><td>نعم</td><td>أي</td><td><span class="badge badge-high">رفض</span></td><td>عرض رسالة "مسجل بالفعل"</td></tr>
+          <tr><td>R-05</td><td><span class="status-dot red"></span> لا</td><td>أي</td><td>أي</td><td><span class="badge badge-high">رفض</span></td><td>عرض رسالة "الدورة غير متاحة"</td></tr>
+          <tr><td>R-06</td><td><span class="status-dot green"></span> نعم</td><td>لا</td><td>مدفوع - رصيد غير كافٍ</td><td><span class="badge badge-high">رفض</span></td><td>عرض رسالة "الرصيد غير كافٍ"</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="fill-only">
+      <table class="data-table" id="tblDecision">
+        <thead><tr><th>#</th><th>الشرط 1</th><th>الشرط 2</th><th>الشرط 3</th><th>النتيجة</th><th>الإجراء</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><input class="form-input" style="width:60px" data-field="dec_id_1" value="R-01"></td>
+            <td><input class="form-input" data-field="dec_c1_1" placeholder="الشرط 1"></td>
+            <td><input class="form-input" data-field="dec_c2_1" placeholder="الشرط 2"></td>
+            <td><input class="form-input" data-field="dec_c3_1" placeholder="الشرط 3"></td>
+            <td><input class="form-input" data-field="dec_result_1" placeholder="النتيجة"></td>
+            <td><input class="form-input" data-field="dec_action_1" placeholder="الإجراء"></td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="add-row-btn" onclick="addTableRow('tblDecision',['dec_id','dec_c1','dec_c2','dec_c3','dec_result','dec_action'],'R')">+ إضافة قاعدة</button>
+    </div>
+
+    <h3 class="subsection-title">6.2 عدد الحالات الكلي</h3>
+    <div class="read-only">
+      <div class="code-block">
+عدد الشروط: 3
+عدد القيم الممكنة لكل شرط: 2, 2, 4
+إجمالي الحالات = 2 × 2 × 4 = 16
+عدد الحالات المغطاة في الجدول: 6 (مع دمج حالات "أي")
+تغطية: 100%
+      </div>
+    </div>
+    <div class="fill-only">
+      <textarea class="form-textarea" data-field="decision_coverage" rows="5" placeholder="عدد الشروط: ___
+عدد القيم الممكنة لكل شرط: ___, ___, ___
+إجمالي الحالات = حاصل الضرب = ___
+عدد الحالات المغطاة في الجدول: ___
+تغطية: ___% (يجب أن تكون 100%)" style="font-family:'Courier New',monospace"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 7: حالات الحدود -->
+<!-- ================================================================ -->
+<div class="section" id="sec7" data-role="qa dev_lead" data-role-label="QA / رئيس وحدة التطوير">
+  <div class="section-header">
+    <span class="section-num">7</span>
+    <span class="section-title">حالات الحدود (Edge Cases)</span>
+    <span class="badge badge-med" style="margin-right:auto">اختياري</span>
+  </div>
+  <div class="section-body">
+    <div class="section-hint">حالات استثنائية يجب اختبارها. إلزامي لكل ميزة.</div>
+    <div class="read-only">
+      <table class="data-table">
+        <thead><tr><th>#</th><th>الحالة</th><th>المدخل</th><th>النتيجة المتوقعة</th><th>الخطورة</th></tr></thead>
+        <tbody>
+          <tr><td>EC-01</td><td>سعر الدورة صفر</td><td><code>price = 0</code></td><td>تسجيل مجاني مباشر</td><td><span class="badge badge-med">متوسطة</span></td></tr>
+          <tr><td>EC-02</td><td>رصيد سالب (محاولة)</td><td><code>balance = -1</code></td><td>رفض العملية</td><td><span class="badge badge-high">عالية</span></td></tr>
+          <tr><td>EC-03</td><td>معرف دورة غير موجود</td><td><code>course_id = null</code></td><td>خطأ 404</td><td><span class="badge badge-high">عالية</span></td></tr>
+          <tr><td>EC-04</td><td>اسم فارغ</td><td><code>name = ""</code></td><td>خطأ تحقق</td><td><span class="badge badge-med">متوسطة</span></td></tr>
+          <tr><td>EC-05</td><td>قيمة دفع قصوى</td><td><code>amount = MAX_INT</code></td><td>رفض العملية</td><td><span class="badge badge-high">عالية</span></td></tr>
+          <tr><td>EC-06</td><td>حقن XSS</td><td><code>name = "&lt;script&gt;alert(1)&lt;/script&gt;"</code></td><td>تنظيف المدخل</td><td><span class="badge badge-high">عالية</span></td></tr>
+          <tr><td>EC-07</td><td>تسجيل متزامن</td><td>طالبان في آخر مقعد</td><td>قبول واحد فقط</td><td><span class="badge badge-high">عالية</span></td></tr>
+          <tr><td>EC-08</td><td>ضغط مزدوج</td><td>نقر زر التسجيل مرتين</td><td>تسجيل واحد فقط</td><td><span class="badge badge-med">متوسطة</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="fill-only">
+      <table class="data-table" id="tblEdge">
+        <thead><tr><th>#</th><th>الحالة</th><th>المدخل</th><th>النتيجة المتوقعة</th><th>الخطورة</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><input class="form-input" style="width:65px" data-field="ec_id_1" value="EC-01"></td>
+            <td><input class="form-input" data-field="ec_case_1" placeholder="الحالة"></td>
+            <td><input class="form-input code-dir" data-field="ec_input_1" placeholder="المدخل"></td>
+            <td><input class="form-input" data-field="ec_result_1" placeholder="النتيجة المتوقعة"></td>
+            <td><select class="form-select" data-field="ec_sev_1" style="width:100px">
+              <option value="عالية">عالية</option><option value="متوسطة">متوسطة</option><option value="منخفضة">منخفضة</option>
+            </select></td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="add-row-btn" onclick="addEdgeRow()">+ إضافة حالة حدود</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 8: سيناريوهات BDD -->
+<!-- ================================================================ -->
+<div class="section page-break" id="sec8" data-role="qa dev_lead" data-role-label="QA / رئيس وحدة التطوير">
+  <div class="section-header">
+    <span class="section-num">8</span>
+    <span class="section-title">سيناريوهات BDD (Behavior-Driven Development)</span>
+    <span class="badge badge-med" style="margin-right:auto">اختياري</span>
+  </div>
+  <div class="section-body">
+    <div class="section-hint">يُكتب بصيغة Gherkin. إلزامي لكل Acceptance Criterion. يُكتب من المحلل/QA في مرحلة التحليل، ويُنفّذ في مرحلة الاختبار عبر Behat/Codeception.</div>
+
+    <h3 class="subsection-title">8.1 Feature</h3>
+    <div class="read-only">
+      <div class="code-block">
+        <span class="code-block-label">Gherkin</span>
+<span class="kw">Feature:</span> تسجيل الطالب في الدورة
+  <span class="str">كـ طالب مسجل في النظام</span>
+  <span class="str">أريد التسجيل في دورة تدريبية</span>
+  <span class="str">حتى أتمكن من الوصول لمحتوى الدورة</span>
+      </div>
+    </div>
+    <div class="fill-only">
+      <textarea class="form-textarea" data-field="bdd_feature" rows="4" placeholder="Feature: [اسم الميزة]
+  كـ [نوع المستخدم]
+  أريد [الإجراء]
+  حتى [الفائدة]" style="font-family:'Courier New',monospace;direction:ltr;text-align:left"></textarea>
+    </div>
+
+    <h3 class="subsection-title">8.2 سيناريوهات</h3>
+    <div class="read-only">
+      <div class="code-block">
+        <span class="code-block-label">Gherkin - Happy Path</span>
+<span class="kw">Scenario:</span> تسجيل ناجح في دورة مجانية
+  <span class="kw">Given</span> الطالب مسجل في النظام ولديه حساب فعّال
+  <span class="kw">And</span> الدورة "مقدمة في البرمجة" متاحة ومجانية
+  <span class="kw">And</span> الطالب غير مسجل في هذه الدورة
+  <span class="kw">When</span> يضغط الطالب على زر "تسجيل في الدورة"
+  <span class="kw">Then</span> يتم تسجيل الطالب بنجاح
+  <span class="kw">And</span> تظهر رسالة "تم التسجيل بنجاح"
+  <span class="kw">And</span> يُرسل إشعار بريدي للطالب
+      </div>
+
+      <div class="code-block">
+        <span class="code-block-label">Gherkin - Error Case</span>
+<span class="kw">Scenario:</span> محاولة تسجيل مكرر
+  <span class="kw">Given</span> الطالب مسجل في الدورة "مقدمة في البرمجة"
+  <span class="kw">When</span> يحاول التسجيل في نفس الدورة مرة أخرى
+  <span class="kw">Then</span> تظهر رسالة خطأ "أنت مسجل في هذه الدورة بالفعل"
+      </div>
+
+      <div class="code-block">
+        <span class="code-block-label">Gherkin - Scenario Outline</span>
+<span class="kw">Scenario Outline:</span> تسجيل بطرق دفع مختلفة
+  <span class="kw">Given</span> الطالب لديه رصيد <span class="str">&lt;رصيد&gt;</span> في المحفظة
+  <span class="kw">And</span> سعر الدورة <span class="str">&lt;سعر&gt;</span>
+  <span class="kw">When</span> يختار طريقة الدفع <span class="str">&lt;طريقة&gt;</span>
+  <span class="kw">Then</span> النتيجة هي <span class="str">&lt;نتيجة&gt;</span>
+
+  <span class="kw">Examples:</span>
+    | رصيد | سعر | طريقة  | نتيجة      |
+    | 1000 | 500 | محفظة  | تسجيل ناجح |
+    | 100  | 500 | محفظة  | رصيد غير كافٍ |
+    | 0    | 0   | مجاني  | تسجيل ناجح |
+      </div>
+    </div>
+    <div class="fill-only">
+      <div id="bddScenarios">
+        <textarea class="form-textarea" data-field="bdd_scenario_1" rows="8" placeholder="Scenario: [اسم السيناريو]
+  Given [الحالة الأولية]
+  And [شرط إضافي]
+  When [الإجراء]
+  Then [النتيجة المتوقعة]
+  And [نتيجة إضافية]" style="font-family:'Courier New',monospace;direction:ltr;text-align:left;margin-bottom:10px"></textarea>
+      </div>
+      <button class="add-row-btn" onclick="addBddScenario()">+ إضافة سيناريو</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 9: محذوف — مدمج في القسم 2 الديناميكي حسب نوع الطلب -->
+<!-- ================================================================ -->
+
+<!-- ================================================================ -->
+<!-- SECTION 10: التأثير على قاعدة البيانات -->
+<!-- ================================================================ -->
+<div class="section page-break" id="sec10" data-role="dev_lead" data-role-label="رئيس وحدة التطوير">
+  <div class="section-header">
+    <span class="section-num">10</span>
+    <span class="section-title">التأثير على قاعدة البيانات</span>
+    <span class="badge badge-med" style="margin-right:auto">اختياري</span>
+  </div>
+  <div class="section-body">
+    <h3 class="subsection-title">10.1 جداول جديدة</h3>
+    <div class="read-only">
+      <table class="data-table">
+        <thead><tr><th>اسم الجدول</th><th>الوصف</th><th>الأعمدة الرئيسية</th></tr></thead>
+        <tbody>
+          <tr><td><code>enrollments</code></td><td>تسجيلات الطلاب في الدورات</td><td>id, student_id, course_id, status, payment_method, enrolled_at</td></tr>
+          <tr><td><code>enrollment_invoices</code></td><td>فواتير التسجيل</td><td>id, enrollment_id, amount, tax, discount, total</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="fill-only">
+      <table class="data-table" id="tblNewTables">
+        <thead><tr><th>اسم الجدول</th><th>الوصف</th><th>الأعمدة الرئيسية</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><input class="form-input code-dir" data-field="ntbl_name_1" placeholder="table_name"></td>
+            <td><input class="form-input" data-field="ntbl_desc_1" placeholder="الوصف"></td>
+            <td><input class="form-input code-dir" data-field="ntbl_cols_1" placeholder="id, name, ..."></td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="add-row-btn" onclick="addTableRow('tblNewTables',['ntbl_name','ntbl_desc','ntbl_cols'],'')">+ إضافة جدول</button>
+    </div>
+
+    <h3 class="subsection-title">10.2 تعديلات على جداول موجودة</h3>
+    <div class="read-only">
+      <table class="data-table">
+        <thead><tr><th>الجدول</th><th>نوع التعديل</th><th>العمود</th><th>التفاصيل</th></tr></thead>
+        <tbody>
+          <tr><td><code>students</code></td><td>إضافة عمود</td><td><code>total_enrollments</code></td><td>عدد التسجيلات الكلي (cache counter)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="fill-only">
+      <table class="data-table" id="tblModTables">
+        <thead><tr><th>الجدول</th><th>نوع التعديل</th><th>العمود</th><th>التفاصيل</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><input class="form-input code-dir" data-field="mtbl_name_1" placeholder="table"></td>
+            <td><select class="form-select" data-field="mtbl_type_1"><option>إضافة عمود</option><option>تعديل</option><option>حذف</option></select></td>
+            <td><input class="form-input code-dir" data-field="mtbl_col_1" placeholder="column"></td>
+            <td><input class="form-input" data-field="mtbl_detail_1" placeholder="التفاصيل"></td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="add-row-btn" onclick="addTableRow('tblModTables',['mtbl_name','mtbl_type','mtbl_col','mtbl_detail'],'')">+ إضافة تعديل</button>
+    </div>
+
+    <h3 class="subsection-title">10.3 العلاقات (Relations)</h3>
+    <div class="read-only">
+      <div class="code-block">
+[students] ─── 1:N ──── [enrollments]
+[courses]  ─── 1:N ──── [enrollments]
+[enrollments] ─── 1:1 ── [enrollment_invoices]
+      </div>
+    </div>
+    <div class="fill-only">
+      <textarea class="form-textarea" data-field="db_relations" rows="4" placeholder="[جدول A] ─── 1:N ──── [جدول B]
+[جدول B] ─── N:M ──── [جدول C] (عبر pivot: [جدول_وسيط])" style="font-family:'Courier New',monospace;direction:ltr;text-align:left"></textarea>
+    </div>
+
+    <h3 class="subsection-title">10.4 Indexes المطلوبة</h3>
+    <div class="read-only">
+      <table class="data-table">
+        <thead><tr><th>الجدول</th><th>الأعمدة</th><th>النوع</th><th>السبب</th></tr></thead>
+        <tbody>
+          <tr><td><code>enrollments</code></td><td><code>student_id, course_id</code></td><td><code>UNIQUE COMPOSITE</code></td><td>منع التسجيل المكرر</td></tr>
+          <tr><td><code>enrollments</code></td><td><code>status</code></td><td><code>INDEX</code></td><td>فلترة حسب الحالة</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="fill-only">
+      <table class="data-table" id="tblIndexes">
+        <thead><tr><th>الجدول</th><th>الأعمدة</th><th>النوع</th><th>السبب</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><input class="form-input code-dir" data-field="idx_tbl_1" placeholder="table"></td>
+            <td><input class="form-input code-dir" data-field="idx_cols_1" placeholder="col1, col2"></td>
+            <td><select class="form-select" data-field="idx_type_1"><option>INDEX</option><option>UNIQUE</option><option>COMPOSITE</option><option>UNIQUE COMPOSITE</option></select></td>
+            <td><input class="form-input" data-field="idx_reason_1" placeholder="السبب"></td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="add-row-btn" onclick="addTableRow('tblIndexes',['idx_tbl','idx_cols','idx_type','idx_reason'],'')">+ إضافة فهرس</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 11: متطلبات غير وظيفية -->
+<!-- ================================================================ -->
+<div class="section" id="sec11" data-role="dev_lead" data-role-label="رئيس وحدة التطوير">
+  <div class="section-header">
+    <span class="section-num">11</span>
+    <span class="section-title">متطلبات غير وظيفية</span>
+    <span class="badge badge-med" style="margin-right:auto">اختياري</span>
+  </div>
+  <div class="section-body">
+    <div class="read-only">
+      <table class="data-table">
+        <thead><tr><th>المتطلب</th><th>القيمة المطلوبة</th><th>ملاحظات</th></tr></thead>
+        <tbody>
+          <tr><td>وقت الاستجابة (Response Time)</td><td>&lt; 500ms</td><td>لعملية التسجيل الكاملة</td></tr>
+          <tr><td>عدد المستخدمين المتزامنين</td><td>1000</td><td>في أوقات الذروة</td></tr>
+          <tr><td>حجم البيانات المتوقع</td><td>10,000 سجل/شهر</td><td>-</td></tr>
+          <tr><td>التوافق مع المتصفحات</td><td>Chrome, Safari, Firefox, Edge</td><td>آخر إصدارين</td></tr>
+          <tr><td>التوافق مع الأجهزة</td><td>Desktop, Mobile, Tablet</td><td>تصميم متجاوب</td></tr>
+          <tr><td>التعدد اللغوي</td><td>عربي / إنجليزي</td><td>RTL + LTR</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="fill-only">
+      <table class="kv-table">
+        <tr><td>وقت الاستجابة (Response Time)</td><td><input class="form-input" data-field="nfr_response" placeholder="< ___ms"></td></tr>
+        <tr><td>عدد المستخدمين المتزامنين</td><td><input class="form-input" data-field="nfr_concurrent" placeholder="عدد"></td></tr>
+        <tr><td>حجم البيانات المتوقع</td><td><input class="form-input" data-field="nfr_data_vol" placeholder="___ سجل/شهر"></td></tr>
+        <tr><td>التوافق مع المتصفحات</td><td><input class="form-input" data-field="nfr_browsers" value="Chrome, Safari, Firefox, Edge"></td></tr>
+        <tr><td>التوافق مع الأجهزة</td><td><input class="form-input" data-field="nfr_devices" value="Desktop, Mobile, Tablet"></td></tr>
+        <tr><td>التعدد اللغوي</td><td><input class="form-input" data-field="nfr_lang" value="عربي / إنجليزي"></td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 12: المخاطر والتبعيات -->
+<!-- ================================================================ -->
+<div class="section" id="sec12" data-role="dev_lead" data-role-label="رئيس وحدة التطوير">
+  <div class="section-header">
+    <span class="section-num">12</span>
+    <span class="section-title">المخاطر والتبعيات</span>
+    <span class="badge badge-med" style="margin-right:auto">اختياري</span>
+  </div>
+  <div class="section-body">
+    <h3 class="subsection-title">12.1 المخاطر</h3>
+    <div class="read-only">
+      <table class="data-table">
+        <thead><tr><th>#</th><th>المخاطرة</th><th>الاحتمال</th><th>التأثير</th><th>خطة التخفيف</th></tr></thead>
+        <tbody>
+          <tr><td>R-01</td><td>ضغط عالٍ أثناء فترة التسجيل</td><td><span class="badge badge-med">متوسط</span></td><td><span class="badge badge-high">عالي</span></td><td>استخدام Queue للتسجيلات + Caching</td></tr>
+          <tr><td>R-02</td><td>فشل بوابة الدفع</td><td><span class="badge badge-low">منخفض</span></td><td><span class="badge badge-high">عالي</span></td><td>Retry mechanism + إشعار للمستخدم</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="fill-only">
+      <table class="data-table" id="tblRisks">
+        <thead><tr><th>#</th><th>المخاطرة</th><th>الاحتمال</th><th>التأثير</th><th>خطة التخفيف</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><input class="form-input" style="width:60px" data-field="risk_id_1" value="R-01"></td>
+            <td><input class="form-input" data-field="risk_desc_1" placeholder="المخاطرة"></td>
+            <td><select class="form-select" data-field="risk_prob_1" style="width:100px"><option>عالي</option><option>متوسط</option><option>منخفض</option></select></td>
+            <td><select class="form-select" data-field="risk_impact_1" style="width:100px"><option>عالي</option><option>متوسط</option><option>منخفض</option></select></td>
+            <td><input class="form-input" data-field="risk_mitigation_1" placeholder="خطة التخفيف"></td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="add-row-btn" onclick="addTableRow('tblRisks',['risk_id','risk_desc','risk_prob','risk_impact','risk_mitigation'],'R')">+ إضافة مخاطرة</button>
+    </div>
+
+    <h3 class="subsection-title">12.2 التبعيات</h3>
+    <div class="read-only">
+      <table class="data-table">
+        <thead><tr><th>#</th><th>التبعية</th><th>المسؤول</th><th>الحالة</th></tr></thead>
+        <tbody>
+          <tr><td>D-01</td><td>بوابة الدفع (Payment Gateway)</td><td>فريق البنية التحتية</td><td><span class="badge badge-low">متوفر</span></td></tr>
+          <tr><td>D-02</td><td>نظام الإشعارات</td><td>فريق الخدمات المشتركة</td><td><span class="badge badge-low">متوفر</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="fill-only">
+      <table class="data-table" id="tblDeps">
+        <thead><tr><th>#</th><th>التبعية</th><th>المسؤول</th><th>الحالة</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><input class="form-input" style="width:60px" data-field="dep_id_1" value="D-01"></td>
+            <td><input class="form-input" data-field="dep_desc_1" placeholder="التبعية"></td>
+            <td><input class="form-input" data-field="dep_owner_1" placeholder="المسؤول"></td>
+            <td><select class="form-select" data-field="dep_status_1"><option>متوفر</option><option>غير متوفر</option><option>قيد التطوير</option></select></td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="add-row-btn" onclick="addTableRow('tblDeps',['dep_id','dep_desc','dep_owner','dep_status'],'D')">+ إضافة تبعية</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 13: الرسائل والإشعارات -->
+<!-- ================================================================ -->
+<div class="section page-break" id="sec13" data-role="dev_lead" data-role-label="رئيس وحدة التطوير">
+  <div class="section-header">
+    <span class="section-num">13</span>
+    <span class="section-title">الرسائل والإشعارات</span>
+    <span class="badge badge-med" style="margin-right:auto">اختياري</span>
+  </div>
+  <div class="section-body">
+    <div class="section-hint">كل رسالة خطأ أو إشعار يظهر للمستخدم.</div>
+    <div class="read-only">
+      <table class="data-table">
+        <thead><tr><th>#</th><th>نوع الرسالة</th><th>النص (عربي)</th><th>النص (إنجليزي)</th><th>متى تظهر</th></tr></thead>
+        <tbody>
+          <tr><td>M-01</td><td><span class="badge badge-low">نجاح</span></td><td>تم التسجيل في الدورة بنجاح</td><td>Successfully enrolled in the course</td><td>بعد تسجيل ناجح</td></tr>
+          <tr><td>M-02</td><td><span class="badge badge-high">خطأ</span></td><td>أنت مسجل في هذه الدورة بالفعل</td><td>You are already enrolled in this course</td><td>محاولة تسجيل مكرر</td></tr>
+          <tr><td>M-03</td><td><span class="badge badge-high">خطأ</span></td><td>الرصيد غير كافٍ لإتمام العملية</td><td>Insufficient balance</td><td>رصيد أقل من سعر الدورة</td></tr>
+          <tr><td>M-04</td><td><span class="badge badge-med">تحذير</span></td><td>الدورة غير متاحة حالياً</td><td>Course is currently unavailable</td><td>الدورة مغلقة أو ممتلئة</td></tr>
+          <tr><td>M-05</td><td><span class="badge badge-low" style="background:#eff6ff;color:#2563eb">إشعار</span></td><td>تم خصم {amount} من محفظتك</td><td>{amount} has been deducted from your wallet</td><td>بعد خصم المبلغ</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="fill-only">
+      <table class="data-table" id="tblMessages">
+        <thead><tr><th>#</th><th>نوع الرسالة</th><th>النص (عربي)</th><th>النص (إنجليزي)</th><th>متى تظهر</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><input class="form-input" style="width:60px" data-field="msg_id_1" value="M-01"></td>
+            <td><select class="form-select" data-field="msg_type_1" style="width:90px"><option>خطأ</option><option>نجاح</option><option>تحذير</option><option>إشعار</option></select></td>
+            <td><input class="form-input" data-field="msg_ar_1" placeholder="النص بالعربي"></td>
+            <td><input class="form-input" data-field="msg_en_1" placeholder="English text" style="direction:ltr;text-align:left"></td>
+            <td><input class="form-input" data-field="msg_when_1" placeholder="متى تظهر"></td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="add-row-btn" onclick="addTableRow('tblMessages',['msg_id','msg_type','msg_ar','msg_en','msg_when'],'M')">+ إضافة رسالة</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 14: ملخص للفريق البرمجي -->
+<!-- ================================================================ -->
+<div class="section" id="sec14" data-role="dev_lead" data-role-label="رئيس وحدة التطوير">
+  <div class="section-header">
+    <span class="section-num">14</span>
+    <span class="section-title">ملخص للفريق البرمجي</span>
+    <span class="badge badge-med" style="margin-right:auto">اختياري</span>
+  </div>
+  <div class="section-body">
+    <div class="section-hint">هذا القسم يُكمل من رئيس وحدة التطوير بعد مراجعة التحليل.</div>
+
+    <h3 class="subsection-title">14.1 عقود التصميم (Design by Contract - php-deal)</h3>
+    <div class="read-only">
+      <table class="data-table">
+        <thead><tr><th>الدالة</th><th><code>@Verify</code> (شرط مسبق)</th><th><code>@Ensure</code> (شرط لاحق)</th></tr></thead>
+        <tbody>
+          <tr><td><code>enrollStudent()</code></td><td><code>$course->isAvailable() && !$student->isEnrolled($courseId)</code></td><td><code>$enrollment->status === 'active'</code></td></tr>
+          <tr><td><code>deductFee()</code></td><td><code>$wallet->balance >= $course->price</code></td><td><code>$wallet->balance >= 0</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="fill-only">
+      <table class="data-table" id="tblContracts">
+        <thead><tr><th>الدالة</th><th>@Verify (شرط مسبق)</th><th>@Ensure (شرط لاحق)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><input class="form-input code-dir" data-field="contract_fn_1" placeholder="functionName()"></td>
+            <td><input class="form-input code-dir" data-field="contract_pre_1" placeholder="pre-condition"></td>
+            <td><input class="form-input code-dir" data-field="contract_post_1" placeholder="post-condition"></td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="add-row-btn" onclick="addTableRow('tblContracts',['contract_fn','contract_pre','contract_post'],'')">+ إضافة عقد</button>
+    </div>
+
+    <h3 class="subsection-title">14.2 اختبارات الخصائص (Property-Based Testing - Eris)</h3>
+    <div class="read-only">
+      <table class="data-table">
+        <thead><tr><th>الخاصية</th><th>الوصف</th><th>المولّد (Generator)</th></tr></thead>
+        <tbody>
+          <tr><td>الرصيد لا يسلب</td><td>بعد أي عملية خصم، الرصيد >= 0</td><td><code>pos_integer()</code></td></tr>
+          <tr><td>عدد التسجيلات</td><td>لا يتجاوز الحد الأقصى للدورة</td><td><code>int(1, maxCapacity)</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="fill-only">
+      <table class="data-table" id="tblProperties">
+        <thead><tr><th>الخاصية</th><th>الوصف</th><th>المولّد (Generator)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><input class="form-input" data-field="prop_name_1" placeholder="الخاصية"></td>
+            <td><input class="form-input" data-field="prop_desc_1" placeholder="الوصف"></td>
+            <td><input class="form-input code-dir" data-field="prop_gen_1" placeholder="Generator"></td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="add-row-btn" onclick="addTableRow('tblProperties',['prop_name','prop_desc','prop_gen'],'')">+ إضافة خاصية</button>
+    </div>
+
+    <h3 class="subsection-title">14.3 قواعد التحليل الثابت (PHPStan / Psalm)</h3>
+    <div class="read-only">
+      <table class="data-table">
+        <thead><tr><th>المتطلب</th><th>المستوى</th></tr></thead>
+        <tbody>
+          <tr><td>PHPStan Level</td><td><strong>5+</strong></td></tr>
+          <tr><td>Psalm Level</td><td><strong>بدون أخطاء</strong></td></tr>
+          <tr><td>Code Coverage</td><td><strong>>= 70%</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="fill-only">
+      <table class="kv-table">
+        <tr><td>PHPStan Level</td><td><input class="form-input sm" data-field="phpstan_level" value="5+"></td></tr>
+        <tr><td>Psalm Level</td><td><input class="form-input" data-field="psalm_level" value="بدون أخطاء" style="width:200px"></td></tr>
+        <tr><td>Code Coverage</td><td><input class="form-input sm" data-field="code_coverage" value=">= 70%"></td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 15: قائمة التحقق النهائية والتوقيعات -->
+<!-- ================================================================ -->
+<div class="section page-break" id="sec15" data-role="analyst qa dev_lead prod_lead" data-role-label="الجميع">
+  <div class="section-header">
+    <span class="section-num">15</span>
+    <span class="section-title">قائمة التحقق النهائية والتوقيعات</span>
+    <span class="section-required">* إلزامي</span>
+  </div>
+  <div class="section-body">
+
+    <!-- 15.1 Analyst/PM Checklist -->
+    <h3 class="subsection-title">تحقق المحلل / مدير المنتج (قبل التسليم)</h3>
+    <div class="section-hint">البنود الظاهرة في هذه القائمة تتغير تلقائياً بناءً على <strong>نوع الطلب</strong> المحدد في القسم 1.</div>
+    <table class="data-table">
+      <thead><tr><th style="width:40px">#</th><th>المعيار</th><th style="width:80px">تم؟</th></tr></thead>
+      <tbody>
+        <!-- بنود مشتركة لجميع الأنواع -->
+        <tr data-req-type="new change integration"><td>1</td><td>البيانات الأساسية كاملة (معرف الميزة، المنتج، الأولوية، نوع الطلب)</td><td><div class="check-item"><input type="checkbox" data-check="pm_1"></div></td></tr>
+        <tr data-req-type="new change integration"><td>2</td><td>تم اختيار <strong>نوع الطلب</strong> بشكل صحيح</td><td><div class="check-item"><input type="checkbox" data-check="pm_2"></div></td></tr>
+        <tr data-req-type="new change integration"><td>3</td><td>الحقول الإجبارية في القسم 2 معبأة كاملة حسب نوع الطلب</td><td><div class="check-item"><input type="checkbox" data-check="pm_3"></div></td></tr>
+
+        <!-- بنود خاصة بـ "خاصية جديدة" -->
+        <tr data-req-type="new"><td>4</td><td>وصف الخاصية الجديدة واضح ومكتمل</td><td><div class="check-item"><input type="checkbox" data-check="pm_new_desc"></div></td></tr>
+        <tr data-req-type="new"><td>5</td><td>قصص المستخدم مكتوبة بالصيغة المعتمدة (كـ... أريد... حتى...)</td><td><div class="check-item"><input type="checkbox" data-check="pm_new_us"></div></td></tr>
+        <tr data-req-type="new"><td>6</td><td>معايير القبول واضحة وقابلة للاختبار</td><td><div class="check-item"><input type="checkbox" data-check="pm_new_ac"></div></td></tr>
+        <tr data-req-type="new"><td>7</td><td>الواجهات المتأثرة محددة</td><td><div class="check-item"><input type="checkbox" data-check="pm_new_iface"></div></td></tr>
+
+        <!-- بنود خاصة بـ "طلب تغيير" -->
+        <tr data-req-type="change"><td>4</td><td>وصف الوضع الحالي (As-Is) واضح</td><td><div class="check-item"><input type="checkbox" data-check="pm_ch_asis"></div></td></tr>
+        <tr data-req-type="change"><td>5</td><td>وصف الوضع المستهدف (To-Be) واضح</td><td><div class="check-item"><input type="checkbox" data-check="pm_ch_tobe"></div></td></tr>
+        <tr data-req-type="change"><td>6</td><td>الفروقات بين الوضعين موضحة بشكل لا لبس فيه</td><td><div class="check-item"><input type="checkbox" data-check="pm_ch_diff"></div></td></tr>
+        <tr data-req-type="change"><td>7</td><td>الواجهات المتأثرة بالتغيير محددة</td><td><div class="check-item"><input type="checkbox" data-check="pm_ch_iface"></div></td></tr>
+
+        <!-- بنود خاصة بـ "طلب تكامل خارجي" -->
+        <tr data-req-type="integration"><td>4</td><td>اسم مزود الخدمة محدد</td><td><div class="check-item"><input type="checkbox" data-check="pm_int_provider"></div></td></tr>
+        <tr data-req-type="integration"><td>5</td><td>نوع التكامل محدد (رسائل / دفع / بث / شبكات اجتماعية / أخرى)</td><td><div class="check-item"><input type="checkbox" data-check="pm_int_type"></div></td></tr>
+        <tr data-req-type="integration"><td>6</td><td>البيانات التجريبية للربط (Sandbox) موثقة</td><td><div class="check-item"><input type="checkbox" data-check="pm_int_sandbox"></div></td></tr>
+        <tr data-req-type="integration"><td>7</td><td>وصف الوظيفة أو الاستخدام المتوقع موضح</td><td><div class="check-item"><input type="checkbox" data-check="pm_int_usage"></div></td></tr>
+
+        <!-- بند مشترك في النهاية -->
+        <tr data-req-type="new change integration"><td>8</td><td>المرفقات الداعمة (Mockups / عقود / توثيق API) مرفوعة عند الحاجة</td><td><div class="check-item"><input type="checkbox" data-check="pm_attachments"></div></td></tr>
+      </tbody>
+    </table>
+    <div id="pmChecklistEmpty" style="padding:14px;text-align:center;color:var(--text-muted);background:#fafafa;border-radius:var(--radius);margin-top:10px;font-size:13px;">
+      ⚠️ لم يُحدد نوع الطلب بعد — اختره من القسم 1 لتظهر بنود التحقق المناسبة.
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 15.2 QA Checklist -->
+    <h3 class="subsection-title">تحقق مختبر الجودة (QA Review)</h3>
+    <table class="data-table">
+      <thead><tr><th style="width:40px">#</th><th>المعيار</th><th style="width:80px">تم؟</th><th>ملاحظات</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>معايير القبول قابلة للاختبار فعلاً</td><td><div class="check-item"><input type="checkbox" data-check="qa_1"></div></td><td class="fill-only"><input class="form-input" data-field="qa_note_1" placeholder="ملاحظات"></td><td class="read-only">-</td></tr>
+        <tr><td>2</td><td>سيناريوهات BDD كافية ومنطقية</td><td><div class="check-item"><input type="checkbox" data-check="qa_2"></div></td><td class="fill-only"><input class="form-input" data-field="qa_note_2" placeholder="ملاحظات"></td><td class="read-only">-</td></tr>
+        <tr><td>3</td><td>حالات الحدود مغطاة</td><td><div class="check-item"><input type="checkbox" data-check="qa_3"></div></td><td class="fill-only"><input class="form-input" data-field="qa_note_3" placeholder="ملاحظات"></td><td class="read-only">-</td></tr>
+        <tr><td>4</td><td>جدول القرار لا توجد فيه فجوات</td><td><div class="check-item"><input type="checkbox" data-check="qa_4"></div></td><td class="fill-only"><input class="form-input" data-field="qa_note_4" placeholder="ملاحظات"></td><td class="read-only">-</td></tr>
+        <tr><td>5</td><td>الشروط المسبقة واللاحقة منطقية</td><td><div class="check-item"><input type="checkbox" data-check="qa_5"></div></td><td class="fill-only"><input class="form-input" data-field="qa_note_5" placeholder="ملاحظات"></td><td class="read-only">-</td></tr>
+        <tr><td>6</td><td>يمكن كتابة Test Cases من هذا التحليل</td><td><div class="check-item"><input type="checkbox" data-check="qa_6"></div></td><td class="fill-only"><input class="form-input" data-field="qa_note_6" placeholder="ملاحظات"></td><td class="read-only">-</td></tr>
+      </tbody>
+    </table>
+
+    <div class="divider"></div>
+
+    <!-- 15.3 Tech Lead Checklist -->
+    <h3 class="subsection-title">تحقق رئيس وحدة التطوير (Technical Review)</h3>
+    <table class="data-table">
+      <thead><tr><th style="width:40px">#</th><th>المعيار</th><th style="width:80px">تم؟</th><th>ملاحظات</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>المعادلات صحيحة رياضياً</td><td><div class="check-item"><input type="checkbox" data-check="tech_1"></div></td><td class="fill-only"><input class="form-input" data-field="tech_note_1" placeholder="ملاحظات"></td><td class="read-only">-</td></tr>
+        <tr><td>2</td><td>الشروط المسبقة/اللاحقة مكتملة</td><td><div class="check-item"><input type="checkbox" data-check="tech_2"></div></td><td class="fill-only"><input class="form-input" data-field="tech_note_2" placeholder="ملاحظات"></td><td class="read-only">-</td></tr>
+        <tr><td>3</td><td>تصميم DB منطقي</td><td><div class="check-item"><input type="checkbox" data-check="tech_3"></div></td><td class="fill-only"><input class="form-input" data-field="tech_note_3" placeholder="ملاحظات"></td><td class="read-only">-</td></tr>
+        <tr><td>4</td><td>لا يوجد تأثير سلبي على الأداء</td><td><div class="check-item"><input type="checkbox" data-check="tech_4"></div></td><td class="fill-only"><input class="form-input" data-field="tech_note_4" placeholder="ملاحظات"></td><td class="read-only">-</td></tr>
+        <tr><td>5</td><td>عقود php-deal محددة</td><td><div class="check-item"><input type="checkbox" data-check="tech_5"></div></td><td class="fill-only"><input class="form-input" data-field="tech_note_5" placeholder="ملاحظات"></td><td class="read-only">-</td></tr>
+        <tr><td>6</td><td>خصائص Eris محددة</td><td><div class="check-item"><input type="checkbox" data-check="tech_6"></div></td><td class="fill-only"><input class="form-input" data-field="tech_note_6" placeholder="ملاحظات"></td><td class="read-only">-</td></tr>
+        <tr><td>7</td><td>Story Points النهائية</td><td><div class="check-item"><input type="checkbox" data-check="tech_7"></div></td><td class="fill-only"><input class="form-input sm" data-field="final_sp" placeholder="SP"> SP</td><td class="read-only">___ SP</td></tr>
+      </tbody>
+    </table>
+
+    <div class="divider"></div>
+
+    <!-- Signatures -->
+    <h3 class="subsection-title">التوقيعات</h3>
+    <div class="read-only">
+      <table class="data-table">
+        <thead><tr><th>الدور</th><th>الاسم</th><th>التوقيع</th><th>التاريخ</th></tr></thead>
+        <tbody>
+          <tr><td>مدير المنتج</td><td>_______________</td><td>_______________</td><td>____/____/________</td></tr>
+          <tr><td>المحلل</td><td>_______________</td><td>_______________</td><td>____/____/________</td></tr>
+          <tr><td>مختبر الجودة (QA)</td><td>_______________</td><td>_______________</td><td>____/____/________</td></tr>
+          <tr><td>رئيس وحدة التطوير</td><td>_______________</td><td>_______________</td><td>____/____/________</td></tr>
+          <tr><td>رئيس وحدة المنتجات</td><td>_______________</td><td>_______________</td><td>____/____/________</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="fill-only">
+      <table class="data-table">
+        <thead><tr><th>الدور</th><th>الاسم</th><th>التوقيع / القرار</th><th>التاريخ</th></tr></thead>
+        <tbody>
+          <tr><td>مدير المنتج</td><td><input class="form-input" data-field="sig_pm_name"></td><td><input class="form-input" data-field="sig_pm_sig" placeholder="التوقيع"></td><td><input class="form-input" type="date" data-field="sig_pm_date"></td></tr>
+          <tr><td>المحلل</td><td><input class="form-input" data-field="sig_analyst_name"></td><td><input class="form-input" data-field="sig_analyst_sig" placeholder="التوقيع"></td><td><input class="form-input" type="date" data-field="sig_analyst_date"></td></tr>
+          <tr><td>مختبر الجودة (QA)</td><td><input class="form-input" data-field="sig_qa_name"></td><td><input class="form-input" data-field="sig_qa_sig" placeholder="التوقيع"></td><td><input class="form-input" type="date" data-field="sig_qa_date"></td></tr>
+          <tr><td>رئيس وحدة التطوير</td><td><input class="form-input" data-field="sig_tech_name"></td><td>
+            <select class="form-select" data-field="sig_tech_decision" style="width:160px"><option>معتمد</option><option>يحتاج تعديل</option></select>
+          </td><td><input class="form-input" type="date" data-field="sig_tech_date"></td></tr>
+          <tr><td>رئيس وحدة المنتجات</td><td><input class="form-input" data-field="sig_prod_name"></td><td>
+            <select class="form-select" data-field="sig_prod_decision" style="width:160px"><option>معتمد</option><option>يحتاج تعديل</option></select>
+          </td><td><input class="form-input" type="date" data-field="sig_prod_date"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Change Log -->
+    <h3 class="subsection-title">سجل التعديلات</h3>
+    <div class="read-only">
+      <table class="data-table">
+        <thead><tr><th>التاريخ</th><th>الإصدار</th><th>المعدّل</th><th>التعديل</th></tr></thead>
+        <tbody>
+          <tr><td>2026-04-19</td><td>1.0</td><td>المحلل</td><td>الإصدار الأولي</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="fill-only">
+      <table class="data-table" id="tblChangelog">
+        <thead><tr><th>التاريخ</th><th>الإصدار</th><th>المعدّل</th><th>التعديل</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><input class="form-input" type="date" data-field="log_date_1"></td>
+            <td><input class="form-input sm" data-field="log_ver_1" value="1.0"></td>
+            <td><input class="form-input" data-field="log_author_1" placeholder="المعدّل"></td>
+            <td><input class="form-input" data-field="log_change_1" value="الإصدار الأولي"></td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="add-row-btn" onclick="addTableRow('tblChangelog',['log_date','log_ver','log_author','log_change'],'')">+ إضافة تعديل</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="doc-footer">
+  <span>شركة التحول التقني</span> - إدارة المنتجات والخدمات - جميع الحقوق محفوظة &copy; 2026
+</div>
+
+</div><!-- end page-container -->
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// ===== MODE TOGGLE =====
+var currentRole = 'all';
+var currentRequestType = '';
+var attachments = { general: [], int_api_doc: [] };
+
+function setMode(mode) {
+  var roleClass = 'role-' + currentRole;
+  var reqClass = currentRequestType ? 'req-' + currentRequestType : '';
+  document.body.className = mode + '-mode ' + roleClass + ' ' + reqClass;
+  document.getElementById('btnRead').classList.toggle('active', mode === 'read');
+  document.getElementById('btnFill').classList.toggle('active', mode === 'fill');
+  if (mode === 'fill') {
+    setTimeout(updateProgress, 100);
+  }
+}
+
+// ===== SHARED PRODUCTS TOGGLE =====
+function toggleSharedProducts(val) {
+  var box = document.getElementById('sharedProductsBox');
+  if (box) box.style.display = (val === 'نعم') ? 'block' : 'none';
+}
+
+// ===== REQUEST TYPE MANAGEMENT =====
+var requestTypeNames = { new:'خاصية جديدة', change:'طلب تغيير', integration:'طلب تكامل خارجي' };
+
+function setRequestType(type) {
+  currentRequestType = type;
+  document.body.classList.remove('req-new','req-change','req-integration');
+  if (type) document.body.classList.add('req-' + type);
+  var hint = document.getElementById('currentReqType');
+  if (hint) {
+    hint.textContent = type ? '— الحقول الظاهرة الآن مخصصة لـ: ' + requestTypeNames[type] : '— لم يُحدد نوع الطلب بعد';
+  }
+  // إظهار/إخفاء رسالة "لم يُحدد نوع الطلب" في قائمة التحقق
+  var emptyMsg = document.getElementById('pmChecklistEmpty');
+  if (emptyMsg) emptyMsg.style.display = type ? 'none' : 'block';
+  setTimeout(updateProgress, 100);
+}
+
+// ===== VERSION AUTO-INCREMENT =====
+function incrementVersion(currentVer) {
+  var parts = (currentVer || '1.0').split('.');
+  var major = parseInt(parts[0]) || 1;
+  var minor = parseInt(parts[1]) || 0;
+  minor++;
+  if (minor >= 10) { major++; minor = 0; }
+  return major + '.' + minor;
+}
+
+function updateVersionDisplay(ver) {
+  var disp = document.getElementById('versionDisplay');
+  var inp = document.getElementById('versionInput');
+  if (disp) disp.textContent = ver;
+  if (inp) inp.value = ver;
+}
+
+function getCurrentVersion() {
+  var inp = document.getElementById('versionInput');
+  return inp ? inp.value : '1.0';
+}
+
+// ===== ATTACHMENT MANAGEMENT (base64) =====
+function addAttachment(group, event) {
+  var files = event.target.files;
+  if (!files || !files.length) return;
+  if (!attachments[group]) attachments[group] = [];
+
+  Array.from(files).forEach(function(file) {
+    if (file.size > 10 * 1024 * 1024) {
+      showToast('تحذير: حجم الملف "' + file.name + '" يتجاوز 10MB');
+      return;
+    }
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      attachments[group].push({
+        name: file.name,
+        type: file.type,
+        size: file.size,
+        data: e.target.result
+      });
+      renderAttachments(group);
+      updateProgress();
+    };
+    reader.readAsDataURL(file);
+  });
+  event.target.value = '';
+}
+
+function removeAttachment(group, index) {
+  if (!attachments[group]) return;
+  attachments[group].splice(index, 1);
+  renderAttachments(group);
+  updateProgress();
+}
+
+function downloadAttachment(group, index) {
+  var att = attachments[group] && attachments[group][index];
+  if (!att) return;
+  var a = document.createElement('a');
+  a.href = att.data;
+  a.download = att.name;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+function renderAttachments(group) {
+  var container = document.getElementById('attachments_' + group);
+  if (!container) return;
+  container.innerHTML = '';
+  (attachments[group] || []).forEach(function(att, idx) {
+    var item = document.createElement('div');
+    item.className = 'attachment-item';
+    var sizeKb = (att.size / 1024).toFixed(1);
+    item.innerHTML =
+      '<span class="att-name">📎 ' + att.name + '</span>' +
+      '<span class="att-size">' + sizeKb + ' KB</span>' +
+      '<button onclick="downloadAttachment(\'' + group + '\',' + idx + ')">تنزيل</button>' +
+      '<button class="delete-btn fill-only" onclick="removeAttachment(\'' + group + '\',' + idx + ')">حذف</button>';
+    container.appendChild(item);
+  });
+}
+
+// ===== ROW COUNTERS =====
+var rowCounters = {};
+
+// ===== GENERIC ADD ROW =====
+function addTableRow(tableId, fieldPrefixes, idPrefix) {
+  var tbody = document.querySelector('#' + tableId + ' tbody');
+  if (!tbody) return;
+  var rowNum = tbody.rows.length + 1;
+  var tr = document.createElement('tr');
+  var nextId = idPrefix ? idPrefix + '-' + String(rowNum).padStart(2, '0') : '';
+
+  fieldPrefixes.forEach(function(prefix, i) {
+    var td = document.createElement('td');
+    var inp = document.createElement('input');
+    inp.className = 'form-input';
+    inp.setAttribute('data-field', prefix + '_' + rowNum);
+
+    if (i === 0 && idPrefix) {
+      inp.value = nextId;
+      inp.style.width = '70px';
+    }
+
+    td.appendChild(inp);
+    tr.appendChild(td);
+  });
+
+  tbody.appendChild(tr);
+  tr.querySelector('input').focus();
+}
+
+// ===== SPECIALIZED ADD ROW FUNCTIONS =====
+function addInputRow() {
+  var tbody = document.querySelector('#tblInputs tbody');
+  var rowNum = tbody.rows.length + 1;
+  var tr = document.createElement('tr');
+  tr.innerHTML =
+    '<td><input class="form-input" style="width:60px" data-field="inp_id_' + rowNum + '" value="I-' + String(rowNum).padStart(2,'0') + '"></td>' +
+    '<td><input class="form-input" data-field="inp_name_' + rowNum + '" placeholder="اسم الحقل"></td>' +
+    '<td><select class="form-select" data-field="inp_type_' + rowNum + '" style="width:110px">' +
+      '<option value="string">string</option><option value="integer">integer</option><option value="float">float</option>' +
+      '<option value="boolean">boolean</option><option value="date">date</option><option value="datetime">datetime</option>' +
+      '<option value="email">email</option><option value="file">file</option><option value="enum">enum</option>' +
+      '<option value="array">array</option><option value="relation">relation</option></select></td>' +
+    '<td><input class="form-input code-dir" data-field="inp_constraints_' + rowNum + '" placeholder="min:3, max:255"></td>' +
+    '<td><select class="form-select" data-field="inp_required_' + rowNum + '" style="width:80px"><option>نعم</option><option>لا</option></select></td>' +
+    '<td><input class="form-input" data-field="inp_default_' + rowNum + '" placeholder="-"></td>' +
+    '<td><input class="form-input" data-field="inp_example_' + rowNum + '" placeholder="مثال"></td>';
+  tbody.appendChild(tr);
+}
+
+function addEdgeRow() {
+  var tbody = document.querySelector('#tblEdge tbody');
+  var rowNum = tbody.rows.length + 1;
+  var tr = document.createElement('tr');
+  tr.innerHTML =
+    '<td><input class="form-input" style="width:65px" data-field="ec_id_' + rowNum + '" value="EC-' + String(rowNum).padStart(2,'0') + '"></td>' +
+    '<td><input class="form-input" data-field="ec_case_' + rowNum + '" placeholder="الحالة"></td>' +
+    '<td><input class="form-input code-dir" data-field="ec_input_' + rowNum + '" placeholder="المدخل"></td>' +
+    '<td><input class="form-input" data-field="ec_result_' + rowNum + '" placeholder="النتيجة المتوقعة"></td>' +
+    '<td><select class="form-select" data-field="ec_sev_' + rowNum + '" style="width:100px">' +
+      '<option value="عالية">عالية</option><option value="متوسطة">متوسطة</option><option value="منخفضة">منخفضة</option>' +
+    '</select></td>';
+  tbody.appendChild(tr);
+}
+
+function addBddScenario() {
+  var container = document.getElementById('bddScenarios');
+  var count = container.querySelectorAll('textarea').length + 1;
+  var ta = document.createElement('textarea');
+  ta.className = 'form-textarea';
+  ta.setAttribute('data-field', 'bdd_scenario_' + count);
+  ta.rows = 8;
+  ta.placeholder = 'Scenario: [اسم السيناريو]\n  Given [الحالة الأولية]\n  And [شرط إضافي]\n  When [الإجراء]\n  Then [النتيجة المتوقعة]';
+  ta.style.fontFamily = "'Courier New',monospace";
+  ta.style.direction = 'ltr';
+  ta.style.textAlign = 'left';
+  ta.style.marginBottom = '10px';
+  container.appendChild(ta);
+  ta.focus();
+}
+
+function addInterfaceRow() {
+  var tbody = document.querySelector('#tblInterfaces tbody');
+  var rowNum = tbody.rows.length + 1;
+  var tr = document.createElement('tr');
+  tr.innerHTML =
+    '<td><input class="form-input" data-field="iface_other_name_' + rowNum + '" placeholder="واجهة أخرى (حدد)"></td>' +
+    '<td><select class="form-select" data-field="iface_other_' + rowNum + '" style="width:90px"><option>نعم</option><option>لا</option></select></td>' +
+    '<td><input class="form-input" data-field="iface_other_desc_' + rowNum + '" placeholder="وصف التأثير"></td>';
+  tbody.appendChild(tr);
+}
+
+function addAffectedModuleRow() {
+  var tbody = document.querySelector('#tblAffectedModules tbody');
+  var rowNum = tbody.rows.length + 1;
+  var tr = document.createElement('tr');
+  tr.innerHTML =
+    '<td><input class="form-input" style="width:65px" data-field="am_id_' + rowNum + '" value="AM-' + String(rowNum).padStart(2,'0') + '"></td>' +
+    '<td><input class="form-input" data-field="am_module_' + rowNum + '" placeholder="اسم الوحدة"></td>' +
+    '<td><select class="form-select" data-field="am_type_' + rowNum + '" style="width:140px">' +
+      '<option value="تعديل مباشر">تعديل مباشر</option><option value="تبعية بيانات">تبعية بيانات</option>' +
+      '<option value="تبعية منطقية">تبعية منطقية</option><option value="تأثير على الأداء">تأثير على الأداء</option>' +
+      '<option value="تأثير على الأمان">تأثير على الأمان</option></select></td>' +
+    '<td><input class="form-input" data-field="am_desc_' + rowNum + '" placeholder="وصف التأثير"></td>' +
+    '<td><select class="form-select" data-field="am_severity_' + rowNum + '" style="width:100px">' +
+      '<option value="عالي">عالي</option><option value="متوسط">متوسط</option><option value="منخفض">منخفض</option></select></td>';
+  tbody.appendChild(tr);
+}
+
+// ===== ROLE MANAGEMENT =====
+var roleNames = {all:'جميع الأقسام', analyst:'محلل / مدير منتج', qa:'مختبر جودة (QA)', dev_lead:'رئيس وحدة التطوير', prod_lead:'رئيس وحدة المنتجات'};
+
+function setRole(role) {
+  currentRole = role;
+  document.body.classList.remove('role-analyst','role-qa','role-dev_lead','role-prod_lead','role-all');
+  document.body.classList.add('role-' + role);
+  var label = document.getElementById('roleLabel');
+  if (label) label.textContent = roleNames[role] || role;
+  // الفلترة الفعلية تتم عبر CSS الآن (display:none)، لا نحتاج لتعديل style هنا
+  updateProgress();
+}
+
+// ===== PROGRESS TRACKING =====
+function updateProgress() {
+  var fields = document.querySelectorAll('.fill-only [data-field]');
+  var total = 0, filled = 0;
+  fields.forEach(function(el) {
+    if (el.offsetParent === null) return;
+    total++;
+    var val = el.value || '';
+    if (val.trim() && val.trim() !== '-' && val.trim() !== 'string') filled++;
+  });
+  var pct = total > 0 ? Math.round(filled / total * 100) : 0;
+  var bar = document.getElementById('progressFill');
+  var text = document.getElementById('progressText');
+  if (bar) bar.style.width = pct + '%';
+  if (text) text.textContent = 'اكتمال التعبئة: ' + pct + '% (' + filled + ' / ' + total + ' حقل)';
+}
+
+document.addEventListener('input', function(e) {
+  if (e.target.hasAttribute('data-field')) updateProgress();
+});
+document.addEventListener('change', function(e) {
+  if (e.target.hasAttribute('data-field')) updateProgress();
+});
+
+// ===== SAVE TO FILE (auto-increment version + auto-add changelog) =====
+function saveToFile() {
+  // 1) تحديث الإصدار تلقائياً
+  var oldVer = getCurrentVersion();
+  var newVer = incrementVersion(oldVer);
+  updateVersionDisplay(newVer);
+
+  // 2) إضافة صف تلقائي في سجل التعديلات
+  appendChangelogRow(newVer);
+
+  // 3) جمع البيانات
+  var data = collectFormData();
+  data._role = currentRole;
+  data._savedBy = roleNames[currentRole] || currentRole;
+  data._savedAt = new Date().toISOString();
+  data._requestType = currentRequestType;
+  data._attachments = attachments;
+
+  var json = JSON.stringify(data, null, 2);
+  var blob = new Blob([json], { type: 'application/json;charset=utf-8' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  var featureId = data.feature_id || 'NEW';
+  a.download = 'FAD_' + featureId + '_v' + newVer + '.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast('تم حفظ الملف — الإصدار الجديد: v' + newVer);
+}
+
+function appendChangelogRow(version) {
+  var tbody = document.querySelector('#tblChangelog tbody');
+  if (!tbody) return;
+  var rowNum = tbody.rows.length + 1;
+  var today = new Date().toISOString().slice(0, 10);
+  var author = roleNames[currentRole] || 'مستخدم';
+  var tr = document.createElement('tr');
+  tr.innerHTML =
+    '<td><input class="form-input" type="date" data-field="log_date_' + rowNum + '" value="' + today + '" readonly></td>' +
+    '<td><input class="form-input sm" data-field="log_ver_' + rowNum + '" value="' + version + '" readonly></td>' +
+    '<td><input class="form-input" data-field="log_author_' + rowNum + '" value="' + author + '"></td>' +
+    '<td><input class="form-input" data-field="log_change_' + rowNum + '" placeholder="وصف التعديل (اكتبه قبل الحفظ التالي)"></td>';
+  tbody.appendChild(tr);
+}
+
+// ===== LOAD FROM FILE =====
+function loadFromFile(event) {
+  var file = event.target.files[0];
+  if (!file) return;
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      var data = JSON.parse(e.target.result);
+      restoreFormData(data);
+      // استرجاع المرفقات
+      if (data._attachments) {
+        attachments = data._attachments;
+        Object.keys(attachments).forEach(function(g) { renderAttachments(g); });
+      }
+      // استرجاع نوع الطلب
+      if (data._requestType || data.request_type) {
+        var rt = data._requestType || data.request_type;
+        var sel = document.getElementById('requestTypeSelect');
+        if (sel) sel.value = rt;
+        setRequestType(rt);
+      }
+      // استرجاع الإصدار
+      if (data.version) updateVersionDisplay(data.version);
+      setMode('fill');
+      updateProgress();
+      showToast('تم تحميل الملف — الإصدار الحالي: v' + (data.version || '1.0'));
+    } catch(err) {
+      showToast('خطأ في قراءة الملف: ' + err.message);
+    }
+  };
+  reader.readAsText(file);
+  event.target.value = '';
+}
+
+// ===== COLLECT FORM DATA =====
+function collectFormData() {
+  var data = { _document: 'Feature Analysis Document (FAD)', _company: 'شركة التحول التقني (TTS)' };
+  // الإصدار من العنصر الخفي
+  data.version = getCurrentVersion();
+  document.querySelectorAll('input[data-field], select[data-field], textarea[data-field]').forEach(function(el) {
+    var key = el.getAttribute('data-field');
+    if (key === 'version') return; // تمت معالجته أعلاه
+    if (el.type === 'checkbox') {
+      // checkboxes مع data-field (مثل قائمة المنتجات): نخزن boolean
+      data[key] = el.checked;
+    } else {
+      var val = el.value || '';
+      if (val.toString().trim()) data[key] = val.toString().trim();
+    }
+  });
+  document.querySelectorAll('[data-check]').forEach(function(el) {
+    data['check_' + el.getAttribute('data-check')] = el.checked;
+  });
+  return data;
+}
+
+// ===== RESTORE FORM DATA =====
+function restoreFormData(data) {
+  Object.keys(data).forEach(function(key) {
+    if (key.startsWith('_')) return;
+    if (key.startsWith('check_')) {
+      var checkKey = key.replace('check_', '');
+      var cb = document.querySelector('[data-check="' + checkKey + '"]');
+      if (cb) cb.checked = data[key];
+    } else {
+      var el = document.querySelector('[data-field="' + key + '"]');
+      if (el) {
+        if (el.type === 'checkbox') {
+          el.checked = !!data[key];
+          // تشغيل onchange handler لو موجود (لتفعيل حقل أخرى)
+          if (el.onchange) el.onchange();
+        } else {
+          el.value = data[key];
+        }
+      }
+    }
+  });
+  // استرجاع حالة "ميزة مشتركة"
+  var sharedSel = document.getElementById('sharedFeatureSelect');
+  if (sharedSel) toggleSharedProducts(sharedSel.value);
+}
+
+// ===== TOAST NOTIFICATION =====
+function showToast(message) {
+  var existing = document.querySelector('.toast-notification');
+  if (existing) existing.remove();
+  var toast = document.createElement('div');
+  toast.className = 'toast-notification';
+  toast.textContent = message;
+  document.body.appendChild(toast);
+  setTimeout(function() { toast.classList.add('show'); }, 50);
+  setTimeout(function() {
+    toast.classList.remove('show');
+    setTimeout(function() { toast.remove(); }, 400);
+  }, 3000);
+}
+
+// ===== EXPORT JSON (نفس saveToFile لكن بدون زيادة الإصدار) =====
+function exportJSON() {
+  var data = collectFormData();
+  data._exportDate = new Date().toISOString();
+  data._requestType = currentRequestType;
+  data._attachments = attachments;
+
+  var json = JSON.stringify(data, null, 2);
+  var blob = new Blob([json], { type: 'application/json;charset=utf-8' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'FAD_' + (data.feature_id || 'document') + '_v' + getCurrentVersion() + '_export.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast('تم تصدير JSON بنجاح');
+}
+
+// ===== ROLE BADGES =====
+document.querySelectorAll('.section[data-role-label]').forEach(function(sec) {
+  var header = sec.querySelector('.section-header');
+  if (header) {
+    var badge = document.createElement('span');
+    badge.className = 'role-badge';
+    badge.textContent = sec.getAttribute('data-role-label');
+    header.appendChild(badge);
+  }
+});
+
+// ===== TOC SMOOTH SCROLL =====
+document.querySelectorAll('.toc-list a').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    e.preventDefault();
+    var target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// ===== INITIALIZE DEFAULTS ON LOAD =====
+window.addEventListener('DOMContentLoaded', function() {
+  setRole('analyst');
+  // عرض المرفقات الموجودة (إن وجدت بعد إعادة تحميل)
+  Object.keys(attachments).forEach(function(g) { renderAttachments(g); });
+});
+</script>
+
+</body>
+</html>

@@ -31,6 +31,13 @@ export const journeyNavItems = [
   { id: 'journey-operations', label: 'تشغيل المنتج', icon: 'gears' },
 ];
 
+export const asanaNavItems = [
+  { id: 'asana-overview', label: 'نظرة عامة', icon: 'gauge-high' },
+  { id: 'asana-tasks', label: 'شجرة المهام', icon: 'list-tree' },
+  { id: 'asana-template', label: 'قالب FAD', icon: 'file-lines' },
+  { id: 'asana-pipeline', label: 'خط الرفع', icon: 'cloud-arrow-up' },
+];
+
 export const marketingNavItems = [
   { id: 'mkt-dashboard', label: 'لوحة مؤشرات التسويق', icon: 'gauge-high' },
   { id: 'mkt-challenge', label: 'التحدي وحجم السوق', icon: 'triangle-exclamation' },
@@ -44,7 +51,7 @@ export const marketingNavItems = [
   { id: 'mkt-calendar', label: 'الجدول الزمني', icon: 'calendar-check' },
 ];
 
-const navMap = { dev: devNavItems, ops: opsNavItems, marketing: marketingNavItems, journey: journeyNavItems };
+const navMap = { dev: devNavItems, ops: opsNavItems, marketing: marketingNavItems, journey: journeyNavItems, asana: asanaNavItems };
 
 export default function Sidebar({ active, onNav, isOpen, onClose, plan = 'dev' }) {
   const items = navMap[plan] || devNavItems;

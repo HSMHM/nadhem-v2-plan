@@ -1,0 +1,22 @@
+{
+  "_document": "Feature Analysis Document (FAD) — Subtask",
+  "_parent_id": "DEV-11",
+  "_parent_title": "دمج وتوحيد بنية اللجان — v2",
+  "_phase": "analysis",
+  "_savedAt": "2026-05-07T11:19:10.698Z",
+  "_savedBy": "آلي — generate-fad-jsons.js",
+  "_requestType": "change",
+  "_asana_name": "[11.1.3] تحليل تأثير الدمج على الصلاحيات الحالية",
+  "_asana_notes": "Duration: 1 يوم\n\nParent: [DEV-11] دمج وتوحيد بنية اللجان — v2\nPhase: تحليل\n\nFAD attached: FAD_DEV-11.1.3_v1.0.json",
+  "version": "1.0",
+  "feature_id": "NDM-DEV-P1-F11.1.3",
+  "feature_name": "تحليل تأثير الدمج على الصلاحيات الحالية",
+  "product": "نظم (Nadhem)",
+  "pm_name": "أحمد محمد",
+  "analyst": "سارة علي",
+  "analysis_date": "2026-05-07",
+  "priority": "P2",
+  "request_type": "change",
+  "estimated_duration": "1 يوم",
+  "change_to_be": "تحليل تأثير الدمج على الصلاحيات الحالية"
+}

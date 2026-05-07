@@ -1,0 +1,22 @@
+{
+  "_document": "Feature Analysis Document (FAD) — Subtask",
+  "_parent_id": "DEV-104",
+  "_parent_title": "تطوير التقارير ولوحة المعلومات",
+  "_phase": "implementation",
+  "_savedAt": "2026-05-07T11:19:10.698Z",
+  "_savedBy": "آلي — generate-fad-jsons.js",
+  "_requestType": "change",
+  "_asana_name": "[104.3.6] اختبار دقة الأرقام على بيانات فعلية",
+  "_asana_notes": "Duration: 1 يوم\n\nParent: [DEV-104] تطوير التقارير ولوحة المعلومات\nPhase: تنفيذ\n\nFAD attached: FAD_DEV-104.3.6_v1.0.json",
+  "version": "1.0",
+  "feature_id": "NDM-DEV-P0-F104.3.6",
+  "feature_name": "اختبار دقة الأرقام على بيانات فعلية",
+  "product": "نظم (Nadhem)",
+  "pm_name": "أحمد محمد",
+  "analyst": "سارة علي",
+  "analysis_date": "2026-05-07",
+  "priority": "P1",
+  "request_type": "change",
+  "estimated_duration": "1 يوم",
+  "change_to_be": "اختبار دقة الأرقام على بيانات فعلية"
+}

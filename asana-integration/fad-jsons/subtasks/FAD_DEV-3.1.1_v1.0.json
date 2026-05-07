@@ -1,0 +1,22 @@
+{
+  "_document": "Feature Analysis Document (FAD) — Subtask",
+  "_parent_id": "DEV-3",
+  "_parent_title": "تطوير خاصية خارطة المعرض",
+  "_phase": "analysis",
+  "_savedAt": "2026-05-07T11:19:10.698Z",
+  "_savedBy": "آلي — generate-fad-jsons.js",
+  "_requestType": "change",
+  "_asana_name": "[3.1.1] تحليل خريطة المعرض الحالية وتحديد نقاط الضعف",
+  "_asana_notes": "Duration: 2 يوم\n\nParent: [DEV-3] تطوير خاصية خارطة المعرض\nPhase: تحليل\n\nFAD attached: FAD_DEV-3.1.1_v1.0.json",
+  "version": "1.0",
+  "feature_id": "NDM-DEV-P2-F3.1.1",
+  "feature_name": "تحليل خريطة المعرض الحالية وتحديد نقاط الضعف",
+  "product": "نظم (Nadhem)",
+  "pm_name": "أحمد محمد",
+  "analyst": "سارة علي",
+  "analysis_date": "2026-05-07",
+  "priority": "P3",
+  "request_type": "change",
+  "estimated_duration": "2 يوم",
+  "change_to_be": "تحليل خريطة المعرض الحالية وتحديد نقاط الضعف"
+}

@@ -1,0 +1,22 @@
+{
+  "_document": "Feature Analysis Document (FAD) — Subtask",
+  "_parent_id": "DEV-3",
+  "_parent_title": "تطوير خاصية خارطة المعرض",
+  "_phase": "training",
+  "_savedAt": "2026-05-07T11:19:10.698Z",
+  "_savedBy": "آلي — generate-fad-jsons.js",
+  "_requestType": "change",
+  "_asana_name": "[3.4.2] تدريب فريق نجاح العملاء على إدارة المساحات والحجز",
+  "_asana_notes": "Duration: 1 يوم\n\nParent: [DEV-3] تطوير خاصية خارطة المعرض\nPhase: تدريب\n\nFAD attached: FAD_DEV-3.4.2_v1.0.json",
+  "version": "1.0",
+  "feature_id": "NDM-DEV-P2-F3.4.2",
+  "feature_name": "تدريب فريق نجاح العملاء على إدارة المساحات والحجز",
+  "product": "نظم (Nadhem)",
+  "pm_name": "أحمد محمد",
+  "analyst": "سارة علي",
+  "analysis_date": "2026-05-07",
+  "priority": "P3",
+  "request_type": "change",
+  "estimated_duration": "1 يوم",
+  "change_to_be": "تدريب فريق نجاح العملاء على إدارة المساحات والحجز"
+}

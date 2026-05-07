@@ -1,0 +1,22 @@
+{
+  "_document": "Feature Analysis Document (FAD) — Subtask",
+  "_parent_id": "DEV-8",
+  "_parent_title": "التكامل مع أجهزة الخدمات الذاتية",
+  "_phase": "design",
+  "_savedAt": "2026-05-07T11:19:10.698Z",
+  "_savedBy": "آلي — generate-fad-jsons.js",
+  "_requestType": "new",
+  "_asana_name": "[8.2.3] تصميم رسائل الخطأ (حاضر غير مسجل، مشكلة في الطابعة...)",
+  "_asana_notes": "Duration: 1 يوم\n\nParent: [DEV-8] التكامل مع أجهزة الخدمات الذاتية\nPhase: تصميم\n\nFAD attached: FAD_DEV-8.2.3_v1.0.json",
+  "version": "1.0",
+  "feature_id": "NDM-DEV-P4-F8.2.3",
+  "feature_name": "تصميم رسائل الخطأ (حاضر غير مسجل، مشكلة في الطابعة...)",
+  "product": "نظم (Nadhem)",
+  "pm_name": "أحمد محمد",
+  "analyst": "سارة علي",
+  "analysis_date": "2026-05-07",
+  "priority": "P4",
+  "request_type": "new",
+  "estimated_duration": "1 يوم",
+  "new_description": "تصميم رسائل الخطأ (حاضر غير مسجل، مشكلة في الطابعة...)"
+}

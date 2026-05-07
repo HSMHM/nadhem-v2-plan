@@ -1,0 +1,22 @@
+{
+  "_document": "Feature Analysis Document (FAD) — Subtask",
+  "_parent_id": "DEV-4",
+  "_parent_title": "تمكين التوقيع الإلكتروني",
+  "_phase": "design",
+  "_savedAt": "2026-05-07T11:19:10.698Z",
+  "_savedBy": "آلي — generate-fad-jsons.js",
+  "_requestType": "new",
+  "_asana_name": "[4.2.2] تصميم واجهة التوقيع للطرف الآخر (راعي/عارض/شريك)",
+  "_asana_notes": "Duration: 3 أيام\n\nParent: [DEV-4] تمكين التوقيع الإلكتروني\nPhase: تصميم\n\nFAD attached: FAD_DEV-4.2.2_v1.0.json",
+  "version": "1.0",
+  "feature_id": "NDM-DEV-P2-F4.2.2",
+  "feature_name": "تصميم واجهة التوقيع للطرف الآخر (راعي/عارض/شريك)",
+  "product": "نظم (Nadhem)",
+  "pm_name": "أحمد محمد",
+  "analyst": "سارة علي",
+  "analysis_date": "2026-05-07",
+  "priority": "P3",
+  "request_type": "new",
+  "estimated_duration": "3 أيام",
+  "new_description": "تصميم واجهة التوقيع للطرف الآخر (راعي/عارض/شريك)"
+}

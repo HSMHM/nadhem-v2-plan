@@ -1,0 +1,22 @@
+{
+  "_document": "Feature Analysis Document (FAD) — Subtask",
+  "_parent_id": "DEV-10",
+  "_parent_title": "تقارير مؤشرات الأداء اللحظية والتقرير الختامي — v2",
+  "_phase": "design",
+  "_savedAt": "2026-05-07T11:19:10.698Z",
+  "_savedBy": "آلي — generate-fad-jsons.js",
+  "_requestType": "change",
+  "_asana_name": "[10.2.1] تصميم لوحة المؤشرات اللحظية — بطاقات أرقام + رسوم بيانية",
+  "_asana_notes": "Duration: 4 أيام\n\nParent: [DEV-10] تقارير مؤشرات الأداء اللحظية والتقرير الختامي — v2\nPhase: تصميم\n\nFAD attached: FAD_DEV-10.2.1_v1.0.json",
+  "version": "1.0",
+  "feature_id": "NDM-DEV-P3-F10.2.1",
+  "feature_name": "تصميم لوحة المؤشرات اللحظية — بطاقات أرقام + رسوم بيانية",
+  "product": "نظم (Nadhem)",
+  "pm_name": "أحمد محمد",
+  "analyst": "سارة علي",
+  "analysis_date": "2026-05-07",
+  "priority": "P3",
+  "request_type": "change",
+  "estimated_duration": "4 أيام",
+  "change_to_be": "تصميم لوحة المؤشرات اللحظية — بطاقات أرقام + رسوم بيانية"
+}

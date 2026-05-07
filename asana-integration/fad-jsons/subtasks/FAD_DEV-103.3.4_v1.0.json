@@ -1,0 +1,22 @@
+{
+  "_document": "Feature Analysis Document (FAD) — Subtask",
+  "_parent_id": "DEV-103",
+  "_parent_title": "إعادة هيكلة الجلسات والجدول + إلغاء الشراكات في بطاقة \"منصة التوقيع\"",
+  "_phase": "implementation",
+  "_savedAt": "2026-05-07T11:19:10.698Z",
+  "_savedBy": "آلي — generate-fad-jsons.js",
+  "_requestType": "change",
+  "_asana_name": "[103.3.4] تحديث الصلاحيات والأدوار بما يعكس البنية الجديدة",
+  "_asana_notes": "Duration: 1 يوم\n\nParent: [DEV-103] إعادة هيكلة الجلسات والجدول + إلغاء الشراكات في بطاقة \"منصة التوقيع\"\nPhase: تنفيذ\n\nFAD attached: FAD_DEV-103.3.4_v1.0.json",
+  "version": "1.0",
+  "feature_id": "NDM-DEV-P0-F103.3.4",
+  "feature_name": "تحديث الصلاحيات والأدوار بما يعكس البنية الجديدة",
+  "product": "نظم (Nadhem)",
+  "pm_name": "أحمد محمد",
+  "analyst": "سارة علي",
+  "analysis_date": "2026-05-07",
+  "priority": "P1",
+  "request_type": "change",
+  "estimated_duration": "1 يوم",
+  "change_to_be": "تحديث الصلاحيات والأدوار بما يعكس البنية الجديدة"
+}

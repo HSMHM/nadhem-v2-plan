@@ -1,0 +1,22 @@
+{
+  "_document": "Feature Analysis Document (FAD) — Subtask",
+  "_parent_id": "DEV-3",
+  "_parent_title": "تطوير خاصية خارطة المعرض",
+  "_phase": "implementation",
+  "_savedAt": "2026-05-07T11:19:10.698Z",
+  "_savedBy": "آلي — generate-fad-jsons.js",
+  "_requestType": "change",
+  "_asana_name": "[3.3.4] ربط الحجز بنظام الدفع والفواتير الموجود",
+  "_asana_notes": "Duration: 3 أيام\n\nParent: [DEV-3] تطوير خاصية خارطة المعرض\nPhase: تنفيذ\n\nFAD attached: FAD_DEV-3.3.4_v1.0.json",
+  "version": "1.0",
+  "feature_id": "NDM-DEV-P2-F3.3.4",
+  "feature_name": "ربط الحجز بنظام الدفع والفواتير الموجود",
+  "product": "نظم (Nadhem)",
+  "pm_name": "أحمد محمد",
+  "analyst": "سارة علي",
+  "analysis_date": "2026-05-07",
+  "priority": "P3",
+  "request_type": "change",
+  "estimated_duration": "3 أيام",
+  "change_to_be": "ربط الحجز بنظام الدفع والفواتير الموجود"
+}

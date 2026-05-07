@@ -1,0 +1,22 @@
+{
+  "_document": "Feature Analysis Document (FAD) — Subtask",
+  "_parent_id": "DEV-1",
+  "_parent_title": "تنفيذ خطة الوحدات (Modules)",
+  "_phase": "design",
+  "_savedAt": "2026-05-07T11:19:10.698Z",
+  "_savedBy": "آلي — generate-fad-jsons.js",
+  "_requestType": "new",
+  "_asana_name": "[1.2.4] تصميم طريقة إخفاء/إظهار عناصر القائمة الجانبية بناءً على الوحدات المفعلة",
+  "_asana_notes": "Duration: 2 يوم\n\nParent: [DEV-1] تنفيذ خطة الوحدات (Modules)\nPhase: تصميم\n\nFAD attached: FAD_DEV-1.2.4_v1.0.json",
+  "version": "1.0",
+  "feature_id": "NDM-DEV-P1-F1.2.4",
+  "feature_name": "تصميم طريقة إخفاء/إظهار عناصر القائمة الجانبية بناءً على الوحدات المفعلة",
+  "product": "نظم (Nadhem)",
+  "pm_name": "أحمد محمد",
+  "analyst": "سارة علي",
+  "analysis_date": "2026-05-07",
+  "priority": "P2",
+  "request_type": "new",
+  "estimated_duration": "2 يوم",
+  "new_description": "تصميم طريقة إخفاء/إظهار عناصر القائمة الجانبية بناءً على الوحدات المفعلة"
+}

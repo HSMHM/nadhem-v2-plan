@@ -1,0 +1,22 @@
+{
+  "_document": "Feature Analysis Document (FAD) — Subtask",
+  "_parent_id": "DEV-102",
+  "_parent_title": "إعادة تصميم واجهات مدير النظام + ثيمان للواجهة الخارجية (Themes)",
+  "_phase": "training",
+  "_savedAt": "2026-05-07T11:19:10.698Z",
+  "_savedBy": "آلي — generate-fad-jsons.js",
+  "_requestType": "change",
+  "_asana_name": "[102.4.1] توثيق التغييرات البصرية في واجهات مدير النظام",
+  "_asana_notes": "Duration: 0.5 يوم\n\nParent: [DEV-102] إعادة تصميم واجهات مدير النظام + ثيمان للواجهة الخارجية (Themes)\nPhase: تدريب\n\nFAD attached: FAD_DEV-102.4.1_v1.0.json",
+  "version": "1.0",
+  "feature_id": "NDM-DEV-P0-F102.4.1",
+  "feature_name": "توثيق التغييرات البصرية في واجهات مدير النظام",
+  "product": "نظم (Nadhem)",
+  "pm_name": "أحمد محمد",
+  "analyst": "سارة علي",
+  "analysis_date": "2026-05-07",
+  "priority": "P1",
+  "request_type": "change",
+  "estimated_duration": "0.5 يوم",
+  "change_to_be": "توثيق التغييرات البصرية في واجهات مدير النظام"
+}

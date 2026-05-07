@@ -1,0 +1,22 @@
+{
+  "_document": "Feature Analysis Document (FAD) — Subtask",
+  "_parent_id": "DEV-11",
+  "_parent_title": "دمج وتوحيد بنية اللجان — v2",
+  "_phase": "design",
+  "_savedAt": "2026-05-07T11:19:10.698Z",
+  "_savedBy": "آلي — generate-fad-jsons.js",
+  "_requestType": "change",
+  "_asana_name": "[11.2.2] تصميم الصفحة الرئيسية للجنة الجديدة",
+  "_asana_notes": "Duration: 1 يوم\n\nParent: [DEV-11] دمج وتوحيد بنية اللجان — v2\nPhase: تصميم\n\nFAD attached: FAD_DEV-11.2.2_v1.0.json",
+  "version": "1.0",
+  "feature_id": "NDM-DEV-P1-F11.2.2",
+  "feature_name": "تصميم الصفحة الرئيسية للجنة الجديدة",
+  "product": "نظم (Nadhem)",
+  "pm_name": "أحمد محمد",
+  "analyst": "سارة علي",
+  "analysis_date": "2026-05-07",
+  "priority": "P2",
+  "request_type": "change",
+  "estimated_duration": "1 يوم",
+  "change_to_be": "تصميم الصفحة الرئيسية للجنة الجديدة"
+}

@@ -1,0 +1,22 @@
+{
+  "_document": "Feature Analysis Document (FAD) — Subtask",
+  "_parent_id": "DEV-12",
+  "_parent_title": "تطوير خاصية إرسال الدعوات التفاعلية",
+  "_phase": "design",
+  "_savedAt": "2026-05-07T11:19:10.698Z",
+  "_savedBy": "آلي — generate-fad-jsons.js",
+  "_requestType": "change",
+  "_asana_name": "[12.2.1] تصميم قالب الدعوة الإلكترونية مع أزرار القبول والرفض",
+  "_asana_notes": "Duration: 3 أيام\n\nParent: [DEV-12] تطوير خاصية إرسال الدعوات التفاعلية\nPhase: تصميم\n\nFAD attached: FAD_DEV-12.2.1_v1.0.json",
+  "version": "1.0",
+  "feature_id": "NDM-DEV-P3-F12.2.1",
+  "feature_name": "تصميم قالب الدعوة الإلكترونية مع أزرار القبول والرفض",
+  "product": "نظم (Nadhem)",
+  "pm_name": "أحمد محمد",
+  "analyst": "سارة علي",
+  "analysis_date": "2026-05-07",
+  "priority": "P3",
+  "request_type": "change",
+  "estimated_duration": "3 أيام",
+  "change_to_be": "تصميم قالب الدعوة الإلكترونية مع أزرار القبول والرفض"
+}
