@@ -24,7 +24,8 @@ asana-integration/
 │   ├── 01-saas-events-frontend-features.md  ← كتالوج خصائص المشروع المرجعي
 │   ├── 02-fad-template-guide.md         ← دليل تعبئة FAD حقلاً حقلاً
 │   ├── 03-developments-classification.md ← تصنيف الـ 19 (إضافة/تعديل)
-│   └── 04-asana-task-mapping.md         ← ربط كل تطوير بمهمة أسانا (الاسم/الوصف/المرفق)
+│   ├── 04-asana-task-mapping.md         ← ربط كل تطوير بمهمة أسانا (الاسم/الوصف/المرفق)
+│   └── 05-adding-new-task.md            ← دليل إضافة/تعديل مهمة لاحقاً (3 سيناريوهات)
 ├── fad-jsons/
 │   ├── main/                            ← 19 ملف FAD رئيسي
 │   └── subtasks/                        ← ~317 ملف FAD مختصر للمهام التفصيلية
@@ -98,3 +99,40 @@ node push-to-asana.js
 
 - ❌ ممنوع `git push` / `git pull` / `git merge` / إنشاء PR في أيٍّ من المشروعَين.
 - ✅ مسموح: قراءة كود saas-events-frontend (مرجع) وكتابة الملفات في nadhem-v2-plan.
+
+---
+
+## 🔄 إضافة مهمة جديدة لاحقاً (سيناريوهات شائعة)
+
+اقرأ [`docs/05-adding-new-task.md`](./docs/05-adding-new-task.md) للدليل الكامل، باختصار:
+
+### تطوير رئيسي جديد (مثل DEV-16):
+1. أضفه في [`nadhem-execution-plan/src/data/developments.js`](../nadhem-execution-plan/src/data/developments.js)
+2. صنّفه في **كلا** الملفَين:
+   - [`scripts/classification.js`](./scripts/classification.js) (للسكربت)
+   - [`../nadhem-execution-plan/src/data/asanaClassification.js`](../nadhem-execution-plan/src/data/asanaClassification.js) (لتطبيق React)
+3. ولّد ملفاته فقط: `node generate-fad-jsons.js --dev=16`
+4. راجع/عدّل من تبويب "محاكاة أسانا" → "شجرة المهام"
+5. ارفع: `node push-to-asana.js` (يضيف الجديد فقط — لا يكرر القديم)
+
+### مهمة تفصيلية جديدة لتطوير موجود (مثل 101.3.9):
+1. أضفها في المصفوفة المناسبة داخل dev في `developments.js`
+2. **استخدم `--only-missing` لحماية تعديلاتك السابقة**:
+   ```bash
+   node generate-fad-jsons.js --dev=101 --only-missing
+   ```
+3. راجع وارفع كما أعلاه
+
+### تعديل نص في مهمة موجودة:
+- افتح تبويب "محاكاة أسانا" → "شجرة المهام" → افتح البطاقة → عدّل → "حفظ التغييرات"
+- التعديل ينعكس على ملف JSON على القرص فوراً
+- ⚠️ المهام التي رُفعت لأسانا سابقاً لن تتحدّث تلقائياً — عدّلها يدوياً في أسانا
+
+### Flags المولّد المتاحة:
+
+| الأمر | الأثر |
+|-------|------|
+| `node generate-fad-jsons.js` | يولّد الكل، **يكتب فوق التعديلات** ⚠️ |
+| `node generate-fad-jsons.js --only-missing` | يولّد فقط الملفات الناقصة 🛡️ |
+| `node generate-fad-jsons.js --dev=16` | تطوير واحد محدّد فقط |
+| `node generate-fad-jsons.js --dev=16 --only-missing` | الأكثر أماناً للإضافات الجزئية |

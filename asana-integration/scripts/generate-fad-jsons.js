@@ -3,7 +3,11 @@
 //   - fad-jsons/main/FAD_DEV-{id}_v1.0.json     (19 ملف)
 //   - fad-jsons/subtasks/FAD_DEV-{subId}_v1.0.json  (~317 ملف)
 //
-// Usage: node generate-fad-jsons.js
+// Usage:
+//   node generate-fad-jsons.js                 # ولّد الكل (يكتب فوق الموجود)
+//   node generate-fad-jsons.js --dev=200       # تطوير واحد فقط مع فرعياته
+//   node generate-fad-jsons.js --only-missing  # تخطّ الملفات الموجودة (يحمي تعديلاتك)
+//   node generate-fad-jsons.js --dev=200 --only-missing  # دمج الخيارين
 
 import 'dotenv/config';
 import fs from 'fs';
@@ -19,6 +23,13 @@ const PM_NAME = process.env.DEFAULT_PM_NAME || 'أحمد محمد';
 const ANALYST_NAME = process.env.DEFAULT_ANALYST_NAME || 'سارة علي';
 const TODAY = new Date().toISOString().slice(0, 10);
 const NOW_ISO = new Date().toISOString();
+
+// ===== تحليل الـ flags =====
+const args = process.argv.slice(2);
+const onlyMissing = args.includes('--only-missing');
+const targetDevArg = args.find((a) => a.startsWith('--dev='));
+const targetDevId = targetDevArg ? targetDevArg.split('=')[1] : null;
+const targetDevIdNum = targetDevId !== null ? Number(targetDevId) : null;
 
 const OUT_MAIN = path.resolve(__dirname, '..', 'fad-jsons', 'main');
 const OUT_SUB = path.resolve(__dirname, '..', 'fad-jsons', 'subtasks');
@@ -267,49 +278,75 @@ function buildSubtaskFAD(dev, phase, subTask) {
 
 // ===== الحلقة الرئيسية =====
 
-const stats = { mainCount: 0, subCount: 0, totalDevTasks: {} };
+const stats = { mainCount: 0, subCount: 0, mainSkipped: 0, subSkipped: 0, totalDevTasks: {} };
 
-for (const dev of developments) {
+// فلترة قائمة التطويرات حسب --dev=
+let toProcess = developments;
+if (targetDevIdNum !== null) {
+  toProcess = developments.filter((d) => d.id === targetDevIdNum);
+  if (toProcess.length === 0) {
+    console.error(`✗ لم يُعثر على تطوير بـ id=${targetDevId} في developments.js`);
+    process.exit(1);
+  }
+}
+
+console.log('\n══════════ خيارات التشغيل ══════════');
+if (targetDevId !== null) console.log(`🎯 تطوير محدد: DEV-${targetDevId}`);
+if (onlyMissing) console.log(`🛡️ وضع آمن: تخطي الملفات الموجودة (--only-missing)`);
+console.log('═══════════════════════════════════\n');
+
+for (const dev of toProcess) {
   // الرئيسي
-  const mainFad = buildMainFAD(dev);
-  if (mainFad) {
-    const fname = `FAD_DEV-${dev.id}_v1.0.json`;
-    fs.writeFileSync(
-      path.join(OUT_MAIN, fname),
-      JSON.stringify(mainFad, null, 2),
-      'utf8'
-    );
-    stats.mainCount++;
+  const mainPath = path.join(OUT_MAIN, `FAD_DEV-${dev.id}_v1.0.json`);
+  const mainExists = fs.existsSync(mainPath);
+
+  if (onlyMissing && mainExists) {
+    stats.mainSkipped++;
+  } else {
+    const mainFad = buildMainFAD(dev);
+    if (mainFad) {
+      fs.writeFileSync(mainPath, JSON.stringify(mainFad, null, 2), 'utf8');
+      stats.mainCount++;
+    }
   }
 
   // الفرعيات (المستوى 3)
   const phases = ['analysis', 'design', 'implementation', 'training'];
   let devSubCount = 0;
+  let devSubSkipped = 0;
   for (const phase of phases) {
     const list = dev[phase] || [];
     for (const subTask of list) {
+      const subPath = path.join(OUT_SUB, `FAD_DEV-${subTask.id}_v1.0.json`);
+      const subExists = fs.existsSync(subPath);
+
+      if (onlyMissing && subExists) {
+        stats.subSkipped++;
+        devSubSkipped++;
+        continue;
+      }
       const subFad = buildSubtaskFAD(dev, phase, subTask);
       if (subFad) {
-        const fname = `FAD_DEV-${subTask.id}_v1.0.json`;
-        fs.writeFileSync(
-          path.join(OUT_SUB, fname),
-          JSON.stringify(subFad, null, 2),
-          'utf8'
-        );
+        fs.writeFileSync(subPath, JSON.stringify(subFad, null, 2), 'utf8');
         stats.subCount++;
         devSubCount++;
       }
     }
   }
-  stats.totalDevTasks[`DEV-${dev.id}`] = devSubCount;
-  console.log(`✓ DEV-${dev.id} — main + ${devSubCount} subtasks`);
+  stats.totalDevTasks[`DEV-${dev.id}`] = { written: devSubCount, skipped: devSubSkipped };
+  const skipNote = devSubSkipped > 0 ? ` (تخطّي ${devSubSkipped})` : '';
+  const mainNote = (onlyMissing && mainExists) ? ' [main تخطّي]' : '';
+  console.log(`✓ DEV-${dev.id}${mainNote} — ${devSubCount} subtasks${skipNote}`);
 }
 
 console.log('\n══════════ تقرير التوليد ══════════');
-console.log(`ملفات رئيسية: ${stats.mainCount}`);
-console.log(`ملفات فرعية:  ${stats.subCount}`);
-console.log(`الإجمالي:     ${stats.mainCount + stats.subCount}`);
+console.log(`ملفات رئيسية: مكتوبة ${stats.mainCount} | تخطّي ${stats.mainSkipped}`);
+console.log(`ملفات فرعية:  مكتوبة ${stats.subCount} | تخطّي ${stats.subSkipped}`);
+console.log(`الإجمالي المكتوب: ${stats.mainCount + stats.subCount}`);
 console.log('═══════════════════════════════════');
+if (onlyMissing && (stats.mainSkipped + stats.subSkipped > 0)) {
+  console.log('\n💡 الملفات المتخطّاة محفوظة كما هي — تعديلاتك السابقة لم تُلمَس.');
+}
 console.log('\nالمسارات:');
 console.log(`  ${path.relative(process.cwd(), OUT_MAIN)}/`);
 console.log(`  ${path.relative(process.cwd(), OUT_SUB)}/`);
