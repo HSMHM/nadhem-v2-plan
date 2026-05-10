@@ -52,43 +52,6 @@ export default function OpsDashboardSection() {
           </p>
         </div>
 
-        <div data-aos="fade-up" style={{
-          background: 'rgba(239,68,68,0.12)',
-          border: '1px solid rgba(239,68,68,0.35)',
-          borderRadius: 12,
-          padding: '14px 20px',
-          marginBottom: 20,
-          display: 'flex',
-          alignItems: 'center',
-          gap: 12,
-        }}>
-          <i className="fa-thin fa-bolt" style={{ color: '#EF4444', fontSize: 20 }} aria-hidden="true" />
-          <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.85rem', margin: 0, lineHeight: 1.7 }}>
-            <strong style={{ color: '#fff' }}>حزمة تحسينات عاجلة سارية الآن </strong>
-            (19 أبريل – 14 مايو): 4 تطويرات متوازية + 7 مهام تشغيلية يومية/عند الطلب. تفاصيلها في قسم «الحزمة العاجلة».
-          </p>
-        </div>
-
-        <div style={{
-          background: 'rgba(255,255,255,0.06)',
-          border: '1px solid rgba(255,255,255,0.1)',
-          borderRadius: 12,
-          padding: '14px 20px',
-          marginBottom: 28,
-          display: 'flex',
-          alignItems: 'center',
-          gap: 12,
-        }}>
-          <i className="fa-thin fa-circle-info" style={{ color: 'var(--primary)', fontSize: 18 }} aria-hidden="true" />
-          <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.82rem', margin: 0, lineHeight: 1.7 }}>
-            هذه المهام التشغيلية خاصة بدور مدير المنتج. يوجد مهام إضافية لمدير المنتج في
-            <strong style={{ color: 'rgba(255,255,255,0.85)' }}> خطة التطوير </strong>
-            (مرحلة التحليل + تدريب فريق نجاح العملاء) وفي
-            <strong style={{ color: 'rgba(255,255,255,0.85)' }}> خطة التسويق </strong>
-            (استعادة العملاء السابقين + استراتيجية النمو).
-          </p>
-        </div>
-
         <div
           className="grid g3"
           style={{ marginBottom: 32 }}

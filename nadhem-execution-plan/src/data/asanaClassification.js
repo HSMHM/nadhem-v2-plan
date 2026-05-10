@@ -13,13 +13,11 @@ export const CLASSIFICATION = {
   4:   { type: 'new',    section: 'add', interfaces: ['admin','user','api'] },
   5:   { type: 'new',    section: 'add', interfaces: ['admin','user','public','api'] },
   6:   { type: 'new',    section: 'add', interfaces: ['admin','public','api'] },
-  7:   { type: 'new',    section: 'add', interfaces: ['admin','public','api'] },
   8:   { type: 'new',    section: 'add', interfaces: ['admin','api'] },
   9:   { type: 'new',    section: 'add', interfaces: ['api'] },
   10:  { type: 'change', section: 'mod', interfaces: ['admin','api'] },
   11:  { type: 'change', section: 'mod', interfaces: ['admin','api'] },
-  12:  { type: 'change', section: 'mod', interfaces: ['admin','user','api'] },
-  13:  { type: 'new',    section: 'add', interfaces: ['admin','public','api'] },
+  12:  { type: 'change', section: 'mod', interfaces: ['admin','user','public','api'] },
   14:  { type: 'new',    section: 'add', interfaces: ['admin','api'] },
   15:  { type: 'new',    section: 'add', interfaces: ['admin','user','public'] },
 };
@@ -31,9 +29,10 @@ export const AS_IS_DESCRIPTIONS = {
   104: 'DashboardController موجود ولديه views للوحة المعلومات، مع تقارير حضور وبطاقات أساسية، لكن بدون رسوم بيانية متقدّمة أو فلترة متطورة. تقارير حضور الورش بدائية.',
   2: 'كل اللجان الثمانية (Exhibition, Finance, Sponsor, Scientific, Logistics, Organization, Informative, Partnership) موجودة في Admin SPA كل واحدة مع routes خاص (مثل ExhibitionCommitteeRoutes.js)، بترتيب أقسام داخلية يحتاج تحسيناً وإعادة تنظيم.',
   3: 'خاصية رسم خطط المعرض موجودة عبر DrawPlanExhibition.js (يستخدم Konva.js) و ExhibitionPlanService.php. الرسم الحالي بسيط بدون تجربة تفاعلية كاملة، ولا يدعم حالات المساحة (متاحة/محجوزة/مباعة) ولا الحجز والدفع المباشر من الخريطة.',
+  6: 'بعد تطوير 102 سيتوفّر ثيمان للواجهة الخارجية. لا توجد حالياً مكتبة قوالب لكل أقسام الواجهة الخارجية (المتحدثين، الجلسات، الرعاة، المعرض، الجدول)، ولا محرر بنائي بالسحب والإفلات يتيح للمنظم ترتيب صفحته.',
   10: 'تطوير 104 سيُحسّن التقارير الأساسية (الحضور، البطاقات، الورش)، لكن لا توجد لوحة مؤشرات لحظية لكل لجنة ولا تقرير ختامي شامل قابل للتصدير PDF/Excel.',
   11: 'بعد تطوير 103 ستُلغى لجنة الشراكات وتُنقل خصائصها إلى الإعلامية في بطاقة "منصة التوقيع". بقي ضبط التسميات الرسمية للأدوار والصلاحيات وتوثيق البنية الجديدة على مستوى المنتج.',
-  12: 'LogisticInviteesView.vue موجود لإدارة المدعوين مع CRUD في LogisticCommitteeRoutes.js. لكن لا يوجد نظام RSVP تفاعلي يسمح للمدعو بالقبول أو الاعتذار من داخل الدعوة مع ملاحظات.',
+  12: 'LogisticInviteesView.vue موجود لإدارة المدعوين مع CRUD في LogisticCommitteeRoutes.js لكن لا يوجد نظام RSVP تفاعلي. ولا يوجد قسم لخصومات الفنادق والطيران أو خدمات إضافية في اللجنة اللوجستية.',
 };
 
 export const INTERFACE_DESCRIPTIONS = {
@@ -44,11 +43,11 @@ export const INTERFACE_DESCRIPTIONS = {
 };
 
 export const PRIORITY_MAP = {
-  P0: 'P1',
-  P1: 'P2',
-  P2: 'P3',
-  P3: 'P3',
-  P4: 'P4',
+  P0: 'P1', // حرجة — مرحلة التطوير العاجل
+  P1: 'P2', // عالية
+  P2: 'P3', // متوسطة
+  P3: 'P3', // متوسطة
+  P4: 'P4', // منخفضة
 };
 
 export const SECTION_LABELS = {

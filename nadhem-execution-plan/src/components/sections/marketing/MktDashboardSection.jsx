@@ -21,27 +21,6 @@ export default function MktDashboardSection() {
           </p>
         </div>
 
-        {/* PM role note */}
-        <div style={{
-          background: 'rgba(255,255,255,0.06)',
-          border: '1px solid rgba(255,255,255,0.1)',
-          borderRadius: 12,
-          padding: '14px 20px',
-          marginBottom: 28,
-          display: 'flex',
-          alignItems: 'center',
-          gap: 12,
-        }}>
-          <i className="fa-thin fa-circle-info" style={{ color: 'var(--primary)', fontSize: 18 }} aria-hidden="true" />
-          <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.82rem', margin: 0, lineHeight: 1.7 }}>
-            يوجد مهام لمدير المنتج في خطتي
-            <strong style={{ color: 'rgba(255,255,255,0.85)' }}> التطوير </strong>
-            و
-            <strong style={{ color: 'rgba(255,255,255,0.85)' }}> التشغيل </strong>
-            أيضاً.
-          </p>
-        </div>
-
         {/* Stat cards */}
         <div
           className="grid g3"

@@ -8,6 +8,6 @@ export const currentIntegrations = [
 export const futureIntegrations = [
   { name: 'النفاذ الوطني', description: 'تسجيل دخول بالهوية الوطنية', quarter: 'P3', devId: 5, icon: 'fingerprint' },
   { name: 'التوقيع الإلكتروني', description: 'توقيع العقود والاتفاقيات إلكترونياً', quarter: 'P2', devId: 4, icon: 'signature' },
-  { name: 'أجهزة الخدمات الذاتية (Kiosks)', description: 'طباعة بطاقات الحضور ذاتياً في موقع الفعالية', quarter: 'P4', devId: 8, icon: 'print' },
-  { name: 'الذكاء الاصطناعي', description: 'اقتراح جدول الفعالية + مساعد ذكي لقاعدة المعرفة', quarter: 'P4', devId: 14, icon: 'robot' },
+  { name: 'أجهزة الخدمات الذاتية (Kiosks)', description: 'طباعة بطاقات الحضور ذاتياً في موقع الفعالية', quarter: 'P3', devId: 8, icon: 'print' },
+  { name: 'الذكاء الاصطناعي', description: 'اقتراح جدول الفعالية + مساعد ذكي لقاعدة المعرفة', quarter: 'P3', devId: 14, icon: 'robot' },
 ];

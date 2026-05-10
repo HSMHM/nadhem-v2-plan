@@ -131,6 +131,12 @@ body{font-family:var(--font);color:var(--text);background:var(--bg);line-height:
 .task-id{color:var(--primary);font-weight:600;min-width:45px;font-size:0.75rem}
 .task-text{flex:1;color:var(--text-dark);line-height:1.9}
 .task-dur{color:var(--text-muted);font-size:0.75rem;white-space:nowrap}
+.mkt-subtasks{margin:6px 0 4px 28px;padding:8px 12px;border-right:2px solid #EF4444;background:rgba(239,68,68,0.04);border-radius:0 8px 8px 0;display:grid;gap:6px}
+.mkt-subtask-row{display:flex;align-items:center;gap:10px;font-size:0.78rem;color:var(--text-dark)}
+.mkt-subtask-id{color:#EF4444;font-weight:600;font-size:0.7rem;min-width:60px}
+.mkt-subtask-text{flex:1;line-height:1.7}
+.mkt-subtask-period{font-size:0.7rem;color:#fff;background:#EF4444;padding:2px 8px;border-radius:999px;white-space:nowrap;font-weight:600}
+.mkt-subtask-dur{font-size:0.7rem;color:var(--text-muted);white-space:nowrap;min-width:50px;text-align:left}
 
 /* Timeline */
 .tl{position:relative;padding-right:32px}
@@ -302,6 +308,16 @@ body{font-family:var(--font);color:var(--text);background:var(--bg);line-height:
 .journey-pillar-reason{display:flex;align-items:flex-start;gap:8px;padding:9px 12px;border-radius:10px;background:color-mix(in srgb,var(--pillar-accent) 8%,rgba(255,255,255,0.02));border:1px dashed color-mix(in srgb,var(--pillar-accent) 30%,transparent);font-size:0.74rem;color:rgba(255,255,255,0.7);line-height:1.85}
 .journey-pillar-reason i{color:var(--pillar-accent);font-size:13px;margin-top:3px;flex-shrink:0}
 .journey-pillar-reason strong{color:var(--pillar-accent);font-weight:600;margin-left:2px}
+
+/* Subtasks */
+.journey-pillar-subtasks{margin-top:10px;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06)}
+.journey-pillar-subtasks-head{display:flex;align-items:center;gap:6px;font-size:0.72rem;color:var(--pillar-accent);font-weight:600;margin-bottom:6px}
+.journey-pillar-subtasks-head i{font-size:13px}
+.journey-pillar-subtasks-list{list-style:none;padding:0;margin:0;display:grid;gap:5px}
+.journey-pillar-subtasks-list li{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 8px;border-radius:7px;background:rgba(255,255,255,0.02);font-size:0.74rem;color:rgba(255,255,255,0.78);line-height:1.6}
+.journey-pillar-subtasks-list li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--pillar-accent);flex-shrink:0;margin-left:2px}
+.journey-pillar-subtask-text{flex:1}
+.journey-pillar-subtask-period{font-size:0.68rem;color:#fff;background:color-mix(in srgb,var(--pillar-accent) 18%,transparent);padding:2px 8px;border-radius:999px;white-space:nowrap;font-weight:600}
 
 /* Timeline */
 .journey-pillar-track-label{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:0.7rem;color:rgba(255,255,255,0.5);padding-top:4px}

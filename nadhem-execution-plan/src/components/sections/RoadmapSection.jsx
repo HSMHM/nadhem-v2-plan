@@ -273,7 +273,7 @@ export default function RoadmapSection() {
       </div>
 
       {/* التطويرات المطلوبة */}
-      <SubHeader icon="rocket-launch" title="التطويرات المطلوبة (15 تطوير)" />
+      <SubHeader icon="rocket-launch" title="التطويرات المطلوبة (13 تطوير)" />
       <DevTabs />
 
       {/* الوحدات */}

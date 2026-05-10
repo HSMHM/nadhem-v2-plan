@@ -45,7 +45,7 @@ export default function UrgentSprintSection() {
         <div className="card" data-aos="fade-up">
           <h3 style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-dark)', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 8 }}>
             <i className="fa-thin fa-list-check" style={{ color: '#EF4444' }} aria-hidden="true" />
-            مهام تشغيلية خلال الحزمة
+            مهام تشغيلية خلال المرحلة
           </h3>
           <div style={{ display: 'grid', gap: 8 }}>
             {urgentSprint.tasks.map((t) => (

@@ -38,14 +38,31 @@ function DevelopmentCard({ dev }) {
   const totalTasks = dev.analysis.length + dev.design.length + dev.implementation.length + (dev.training?.length || 0);
 
   return (
-    <div className={`dev-card ${dev.urgent ? 'dev-card-urgent' : ''}`} style={dev.urgent ? { borderColor: '#EF4444', boxShadow: '0 0 0 2px rgba(239,68,68,0.12)' } : undefined}>
+    <div className={`dev-card ${dev.urgent ? 'dev-card-urgent' : ''} ${dev.completed ? 'dev-card-completed' : ''} ${dev.partial ? 'dev-card-partial' : ''}`} style={
+      dev.completed ? { borderColor: '#10B981', boxShadow: '0 0 0 2px rgba(16,185,129,0.15)' }
+      : dev.partial ? { borderColor: '#F59E0B', boxShadow: '0 0 0 2px rgba(245,158,11,0.15)' }
+      : dev.urgent ? { borderColor: '#EF4444', boxShadow: '0 0 0 2px rgba(239,68,68,0.12)' }
+      : undefined
+    }>
       <div className="dev-header" onClick={() => setOpen(!open)}>
         <div className="num">{dev.id}</div>
-        <div className="ic" style={{ width: 36, height: 36, borderRadius: 8, background: dev.urgent ? 'rgba(239,68,68,0.12)' : undefined, color: dev.urgent ? '#EF4444' : undefined }}>
+        <div className="ic" style={{
+          width: 36, height: 36, borderRadius: 8,
+          background: dev.completed ? 'rgba(16,185,129,0.12)' : dev.partial ? 'rgba(245,158,11,0.12)' : dev.urgent ? 'rgba(239,68,68,0.12)' : undefined,
+          color: dev.completed ? '#10B981' : dev.partial ? '#F59E0B' : dev.urgent ? '#EF4444' : undefined,
+        }}>
           <i className={`fa-thin fa-${dev.icon}`} style={{ fontSize: 16 }} aria-hidden="true" />
         </div>
         <div className="title">{dev.title}</div>
-        {dev.urgent && (
+        {dev.completed ? (
+          <span className="badge" style={{ background: '#10B981', color: '#fff', fontWeight: 700 }}>
+            <i className="fa-thin fa-circle-check" style={{ marginLeft: 4 }} /> مكتمل{dev.completedDate ? ` · ${dev.completedDate}` : ''}
+          </span>
+        ) : dev.partial ? (
+          <span className="badge" style={{ background: '#F59E0B', color: '#fff', fontWeight: 700 }}>
+            <i className="fa-thin fa-circle-half-stroke" style={{ marginLeft: 4 }} /> جزئي · التصميم مكتمل
+          </span>
+        ) : dev.urgent && (
           <span className="badge" style={{ background: '#EF4444', color: '#fff', fontWeight: 700 }}>
             <i className="fa-thin fa-bolt" style={{ marginLeft: 4 }} /> عاجلة
           </span>
@@ -64,12 +81,60 @@ function DevelopmentCard({ dev }) {
             </span>
           </div>
 
-          {dev.urgent && (
+          {dev.subtasks && (() => {
+            const accent = dev.completed ? '#10B981' : dev.partial ? '#F59E0B' : dev.urgent ? '#EF4444' : 'var(--primary)';
+            const bgSoft = dev.completed ? 'rgba(16,185,129,0.06)' : dev.partial ? 'rgba(245,158,11,0.06)' : dev.urgent ? 'rgba(239,68,68,0.05)' : 'rgba(42,132,138,0.05)';
+            const borderSoft = dev.completed ? 'rgba(16,185,129,0.30)' : dev.partial ? 'rgba(245,158,11,0.30)' : dev.urgent ? 'rgba(239,68,68,0.25)' : 'rgba(42,132,138,0.25)';
+            const headIcon = dev.completed ? 'circle-check' : dev.partial ? 'circle-half-stroke' : 'list-tree';
+            const headLabel = dev.completed ? 'المخرجات المُسلَّمة' : dev.partial ? 'حالة المخرجات' : 'المهام الفرعية';
+            const statusMeta = {
+              completed: { icon: 'square-check', color: '#10B981', label: 'مكتمل' },
+              'design-done': { icon: 'pen-ruler', color: '#F59E0B', label: 'التصميم مكتمل · متبقي التنفيذ' },
+              pending: { icon: 'square', color: 'var(--text-muted)', label: 'لم يبدأ' },
+            };
+            return (
+              <div style={{ background: bgSoft, border: `1px solid ${borderSoft}`, borderRadius: 10, padding: '12px 14px', marginBottom: 16 }}>
+                <div style={{ display: 'flex', gap: 10, alignItems: 'center', marginBottom: 10 }}>
+                  <i className={`fa-thin fa-${headIcon}`} style={{ color: accent, fontSize: 18 }} />
+                  <div style={{ fontSize: '0.82rem', color: 'var(--text-dark)', fontWeight: 600 }}>
+                    {headLabel}
+                  </div>
+                  {dev.partialNote && (
+                    <div style={{ fontSize: '0.74rem', color: accent, marginRight: 'auto', fontWeight: 500 }}>
+                      {dev.partialNote}
+                    </div>
+                  )}
+                </div>
+                <div style={{ display: 'grid', gap: 8, paddingRight: 26 }}>
+                  {dev.subtasks.map((s) => {
+                    const meta = statusMeta[s.status] || statusMeta.pending;
+                    return (
+                      <div key={s.id} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', fontSize: '0.82rem', color: 'var(--text)', lineHeight: 1.7 }}>
+                        <i className={`fa-thin fa-${meta.icon}`} style={{ color: meta.color, marginTop: 3, flexShrink: 0 }} />
+                        <span style={{ flex: 1 }}>
+                          {s.task}
+                          {s.note && <span style={{ display: 'block', fontSize: '0.74rem', color: meta.color, marginTop: 2 }}>⓵ {s.note}</span>}
+                        </span>
+                        {s.period && (
+                          <span style={{ fontSize: '0.7rem', color: meta.color, background: `${meta.color}1A`, padding: '2px 8px', borderRadius: 999, fontWeight: 600, whiteSpace: 'nowrap', flexShrink: 0 }}>
+                            {s.period}
+                          </span>
+                        )}
+                        <span className="badge" style={{ background: meta.color, color: '#fff', fontSize: '0.66rem', fontWeight: 600, padding: '2px 8px', flexShrink: 0 }}>{meta.label}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })()}
+
+          {dev.urgent && !dev.completed && !dev.partial && (
             <div style={{ background: 'rgba(239,68,68,0.06)', border: '1px solid rgba(239,68,68,0.25)', borderRadius: 10, padding: '12px 14px', marginBottom: 16 }}>
               <div style={{ display: 'flex', gap: 10, alignItems: 'center', marginBottom: dev.milestones ? 10 : 0 }}>
                 <i className="fa-thin fa-bolt" style={{ color: '#EF4444', fontSize: 18 }} />
                 <div style={{ fontSize: '0.82rem', color: 'var(--text-dark)', fontWeight: 600 }}>
-                  حزمة عاجلة — من {dev.startDate} إلى {dev.endDate}
+                  مرحلة التطوير العاجل — من {dev.startDate} إلى {dev.endDate}
                 </div>
               </div>
               {dev.milestones && (
@@ -136,7 +201,7 @@ function DevelopmentCard({ dev }) {
 export default function DevelopmentsSection() {
   return (
     <section id="developments" className="section">
-      <SectionHeader icon="rocket-launch" title="التطويرات المطلوبة" subtitle="19 تطويراً (4 عاجلة + 15 مخططة) — اضغط على أي تطوير لعرض مهامه التفصيلية" />
+      <SectionHeader icon="rocket-launch" title="التطويرات المطلوبة" subtitle="17 تطويراً (4 عاجلة + 13 مخططة) — اضغط على أي تطوير لعرض مهامه التفصيلية" />
 
       <div className="card" style={{
         background: 'rgba(42,132,138,0.04)',

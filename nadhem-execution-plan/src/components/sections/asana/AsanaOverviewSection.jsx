@@ -107,7 +107,7 @@ export default function AsanaOverviewSection() {
             <div className="asana-priority-grid">
               {Object.entries(buckets).filter(([, list]) => list.length > 0).map(([q, list]) => {
                 const colorMap = { P0: '#EF4444', P1: '#F59E0B', P2: '#3B82F6', P3: '#8B5CF6', P4: '#6B7280' };
-                const labelMap = { P0: 'الحزمة العاجلة', P1: 'عالية', P2: 'متوسطة', P3: 'متوسطة', P4: 'منخفضة' };
+                const labelMap = { P0: 'مرحلة التطوير العاجل', P1: 'عالية', P2: 'متوسطة', P3: 'متوسطة', P4: 'منخفضة' };
                 return (
                   <div key={q} className="asana-priority-row" style={{ '--p-c': colorMap[q] }}>
                     <span className="asana-priority-tag">{q}</span>

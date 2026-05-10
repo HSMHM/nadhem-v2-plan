@@ -64,12 +64,29 @@ function PillarCard({ pillar, index, accent }) {
         </span>
       </div>
 
+      {pillar.subtasks && (
+        <div className="journey-pillar-subtasks">
+          <div className="journey-pillar-subtasks-head">
+            <i className="fa-thin fa-list-tree" aria-hidden="true" />
+            <span>المهام الفرعية</span>
+          </div>
+          <ul className="journey-pillar-subtasks-list">
+            {pillar.subtasks.map((s, i) => (
+              <li key={i}>
+                <span className="journey-pillar-subtask-text">{s.task}</span>
+                <span className="journey-pillar-subtask-period">{s.period}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       <div className="journey-pillar-track-label">
         <span>
           <i className="fa-thin fa-calendar-range" aria-hidden="true" /> رحلة التنفيذ
         </span>
         <span className="journey-pillar-track-range">
-          {journeyMonths[pillar.startMonth].label} — {journeyMonths[pillar.endMonth].label}
+          {pillar.period || `${journeyMonths[pillar.startMonth].label} — ${journeyMonths[pillar.endMonth].label}`}
         </span>
       </div>
       <PillarTimeline startMonth={pillar.startMonth} endMonth={pillar.endMonth} urgent={pillar.urgent} />
@@ -85,7 +102,7 @@ function ColumnMonthHeader() {
           key={m.num}
           className="journey-col-month"
           style={m.urgent ? { color: '#EF4444', fontWeight: 700 } : undefined}
-          title={m.urgent ? 'شهر الحزمة العاجلة' : m.label}
+          title={m.urgent ? 'شهر مرحلة التطوير العاجل' : m.label}
         >
           <span className="journey-col-month-num">{m.num}</span>
           <span className="journey-col-month-lbl">{m.label}</span>
@@ -150,22 +167,6 @@ export default function ProductJourneySection() {
           </div>
           <h1 className="journey-hero-title">{journeyMeta.title}</h1>
           <p className="journey-hero-sub">{journeyMeta.subtitle}</p>
-
-          <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: 10,
-            padding: '10px 18px', borderRadius: 999,
-            background: 'rgba(239,68,68,0.14)', border: '1px solid rgba(239,68,68,0.45)',
-            color: '#fff', fontSize: '0.85rem', fontWeight: 600,
-            marginBottom: 14,
-          }}>
-            <i className="fa-thin fa-bolt" style={{ color: '#EF4444' }} aria-hidden="true" />
-            <span>حزمة تحسينات عاجلة قبل الإطلاق — <strong style={{ color: '#EF4444' }}>19 أبريل → 14 مايو 2026</strong></span>
-          </div>
-
-          <div className="journey-hero-meta">
-            <i className="fa-thin fa-flag" aria-hidden="true" />
-            <span>نقطة الانطلاق العاجلة: <strong>19 أبريل 2026</strong> — ثم الخطة الأساسية <strong>1 مايو</strong> حتى <strong>31 ديسمبر 2026</strong></span>
-          </div>
 
           <div className="journey-kpis">
             {journeyMeta.kpis.map((k, i) => (
