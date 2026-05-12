@@ -57,13 +57,6 @@ function PillarCard({ pillar, index, accent }) {
         </div>
       </div>
 
-      <div className="journey-pillar-reason">
-        <i className="fa-thin fa-circle-info" aria-hidden="true" />
-        <span>
-          <strong>السبب:</strong> {pillar.reason}
-        </span>
-      </div>
-
       {pillar.subtasks && (
         <div className="journey-pillar-subtasks">
           <div className="journey-pillar-subtasks-head">
@@ -133,9 +126,6 @@ function JourneyColumn({ section }) {
           <p className="journey-col-tag">{section.tagline}</p>
         </div>
       </header>
-      <div className="journey-col-summary" data-aos="fade-up">
-        {section.summary}
-      </div>
       <div className="journey-col-count" data-aos="fade-up">
         <span className="journey-col-count-num">{section.pillars.length}</span>
         <span className="journey-col-count-label">بند رئيسي مرتّب بالأولوية</span>
@@ -189,12 +179,6 @@ export default function ProductJourneySection() {
           ))}
         </div>
 
-        <footer className="journey-footer" data-aos="fade-up">
-          <i className="fa-thin fa-circle-info" aria-hidden="true" />
-          <span>
-            ترتيب البنود يعكس الأولوية التنفيذية. المدد التقريبية موضّحة على الشريط الزمني لكل بند — التفاصيل الكاملة في تبويبات خطط التطوير والتشغيل والتسويق.
-          </span>
-        </footer>
       </div>
     </section>
   );

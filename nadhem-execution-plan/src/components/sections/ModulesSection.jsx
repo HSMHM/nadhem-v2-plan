@@ -23,14 +23,6 @@ export default function ModulesSection() {
         ))}
       </div>
 
-      <div className="card" style={{ marginTop: 20, background: 'var(--primary-light)', borderColor: 'var(--primary)' }}>
-        <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-          <i className="fa-thin fa-circle-info fa-lg" style={{ color: 'var(--primary)', marginTop: 4 }} />
-          <p style={{ fontSize: '0.82rem', lineHeight: 1.8, color: 'var(--text)' }}>
-            الوحدات لا يختارها العميل بنفسه — بل تأتي ضمن باقات جاهزة. كل باقة تحتوي على مجموعة وحدات محددة.
-          </p>
-        </div>
-      </div>
     </section>
   );
 }

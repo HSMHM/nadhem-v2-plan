@@ -21,7 +21,6 @@ export default function WinbackSection() {
                   <div style={{ flex: 1 }}>
                     <h4 style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-dark)', margin: 0 }}>{phase.name}</h4>
                   </div>
-                  <span className="badge badge-s">{phase.period}</span>
                 </div>
 
                 <div className="task-list">
@@ -45,7 +44,7 @@ export default function WinbackSection() {
             <i className="fa-thin fa-user-plus" style={{ fontSize: 24, color: 'var(--primary)' }} aria-hidden="true" />
           </div>
           <div style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--text-dark)', marginBottom: 6 }}>هدف الاكتساب</div>
-          <div style={{ fontSize: '1.6rem', fontWeight: 700, color: 'var(--primary)', marginBottom: 4 }}>10 – 15 عميل جديد</div>
+          <div style={{ fontSize: '1.6rem', fontWeight: 700, color: 'var(--primary)', marginBottom: 4 }}>30 – 40 عميل جديد</div>
           <p style={{ color: 'var(--text-muted)', fontSize: '0.82rem', margin: 0 }}>من جميع القطاعات (غير ربحي + حكومي + خاص)</p>
         </div>
 

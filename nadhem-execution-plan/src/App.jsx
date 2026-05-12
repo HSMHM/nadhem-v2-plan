@@ -3,6 +3,7 @@ import WelcomePage from './components/WelcomePage';
 import Sidebar, { devNavItems, opsNavItems, marketingNavItems, journeyNavItems, asanaNavItems } from './components/Sidebar';
 import PlanTabs from './components/PlanTabs';
 import './components/sections/asana/asana.css';
+import './components/sections/platform/platform.css';
 
 // Dev sections
 import DashboardSection from './components/sections/DashboardSection';
@@ -44,10 +45,12 @@ import MktCalendarSection from './components/sections/marketing/MktCalendarSecti
 import ProductJourneySection from './components/sections/journey/ProductJourneySection';
 
 // Asana simulation
-import AsanaOverviewSection from './components/sections/asana/AsanaOverviewSection';
-import AsanaTasksSection from './components/sections/asana/AsanaTasksSection';
+import AsanaTaskTabs from './components/sections/asana/AsanaTaskTabs';
 import AsanaTemplateSection from './components/sections/asana/AsanaTemplateSection';
 import AsanaPipelineSection from './components/sections/asana/AsanaPipelineSection';
+
+// Platform Journey
+import PlatformJourneySection from './components/sections/platform/PlatformJourneySection';
 
 const navMap = { dev: devNavItems, ops: opsNavItems, marketing: marketingNavItems, journey: journeyNavItems, asana: asanaNavItems };
 
@@ -104,10 +107,11 @@ function App() {
 
   const isJourney = plan === 'journey';
   const isAsana = plan === 'asana';
-  const isFullPage = isJourney || isAsana;
+  const isPlatform = plan === 'platform';
+  const isFullPage = isJourney || isAsana || isPlatform;
 
   return (
-    <div className={`app ${isJourney ? 'app-journey' : ''} ${isAsana ? 'app-asana' : ''}`}>
+    <div className={`app ${isJourney ? 'app-journey' : ''} ${isAsana ? 'app-asana' : ''} ${isPlatform ? 'app-platform' : ''}`}>
       {!isFullPage && (
         <button className="mobile-btn" onClick={() => setSidebarOpen(true)}>
           <i className="fa-thin fa-bars" aria-hidden="true" />
@@ -171,10 +175,13 @@ function App() {
           <ProductJourneySection />
         )}
 
+        {plan === 'platform' && (
+          <PlatformJourneySection />
+        )}
+
         {plan === 'asana' && (
           <>
-            <AsanaOverviewSection />
-            <AsanaTasksSection />
+            <AsanaTaskTabs />
             <AsanaTemplateSection />
             <AsanaPipelineSection />
           </>

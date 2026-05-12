@@ -28,10 +28,10 @@ export const detailedTimeline = [
 
 export const chartData = {
   tasksByPhase: [
-    { name: 'التحليل', value: 84, color: '#2A848A' },
-    { name: 'التصميم', value: 86, color: '#A61C61' },
-    { name: 'التنفيذ', value: 131, color: '#BA5A31' },
-    { name: 'التدريب والتسليم', value: 54, color: '#452059' },
+    { name: 'التحليل', value: 74, color: '#2A848A' },
+    { name: 'التصميم', value: 65, color: '#A61C61' },
+    { name: 'التنفيذ', value: 100, color: '#BA5A31' },
+    { name: 'التدريب والتسليم', value: 50, color: '#452059' },
   ],
   tasksByQuarter: [
     { name: 'P0', label: '19 أبريل–14 مايو (عاجل)', value: 4 },

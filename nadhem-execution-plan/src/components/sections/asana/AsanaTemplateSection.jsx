@@ -85,10 +85,6 @@ export default function AsanaTemplateSection() {
                 </li>
               ))}
             </ul>
-            <div className="asana-info-note">
-              <i className="fa-thin fa-circle-info" aria-hidden="true" />
-              <span>هذه الحقول تُترك فارغة في JSON ولن تظهر في القالب التفاعلي عند فتحه.</span>
-            </div>
           </div>
         </div>
 

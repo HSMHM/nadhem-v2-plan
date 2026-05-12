@@ -5,16 +5,16 @@ import { chartData } from '../../data/timeline';
 
 const stats = [
   { icon: 'bolt', value: 4, label: 'تطويرات عاجلة', color: '#EF4444' },
-  { icon: 'rocket-launch', value: 19, label: 'إجمالي التطويرات', color: '#2A848A' },
-  { icon: 'list-check', value: 355, label: 'إجمالي المهام التفصيلية', color: '#BA5A31' },
+  { icon: 'rocket-launch', value: 17, label: 'إجمالي التطويرات', color: '#2A848A' },
+  { icon: 'list-check', value: 289, label: 'إجمالي المهام التفصيلية', color: '#BA5A31' },
   { icon: 'cubes', value: 16, label: 'إجمالي الوحدات', color: '#A61C61' },
   { icon: 'box-taped', value: 4, label: 'الباقات المقترحة', color: '#452059' },
   { icon: 'plug', value: 8, label: 'التكاملات المخططة', color: '#2A848A' },
   { icon: 'hourglass-half', value: '9', label: 'المدة التقديرية (شهر) — يشمل مرحلة التطوير العاجل', color: '#BA5A31', suffix: '' },
-  { icon: 'magnifying-glass-chart', value: 84, label: 'مهام التحليل', color: '#2A848A' },
-  { icon: 'pen-ruler', value: 86, label: 'مهام التصميم', color: '#A61C61' },
-  { icon: 'code', value: 131, label: 'مهام التنفيذ', color: '#BA5A31' },
-  { icon: 'chalkboard-user', value: 54, label: 'مهام التدريب والتسليم', color: '#452059' },
+  { icon: 'magnifying-glass-chart', value: 74, label: 'مهام التحليل', color: '#2A848A' },
+  { icon: 'pen-ruler', value: 65, label: 'مهام التصميم', color: '#A61C61' },
+  { icon: 'code', value: 100, label: 'مهام التنفيذ', color: '#BA5A31' },
+  { icon: 'chalkboard-user', value: 50, label: 'مهام التدريب والتسليم', color: '#452059' },
 ];
 
 const committeeColors = ['#2A848A', '#BA5A31', '#452059', '#A61C61', '#10B981', '#F59E0B', '#EF4444', '#6366F1'];
@@ -32,7 +32,7 @@ export default function DashboardSection() {
           <h1 style={{ color: '#fff', fontSize: '1.7rem', fontWeight: 700, marginTop: 14, marginBottom: 6 }}>
             خطة تنفيذ تطوير منتج نظم — 2026
           </h1>
-          <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.95rem' }}>من الخارطة إلى التنفيذ — 355 مهمة (مرحلة التطوير العاجل تبدأ 19 أبريل + الخطة الأصلية مايو – ديسمبر)</p>
+          <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.95rem' }}>من الخارطة إلى التنفيذ — 289 مهمة (مرحلة التطوير العاجل تبدأ 19 أبريل + الخطة الأصلية مايو – ديسمبر)</p>
         </div>
 
         <div className="grid g3" style={{ marginBottom: 32 }}>

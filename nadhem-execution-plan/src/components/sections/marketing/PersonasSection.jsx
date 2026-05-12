@@ -1,13 +1,6 @@
 import SectionHeader from '../../common/SectionHeader';
 import { personas } from '../../../data/marketing';
 
-const priorityMap = {
-  urgent: { cls: 'badge', label: 'عاجلة', style: { background: '#EF4444', color: '#fff', fontWeight: 700 } },
-  highest: { cls: 'badge badge-d', label: 'أعلى أولوية' },
-  high: { cls: 'badge badge-w', label: 'أولوية عالية', style: { background: 'rgba(239,68,68,0.1)', color: '#EF4444' } },
-  medium: { cls: 'badge badge-p', label: 'أولوية متوسطة' },
-};
-
 export default function PersonasSection() {
   return (
     <section id="mkt-personas" className="section">
@@ -15,7 +8,6 @@ export default function PersonasSection() {
 
       <div className="grid g2">
         {personas.map((p, i) => {
-          const pri = priorityMap[p.priority] || priorityMap.medium;
           return (
             <div key={i} className="card" data-aos="fade-up">
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
@@ -26,7 +18,6 @@ export default function PersonasSection() {
                   <h4 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-dark)', margin: 0 }}>{p.name}</h4>
                   <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{p.size}</span>
                 </div>
-                <span className={pri.cls} style={pri.style || {}}>{pri.label}</span>
               </div>
 
               <p style={{ color: 'var(--text-muted)', fontSize: '0.82rem', lineHeight: 1.7, margin: '0 0 12px' }}>{p.desc}</p>

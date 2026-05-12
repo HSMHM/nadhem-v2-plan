@@ -203,24 +203,6 @@ export default function DevelopmentsSection() {
     <section id="developments" className="section">
       <SectionHeader icon="rocket-launch" title="التطويرات المطلوبة" subtitle="17 تطويراً (4 عاجلة + 13 مخططة) — اضغط على أي تطوير لعرض مهامه التفصيلية" />
 
-      <div className="card" style={{
-        background: 'rgba(42,132,138,0.04)',
-        borderColor: 'var(--primary)',
-        marginBottom: 20,
-        display: 'flex',
-        gap: 10,
-        alignItems: 'flex-start',
-      }}>
-        <i className="fa-thin fa-user-tie fa-lg" style={{ color: 'var(--primary)', marginTop: 4 }} />
-        <div style={{ fontSize: '0.82rem', lineHeight: 1.8 }}>
-          <p style={{ margin: '0 0 4px', fontWeight: 600, color: 'var(--text-dark)' }}>دور مدير المنتج في التطويرات</p>
-          <p style={{ margin: 0, color: 'var(--text)' }}>
-            مدير المنتج مسؤول عن <strong>مرحلة التحليل</strong> (تحديد المتطلبات وتوثيقها) و<strong>تدريب فريق نجاح العملاء</strong> بعد اكتمال كل تطوير.
-            أما مرحلتا التصميم والتنفيذ فيُقدَّر زمنها من الفريق التقني.
-          </p>
-        </div>
-      </div>
-
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
         {developments.map(dev => <DevelopmentCard key={dev.id} dev={dev} />)}
       </div>

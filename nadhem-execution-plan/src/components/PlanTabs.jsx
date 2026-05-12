@@ -3,6 +3,7 @@ const plans = [
   { id: 'ops', label: 'خطة التشغيل', shortLabel: 'التشغيل', icon: 'gears', color: '#BA5A31' },
   { id: 'marketing', label: 'خطة التسويق', shortLabel: 'التسويق', icon: 'bullhorn', color: '#A61C61' },
   { id: 'journey', label: 'رحلة المنتج', shortLabel: 'الرحلة', icon: 'compass', color: '#452059' },
+  { id: 'platform', label: 'رحلة منصة العميل', shortLabel: 'المنصة', icon: 'route', color: '#F59E0B' },
   { id: 'asana', label: 'محاكاة أسانا', shortLabel: 'أسانا', icon: 'list-tree', color: '#F06A6A' },
 ];
 

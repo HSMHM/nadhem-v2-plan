@@ -33,7 +33,7 @@ export const journeyNavItems = [
 
 export const asanaNavItems = [
   { id: 'asana-overview', label: 'نظرة عامة', icon: 'gauge-high' },
-  { id: 'asana-tasks', label: 'شجرة المهام', icon: 'list-tree' },
+  { id: 'asana-task-tabs', label: 'المهام (تطوير/تسويق/تشغيل)', icon: 'list-tree' },
   { id: 'asana-template', label: 'قالب FAD', icon: 'file-lines' },
   { id: 'asana-pipeline', label: 'خط الرفع', icon: 'cloud-arrow-up' },
 ];

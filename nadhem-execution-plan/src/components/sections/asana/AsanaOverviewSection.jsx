@@ -52,14 +52,13 @@ export default function AsanaOverviewSection() {
 
           <div className="asana-hero-meta">
             <i className="fa-thin fa-circle-info" aria-hidden="true" />
-            <span>الإجمالي المتوقع في أسانا: <strong>{stats.totalAsanaTasks}</strong> مهمة (<strong>{stats.mainCount}</strong> رئيسية + <strong>{stats.phaseContainerCount}</strong> حاوية مرحلة + <strong>{stats.leafCount}</strong> تفصيلية) + <strong>{stats.totalJsonFiles}</strong> مرفق JSON</span>
+            <span>الإجمالي المتوقع في أسانا: <strong>{stats.mainCount + stats.leafCount}</strong> مهمة (<strong>{stats.mainCount}</strong> رئيسية + <strong>{stats.leafCount}</strong> تفصيلية) + <strong>{stats.totalJsonFiles}</strong> مرفق</span>
           </div>
 
           <div className="asana-kpis">
             <StatCard icon="folder-tree" value={stats.mainCount} label="مهام رئيسية" sub={`${stats.addCount} إضافة + ${stats.modCount} تعديل`} />
-            <StatCard icon="layer-group" value={stats.phaseContainerCount} label="حاويات مراحل" color="#8B5CF6" sub="4 لكل تطوير: تحليل/تصميم/تنفيذ/تدريب" />
-            <StatCard icon="diagram-subtask" value={stats.leafCount} label="مهام تفصيلية" color="#3B82F6" sub="مأخوذة من developments.js" />
-            <StatCard icon="file-code" value={stats.totalJsonFiles} label="ملفات FAD JSON" color="#10B981" sub={`${stats.mainCount} كاملة + ${stats.leafCount} مختصرة`} />
+            <StatCard icon="diagram-subtask" value={stats.leafCount} label="مهام تفصيلية" color="#3B82F6" />
+            <StatCard icon="paperclip" value={stats.totalJsonFiles} label="المرفقات" color="#10B981" sub={`${stats.mainCount} كاملة + ${stats.leafCount} مختصرة`} />
           </div>
         </header>
 
