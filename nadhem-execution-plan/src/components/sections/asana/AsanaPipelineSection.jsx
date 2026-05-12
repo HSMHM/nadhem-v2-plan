@@ -18,7 +18,7 @@ const STEPS = [
     icon: 'file-export',
     title: 'توليد ملفات JSON',
     desc: 'node generate-fad-jsons.js',
-    detail: 'يُنتج 19 ملف رئيسي + ~297 ملف فرعي = 316 ملف JSON. ثم يمكنك تعديل أي ملف من تبويب "شجرة المهام" في هذا التطبيق وحفظه.',
+    detail: 'يُنتج 26 ملف رئيسي + ~416 ملف فرعي = 442 ملف JSON. ثم يمكنك تعديل أي ملف من تبويب "شجرة المهام" في هذا التطبيق وحفظه.',
   },
   {
     num: 4,
@@ -40,7 +40,7 @@ const STEPS = [
     icon: 'cloud-arrow-up',
     title: 'الرفع الفعلي',
     desc: 'node push-to-asana.js',
-    detail: 'ينشئ الهرم الكامل: 19 مهمة رئيسية + 76 حاوية مرحلة + ~297 مهمة تفصيلية + 316 مرفق JSON. يحفظ التقدم في .asana-state.json.',
+    detail: 'ينشئ الهرم الكامل: 26 مهمة رئيسية + 104 حاوية مرحلة + ~416 مهمة تفصيلية + 442 مرفق JSON. يحفظ التقدم في .asana-state.json.',
   },
   {
     num: 7,
@@ -53,8 +53,8 @@ const STEPS = [
 
 const FILES_TOUCHED = [
   { path: 'asana-integration/scripts/.env', role: 'بيانات الاعتماد (ليس في git)' },
-  { path: 'asana-integration/fad-jsons/main/*.json', role: '19 ملف JSON كامل (مرفقات للمهام الرئيسية)' },
-  { path: 'asana-integration/fad-jsons/subtasks/*.json', role: '~297 ملف JSON مختصر (مرفقات للفرعيات التفصيلية)' },
+  { path: 'asana-integration/fad-jsons/main/*.json', role: '26 ملف JSON كامل (مرفقات للمهام الرئيسية)' },
+  { path: 'asana-integration/fad-jsons/subtasks/*.json', role: '~416 ملف JSON مختصر (مرفقات للفرعيات التفصيلية)' },
   { path: 'asana-integration/scripts/.asana-state.json', role: 'حالة التقدم (يُحدَّث تلقائياً عند الرفع)' },
   { path: 'nadhem-execution-plan/vite-plugin-asana-api.js', role: 'API لقراءة/كتابة JSONs من تبويب أسانا (dev mode)' },
 ];

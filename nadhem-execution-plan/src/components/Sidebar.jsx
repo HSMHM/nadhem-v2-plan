@@ -2,12 +2,7 @@ export const devNavItems = [
   { id: 'dashboard', label: 'لوحة الإحصائيات', icon: 'chart-mixed' },
   { id: 'developments', label: 'التطويرات المطلوبة', icon: 'rocket-launch' },
   { id: 'modules', label: 'الوحدات (Modules)', icon: 'cubes' },
-  { id: 'packages', label: 'هيكلة الباقات', icon: 'box-taped' },
-  { id: 'integrations', label: 'التكاملات', icon: 'plug' },
   { id: 'timeline-simple', label: 'الجدول الزمني المبسط', icon: 'calendar-lines' },
-  { id: 'design-system', label: 'التصميم الموحد', icon: 'palette' },
-  { id: 'charts', label: 'الرسوم البيانية', icon: 'chart-pie' },
-  { id: 'roadmap', label: 'الاجتماع الأخير — خارطة الطريق', icon: 'map' },
 ];
 
 export const opsNavItems = [
@@ -43,7 +38,6 @@ export const marketingNavItems = [
   { id: 'mkt-challenge', label: 'التحدي وحجم السوق', icon: 'triangle-exclamation' },
   { id: 'mkt-personas', label: 'شرائح العملاء المستهدفة', icon: 'users-viewfinder' },
   { id: 'mkt-channels', label: 'قنوات الوصول للمنظمين', icon: 'diagram-project' },
-  { id: 'mkt-winback', label: 'استعادة العملاء السابقين', icon: 'user-plus' },
   { id: 'mkt-digital', label: 'التسويق الرقمي', icon: 'globe' },
   { id: 'mkt-partnerships', label: 'الشراكات والقنوات', icon: 'handshake' },
   { id: 'mkt-gaps', label: 'النواقص والتوصيات', icon: 'clipboard-list-check' },

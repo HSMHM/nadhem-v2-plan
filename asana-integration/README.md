@@ -1,12 +1,12 @@
 # تكامل أسانا — تطويرات منتج "نظم"
 
-هذا المجلد يحوي كل ما يلزم لرفع **19 تطويراً رئيسياً** (مع ~317 مهمة فرعية تفصيلية) إلى مشروع أسانا، حيث كل مهمة في أسانا تحمل مرفق JSON بصيغة **وثيقة تحليل الميزة (FAD — Feature Analysis Document)**.
+هذا المجلد يحوي كل ما يلزم لرفع **26 تطويراً رئيسياً** (مع ~416 مهمة فرعية تفصيلية) إلى مشروع أسانا، حيث كل مهمة في أسانا تحمل مرفق JSON بصيغة **وثيقة تحليل الميزة (FAD — Feature Analysis Document)**.
 
 ---
 
 ## الفلسفة باختصار
 
-- **المصدر:** ملف [`nadhem-execution-plan/src/data/developments.js`](../nadhem-execution-plan/src/data/developments.js) — يحوي 19 تطويراً، كل تطوير فيه 4 مراحل (تحليل/تصميم/تنفيذ/تدريب) ومهام تفصيلية.
+- **المصدر:** ملف [`nadhem-execution-plan/src/data/developments.js`](../nadhem-execution-plan/src/data/developments.js) — يحوي 26 تطويراً، كل تطوير فيه 4 مراحل (تحليل/تصميم/تنفيذ/تدريب) ومهام تفصيلية.
 - **القالب:** [`ANALYSIS_DOCUMENT_TEMPLATE.html`](./ANALYSIS_DOCUMENT_TEMPLATE.html) — نموذج تفاعلي يحوّل تعبئة الحقول إلى ملف JSON.
 - **الهدف:** كل تطوير → مهمة في أسانا (تحت قسم `إضافات` أو `التعديلات`) + هرم فرعي لمراحلها التفصيلية، مع مرفق JSON.
 - **المرجع التحليلي:** المشروع الحالي [saas-events-frontend](x:/laragon/www/saas-events-frontend) (مشروع نظام إدارة الفعاليات الفعلي) — يُقرأ منه فقط لاستخراج معرفات الخصائص الموجودة، ولا يُعدَّل عليه شيء.
@@ -23,12 +23,12 @@ asana-integration/
 │   ├── 00-asana-setup.md                ← خطوات إنشاء PAT و GIDs و sections
 │   ├── 01-saas-events-frontend-features.md  ← كتالوج خصائص المشروع المرجعي
 │   ├── 02-fad-template-guide.md         ← دليل تعبئة FAD حقلاً حقلاً
-│   ├── 03-developments-classification.md ← تصنيف الـ 19 (إضافة/تعديل)
+│   ├── 03-developments-classification.md ← تصنيف الـ 26 (إضافة/تعديل)
 │   ├── 04-asana-task-mapping.md         ← ربط كل تطوير بمهمة أسانا (الاسم/الوصف/المرفق)
 │   └── 05-adding-new-task.md            ← دليل إضافة/تعديل مهمة لاحقاً (3 سيناريوهات)
 ├── fad-jsons/
-│   ├── main/                            ← 19 ملف FAD رئيسي
-│   └── subtasks/                        ← ~317 ملف FAD مختصر للمهام التفصيلية
+│   ├── main/                            ← 26 ملف FAD رئيسي
+│   └── subtasks/                        ← ~416 ملف FAD مختصر للمهام التفصيلية
 └── scripts/
     ├── package.json
     ├── .env.example
@@ -58,7 +58,7 @@ cp .env.example .env
 ### 3) توليد ملفات FAD JSON
 ```bash
 node generate-fad-jsons.js
-# يُولّد 19 ملف في fad-jsons/main/ و ~317 ملف في fad-jsons/subtasks/
+# يُولّد 26 ملف في fad-jsons/main/ و ~416 ملف في fad-jsons/subtasks/
 ```
 
 ### 4) معاينة (Dry-run)
@@ -70,7 +70,7 @@ node push-to-asana.js --dry-run
 ### 5) الرفع الفعلي
 ```bash
 node push-to-asana.js
-# ينشئ ~412 مهمة (19 رئيسية + 76 حاوية مرحلة + ~317 تفصيلية) مع مرفقات
+# ينشئ ~546 مهمة (26 رئيسية + 104 حاوية مرحلة + ~416 تفصيلية) مع مرفقات
 ```
 
 ### 6) التحقق

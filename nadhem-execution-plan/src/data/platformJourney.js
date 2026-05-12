@@ -112,11 +112,11 @@ export const platformModules = [
     packages: ['basic', 'pro', 'ent', 'custom'],
   },
   {
-    id: 'pre.scientific-participants',
-    name: 'المشاركون العلميون',
+    id: 'pre.participants',
+    name: 'المشاركون',
     icon: 'users-rays',
     phase: 'pre',
-    desc: 'متحدثون + مدراء جلسات (multi-role) — دعوات + سيرة + رفع العروض',
+    desc: 'المتحدثين + مقدمي البرامج المصاحبة + مدراء الجلسات + المستشارين + مقدمي الأوراق العلمية — دعوات + سيرة + رفع العروض',
     packages: ['pro', 'ent', 'custom'],
   },
   {
@@ -202,7 +202,7 @@ export const platformModules = [
     name: 'الحملات والمحتوى الإعلامي',
     icon: 'bullhorn',
     phase: 'pre',
-    desc: 'حملات SMS/بريد/واتساب + استهداف فئات + جدولة + أخبار + Gallery + ربط سوشيال',
+    desc: 'حملات SMS/بريد + استهداف فئات + جدولة + أخبار + Gallery',
     packages: ['pro', 'ent', 'custom'],
     aiEnhancements: [
       'توليد نصوص الحملات والعناوين',

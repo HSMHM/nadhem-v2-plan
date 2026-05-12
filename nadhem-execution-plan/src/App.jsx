@@ -9,12 +9,7 @@ import './components/sections/platform/platform.css';
 import DashboardSection from './components/sections/DashboardSection';
 import DevelopmentsSection from './components/sections/DevelopmentsSection';
 import ModulesSection from './components/sections/ModulesSection';
-import PackagesSection from './components/sections/PackagesSection';
-import IntegrationsSection from './components/sections/IntegrationsSection';
 import SimpleTimelineSection from './components/sections/SimpleTimelineSection';
-import DesignSystemSection from './components/sections/DesignSystemSection';
-import ChartsSection from './components/sections/ChartsSection';
-import RoadmapSection from './components/sections/RoadmapSection';
 
 // Ops sections
 import OpsDashboardSection from './components/sections/ops/OpsDashboardSection';
@@ -34,7 +29,6 @@ import MktDashboardSection from './components/sections/marketing/MktDashboardSec
 import ChallengeSection from './components/sections/marketing/ChallengeSection';
 import PersonasSection from './components/sections/marketing/PersonasSection';
 import ChannelsSection from './components/sections/marketing/ChannelsSection';
-import WinbackSection from './components/sections/marketing/WinbackSection';
 import DigitalSection from './components/sections/marketing/DigitalSection';
 import PartnershipsSection from './components/sections/marketing/PartnershipsSection';
 import GapsSection from './components/sections/marketing/GapsSection';
@@ -130,12 +124,7 @@ function App() {
             <DashboardSection />
             <DevelopmentsSection />
             <ModulesSection />
-            <PackagesSection />
-            <IntegrationsSection />
             <SimpleTimelineSection />
-            <DesignSystemSection />
-            <ChartsSection />
-            <RoadmapSection />
           </>
         )}
 
@@ -162,7 +151,6 @@ function App() {
             <ChallengeSection />
             <PersonasSection />
             <ChannelsSection />
-            <WinbackSection />
             <DigitalSection />
             <PartnershipsSection />
             <GapsSection />

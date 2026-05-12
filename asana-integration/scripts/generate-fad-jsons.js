@@ -1,7 +1,7 @@
 // scripts/generate-fad-jsons.js
 // يقرأ developments.js + classification.js ويولّد:
-//   - fad-jsons/main/FAD_DEV-{id}_v1.0.json     (19 ملف)
-//   - fad-jsons/subtasks/FAD_DEV-{subId}_v1.0.json  (~317 ملف)
+//   - fad-jsons/main/FAD_DEV-{id}_v1.0.json     (26 ملف)
+//   - fad-jsons/subtasks/FAD_DEV-{subId}_v1.0.json  (~416 ملف)
 //
 // Usage:
 //   node generate-fad-jsons.js                 # ولّد الكل (يكتب فوق الموجود)

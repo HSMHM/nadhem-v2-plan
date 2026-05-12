@@ -91,7 +91,7 @@ export default function AsanaTemplateSection() {
         <div className="asana-card asana-template-sections" data-aos="fade-up">
           <div className="asana-card-head">
             <i className="fa-thin fa-list-ol" style={{ color: '#F06A6A' }} aria-hidden="true" />
-            <h3>أقسام القالب الـ16</h3>
+            <h3>أقسام قالب FAD (15 قسماً نشطاً)</h3>
           </div>
           <div className="asana-template-table">
             <div className="asana-template-row asana-template-head">

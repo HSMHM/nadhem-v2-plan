@@ -9,7 +9,7 @@ export default function CustomerSuccessSection() {
       <SectionHeader
         icon="user-graduate"
         title="تمكين العميل من النظام"
-        subtitle="رحلة تمكين رسمية من أربع محطات — حتى لا يكتفي العميل بالاشتراك، بل يستثمر كامل قدرات المنصة"
+        subtitle="رحلة تمكين رسمية من ست محطات — حتى لا يكتفي العميل بالاشتراك، بل يستثمر كامل قدرات المنصة عبر دورة الفعالية الكاملة"
       />
 
       {/* Intro card */}
@@ -19,8 +19,8 @@ export default function CustomerSuccessSection() {
         </p>
       </div>
 
-      {/* 4 Stages */}
-      <div className="grid g4" style={{ marginBottom: 28 }}>
+      {/* 6 Stages */}
+      <div className="grid g3" style={{ marginBottom: 28 }}>
         {stages.map((s, i) => (
           <div
             key={s.id}

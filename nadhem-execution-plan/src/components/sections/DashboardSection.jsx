@@ -5,16 +5,13 @@ import { chartData } from '../../data/timeline';
 
 const stats = [
   { icon: 'bolt', value: 4, label: 'تطويرات عاجلة', color: '#EF4444' },
-  { icon: 'rocket-launch', value: 17, label: 'إجمالي التطويرات', color: '#2A848A' },
-  { icon: 'list-check', value: 289, label: 'إجمالي المهام التفصيلية', color: '#BA5A31' },
-  { icon: 'cubes', value: 16, label: 'إجمالي الوحدات', color: '#A61C61' },
-  { icon: 'box-taped', value: 4, label: 'الباقات المقترحة', color: '#452059' },
-  { icon: 'plug', value: 8, label: 'التكاملات المخططة', color: '#2A848A' },
-  { icon: 'hourglass-half', value: '9', label: 'المدة التقديرية (شهر) — يشمل مرحلة التطوير العاجل', color: '#BA5A31', suffix: '' },
-  { icon: 'magnifying-glass-chart', value: 74, label: 'مهام التحليل', color: '#2A848A' },
-  { icon: 'pen-ruler', value: 65, label: 'مهام التصميم', color: '#A61C61' },
-  { icon: 'code', value: 100, label: 'مهام التنفيذ', color: '#BA5A31' },
-  { icon: 'chalkboard-user', value: 50, label: 'مهام التدريب والتسليم', color: '#452059' },
+  { icon: 'rocket-launch', value: 26, label: 'إجمالي التطويرات', color: '#2A848A' },
+  { icon: 'list-check', value: 416, label: 'إجمالي المهام التفصيلية', color: '#BA5A31' },
+  { icon: 'hourglass-half', value: '9', label: 'المدة التقديرية (شهر) — يشمل مرحلة التطوير العاجل', color: '#A61C61', suffix: '' },
+  { icon: 'magnifying-glass-chart', value: 105, label: 'مهام التحليل', color: '#2A848A' },
+  { icon: 'pen-ruler', value: 92, label: 'مهام التصميم', color: '#A61C61' },
+  { icon: 'code', value: 148, label: 'مهام التنفيذ', color: '#BA5A31' },
+  { icon: 'chalkboard-user', value: 71, label: 'مهام التدريب والتسليم', color: '#452059' },
 ];
 
 const committeeColors = ['#2A848A', '#BA5A31', '#452059', '#A61C61', '#10B981', '#F59E0B', '#EF4444', '#6366F1'];
@@ -32,7 +29,7 @@ export default function DashboardSection() {
           <h1 style={{ color: '#fff', fontSize: '1.7rem', fontWeight: 700, marginTop: 14, marginBottom: 6 }}>
             خطة تنفيذ تطوير منتج نظم — 2026
           </h1>
-          <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.95rem' }}>من الخارطة إلى التنفيذ — 289 مهمة (مرحلة التطوير العاجل تبدأ 19 أبريل + الخطة الأصلية مايو – ديسمبر)</p>
+          <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.95rem' }}>من الخارطة إلى التنفيذ — 416 مهمة (مرحلة التطوير العاجل تبدأ 19 أبريل + الخطة الأصلية مايو – ديسمبر)</p>
         </div>
 
         <div className="grid g3" style={{ marginBottom: 32 }}>
@@ -83,7 +80,7 @@ export default function DashboardSection() {
                 <YAxis tick={{ fill: 'rgba(255,255,255,0.4)', fontSize: 12 }} axisLine={false} tickLine={false} />
                 <Tooltip contentStyle={{ background: 'rgba(15,7,32,0.95)', border: 'none', borderRadius: 8, color: '#fff', fontFamily: 'Alexandria', direction: 'rtl' }} formatter={(v) => [`${v} تطويرات`]} />
                 <Bar dataKey="value" radius={[6, 6, 0, 0]} barSize={36}>
-                  {chartData.tasksByQuarter.map((_, i) => <Cell key={i} fill={['#2A848A', '#BA5A31', '#A61C61', '#452059'][i]} />)}
+                  {chartData.tasksByQuarter.map((_, i) => <Cell key={i} fill={['#EF4444', '#2A848A', '#BA5A31', '#A61C61', '#452059'][i]} />)}
                 </Bar>
               </BarChart>
             </ResponsiveContainer>

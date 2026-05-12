@@ -201,7 +201,7 @@ function DevelopmentCard({ dev }) {
 export default function DevelopmentsSection() {
   return (
     <section id="developments" className="section">
-      <SectionHeader icon="rocket-launch" title="التطويرات المطلوبة" subtitle="17 تطويراً (4 عاجلة + 13 مخططة) — اضغط على أي تطوير لعرض مهامه التفصيلية" />
+      <SectionHeader icon="rocket-launch" title="التطويرات المطلوبة" subtitle="26 تطويراً (4 عاجلة + 22 مخططة) — اضغط على أي تطوير لعرض مهامه التفصيلية" />
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
         {developments.map(dev => <DevelopmentCard key={dev.id} dev={dev} />)}
