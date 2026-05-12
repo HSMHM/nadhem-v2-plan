@@ -1,4 +1,5 @@
 import { journeySections, journeyMeta, journeyMonths } from '../../../data/journey';
+import CompletedJourneyTrail from './CompletedJourneyTrail';
 
 function PillarTimeline({ startMonth, endMonth, urgent }) {
   return (
@@ -143,11 +144,14 @@ function JourneyColumn({ section }) {
 export default function ProductJourneySection() {
   return (
     <section id="journey-overview" className="journey-root">
-      <div className="journey-bg" />
-      <div className="journey-overlay" />
-      <div className="journey-glow journey-glow-1" />
-      <div className="journey-glow journey-glow-2" />
-      <div className="journey-glow journey-glow-3" />
+      <CompletedJourneyTrail />
+
+      <div className="journey-overview-section">
+        <div className="journey-bg" />
+        <div className="journey-overlay" />
+        <div className="journey-glow journey-glow-1" />
+        <div className="journey-glow journey-glow-2" />
+        <div className="journey-glow journey-glow-3" />
 
       <div className="journey-inner">
         <header className="journey-hero" data-aos="fade-up">
@@ -179,6 +183,7 @@ export default function ProductJourneySection() {
           ))}
         </div>
 
+      </div>
       </div>
     </section>
   );
