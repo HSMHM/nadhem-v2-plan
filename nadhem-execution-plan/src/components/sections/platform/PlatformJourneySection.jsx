@@ -1,8 +1,9 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
   lifecyclePhases,
   packages,
-  platformModules,
   crossCuttingCapabilities,
   modulesByPhase,
   getStats,
@@ -259,18 +260,46 @@ function PhaseView() {
 export default function PlatformJourneySection() {
   const [view, setView] = useState('phase');
   const stats = useMemo(() => getStats(), []);
+  const rootRef = useRef(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const ctx = gsap.context(() => {
+      const stats = gsap.utils.toArray('.pj-stat');
+      if (reduceMotion) {
+        gsap.set(stats, { opacity: 1, y: 0 });
+        return;
+      }
+      gsap.from(stats, {
+        opacity: 0,
+        y: 26,
+        duration: 0.5,
+        ease: 'back.out(1.5)',
+        stagger: 0.07,
+        scrollTrigger: { trigger: '.pj-stats', start: 'top 88%', invalidateOnRefresh: true },
+      });
+    }, rootRef);
+    const onResize = () => ScrollTrigger.refresh();
+    window.addEventListener('resize', onResize);
+    return () => {
+      ctx.revert();
+      window.removeEventListener('resize', onResize);
+    };
+  }, []);
 
   return (
-    <section className="pj-root">
+    <section className="pj-root" id="pj-root" ref={rootRef}>
       <div className="pj-bg" />
 
       <div className="pj-inner">
         <header className="pj-hero">
           <div className="pj-badge">
             <i className="fa-thin fa-route" aria-hidden="true" />
-            <span>رؤية موحَّدة لكل ما تقدّمه منصة نَظِّم</span>
+            <span>المرجع الرسمي لوصف منتج نَظِّم</span>
           </div>
-          <h1 className="pj-hero-title">رحلة منصة العميل — معزَّزة بالذكاء الاصطناعي</h1>
+          <h1 className="pj-hero-title">وصف المنتج</h1>
+          <p className="pj-hero-sub">الوحدات الثماني والعشرون عبر مراحل الفعالية الثلاث والباقات الأربع</p>
 
           <div className="pj-stats">
             <div className="pj-stat">

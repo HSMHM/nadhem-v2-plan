@@ -19,7 +19,7 @@ export default function SubscriptionsSection() {
         className="grid g4"
         style={{ marginBottom: 24 }}
       >
-        {summaryCards.map((c, i) => (
+        {summaryCards.map((c) => (
           <div key={c.key} className="card" data-aos="fade-up" style={{ textAlign: 'center' }}>
             <div className="ic" style={{ margin: '0 auto 10px' }}>
               <i className={`fa-thin fa-${c.icon}`} style={{ color: c.color }} aria-hidden="true" />
