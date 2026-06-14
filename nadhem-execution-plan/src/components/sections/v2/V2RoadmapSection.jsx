@@ -5,9 +5,6 @@ import { v2DevPhases, v2DevStats } from '../../../data/v2DevPlan';
 
 const summaryStats = [
   { num: v2DevStats.totalPhases, lbl: 'مراحل تطوير' },
-  { num: v2DevStats.totalModules, lbl: 'وحدة وظيفية' },
-  { num: v2DevStats.totalCommittees, lbl: 'لجان عمل' },
-  { num: v2DevStats.totalPackages, lbl: 'باقات' },
 ];
 
 export default function V2RoadmapSection() {

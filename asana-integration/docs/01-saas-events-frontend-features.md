@@ -157,7 +157,7 @@
 - **F02** — النماذج الديناميكية (DynamicFormController, DynamicFormService, FieldService)
 - **F03** — البريد الوارد (InboxMessagesController, ContactUsService)
 - **F04** — قوالب البريد الإلكتروني
-- **F05** — إعدادات النظام والمستأجر (`config/tenant.php`)
+- **F05** — إعدادات النظام والمشترك (`config/tenant.php`)
 - **F06** — قائمة التنقل (MenuSectionService, MenuLinkService)
 
 ### S12 — التنظيم واللوجستيات
@@ -244,7 +244,7 @@
 - مكتمل: Home, Login, Register, Forgot/Reset, Contact, Error
 - معلّق: 30+ صفحة (FAQ, News, Media, Dashboard, Certificates, ...)
 
-### تعدّد المستأجرين (Multi-Tenancy)
+### تعدّد المشتركين (Multi-Tenancy)
 - ملف الإعداد: `config/tenant.php` (هيكل أساسي حالياً)
 - المفهوم: كل منظم فعالية له سياق منفصل
 
