@@ -65,7 +65,7 @@ export default function V2RoadmapSection() {
           </div>
           <h1 className="v2road-title">خطة التطوير</h1>
           <p className="v2road-sub">
-            ست مراحل متتابعة لإعادة بناء المنتج من الصفر — من نظام التصميم والبنية التحتية حتى التسليم الكامل في {v2DevStats.deliveryDate}.
+            سبع مراحل تطوير منطقية لإعادة بناء المنتج بالكامل — أكثر من {v2DevStats.totalScreens} شاشة عبر لوحة الأدمن والمنصة، منظّمة حسب وحدات النظام لا دورة حياة الفعالية، حتى التسليم في {v2DevStats.deliveryDate}.
           </p>
 
           <div className="v2road-stats">

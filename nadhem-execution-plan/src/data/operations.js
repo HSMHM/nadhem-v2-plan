@@ -1,5 +1,5 @@
 export const opsStats = [
-  { icon: 'bolt', value: 1, label: 'مرحلة تطوير عاجل نشطة', color: '#EF4444' },
+  { icon: 'bolt', value: 3, label: 'مهام تطوير عاجلة نشطة (برمجة قالب 1، برمجة قالب 2، برمجة تصميم الأدمن)', color: '#EF4444' },
   { icon: 'file-contract', value: 7, label: 'اشتراك نشط', color: '#2A848A' },
   { icon: 'file-circle-xmark', value: 71, label: 'اشتراك منتهي (لم يُجدد)', color: '#EF4444' },
   { icon: 'sigma', value: 78, label: 'إجمالي الاشتراكات منذ الإطلاق', color: '#452059' },

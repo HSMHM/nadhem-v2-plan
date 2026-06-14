@@ -142,6 +142,8 @@ function JourneyColumn({ section }) {
 }
 
 export default function ProductJourneySection() {
+  const visibleSections = journeySections.filter((s) => s.id !== 'growth' && s.id !== 'development');
+  const visibleKpis = journeyMeta.kpis.filter((k) => k.label.includes('تشغيل المنتج'));
   return (
     <section id="journey-overview" className="journey-root">
       <CompletedJourneyTrail />
@@ -163,7 +165,7 @@ export default function ProductJourneySection() {
           <p className="journey-hero-sub">{journeyMeta.subtitle}</p>
 
           <div className="journey-kpis">
-            {journeyMeta.kpis.map((k, i) => (
+            {visibleKpis.map((k, i) => (
               <div key={i} className="journey-kpi" style={{ '--kpi-accent': k.color }}>
                 <div className="journey-kpi-ic">
                   <i className={`fa-thin fa-${k.icon}`} aria-hidden="true" />
@@ -178,7 +180,7 @@ export default function ProductJourneySection() {
         </header>
 
         <div className="journey-grid">
-          {journeySections.map((s) => (
+          {visibleSections.map((s) => (
             <JourneyColumn key={s.id} section={s} />
           ))}
         </div>

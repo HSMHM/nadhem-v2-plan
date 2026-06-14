@@ -22,8 +22,6 @@ export const marketingNavItems = [
 
 export const journeyNavItems = [
   { id: 'journey-overview', label: 'نظرة عامة', icon: 'compass' },
-  { id: 'journey-growth', label: 'نمو المنتج', icon: 'seedling' },
-  { id: 'journey-development', label: 'تطوير المنتج', icon: 'rocket-launch' },
   { id: 'journey-operations', label: 'تشغيل المنتج', icon: 'gears' },
 ];
 
@@ -34,11 +32,12 @@ export const productNavItems = [
 export const roadmapNavItems = [
   { id: 'v2-roadmap-overview', label: 'نظرة عامة', icon: 'gauge-high' },
   { id: 'v2-phase-1', label: 'الأساس والبنية التحتية', icon: 'compass-drafting' },
-  { id: 'v2-phase-2', label: 'النواة والمصادقة', icon: 'layer-group' },
-  { id: 'v2-phase-3', label: 'وحدات قبل الفعالية', icon: 'calendar-circle-plus' },
-  { id: 'v2-phase-4', label: 'وحدات أثناء وبعد', icon: 'circle-play' },
-  { id: 'v2-phase-5', label: 'التكاملات والذكاء', icon: 'plug-circle-bolt' },
-  { id: 'v2-phase-6', label: 'التدقيق والتسليم', icon: 'circle-check' },
+  { id: 'v2-phase-2', label: 'النواة والمصادقة والباقات', icon: 'shield-halved' },
+  { id: 'v2-phase-3', label: 'قلب الأدمن والإعدادات', icon: 'gauge-high' },
+  { id: 'v2-phase-4', label: 'اللجنتان العلمية والتنظيمية', icon: 'microscope' },
+  { id: 'v2-phase-5', label: 'الرعايات والمعارض والشراكات وغيرها', icon: 'handshake' },
+  { id: 'v2-phase-6', label: 'المنصة والتسجيل والتكاملات والذكاء', icon: 'globe' },
+  { id: 'v2-phase-7', label: 'التدقيق والتوثيق والتسليم', icon: 'circle-check' },
 ];
 
 export const devNavItems = [
@@ -61,7 +60,7 @@ export const trackMeta = {
     tag: 'المنتج القائم',
     color: '#BA5A31',
     icon: 'gears',
-    desc: 'النظام التشغيلي العامل اليوم — متابعة العمليات والتسويق ورحلة المنتج.',
+    desc: 'النظام التشغيلي العامل اليوم — متابعة العمليات ورحلة المنتج.',
   },
   v2: {
     name: 'نظم V2',
@@ -75,7 +74,6 @@ export const trackMeta = {
 export const trackTabs = {
   v1: [
     { id: 'ops', label: 'الخطة التشغيلية', shortLabel: 'التشغيلية', icon: 'gears', color: '#BA5A31' },
-    { id: 'marketing', label: 'خطة التسويق', shortLabel: 'التسويق', icon: 'bullhorn', color: '#A61C61' },
     { id: 'journey', label: 'رحلة المنتج', shortLabel: 'الرحلة', icon: 'compass', color: '#452059' },
   ],
   v2: [
